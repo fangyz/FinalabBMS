@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cdd4e2d9a6b54e6c9808a5da15952126" Name="Diagram1">
+        <EntityTypeShape EntityType="FinalModel.sysdiagram" Width="1.5" PointX="7.75" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.SystemMessage" Width="1.5" PointX="13.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_Abnormal" Width="1.5" PointX="13.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_AnswerSheet" Width="1.5" PointX="16" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_AnswerSheetComment" Width="1.5" PointX="20.5" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_BriefAnswerSheet" Width="1.5" PointX="18.25" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_BriefScore" Width="1.5" PointX="20.5" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_ChoiceAnswerSheet" Width="1.5" PointX="18.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_Department" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_InterviewerInfo" Width="1.5" PointX="13.75" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_MemberInformation" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_OgnizationAct" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_OnDuty" Width="1.5" PointX="5.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_Organization" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_Paper" Width="1.5" PointX="13.75" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_PaperQuestion" Width="1.5" PointX="18.25" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_Permission" Width="1.5" PointX="3" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_ProjectInformation" Width="1.5" PointX="8.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_ProjectParticipation" Width="1.5" PointX="10.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_ProjectType" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_ProjPhase" Width="1.5" PointX="11.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_Question" Width="1.5" PointX="16" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_QuestionOption" Width="1.5" PointX="18.25" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_QuestionType" Width="1.5" PointX="13.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_Role" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_RoleAct" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_RolePermission" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_TaskInformation" Width="1.5" PointX="13.5" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_TaskParticipation" Width="1.5" PointX="9.75" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_TaskType" Width="1.5" PointX="11.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_TeacherInfo" Width="1.5" PointX="18.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_TechnicaLevel" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.Tbl_Message" Width="1.5" PointX="8.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.Tbl_User_Message" Width="1.5" PointX="11" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinalModel.T_IsShow" Width="1.5" PointX="15.75" PointY="2.5" IsExpanded="true" />
+        <AssociationConnector Association="FinalModel.FK__T_AnswerS__Answe__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_AnswerS__Inter__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_AnswerS__Paper__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_ChoiceA__Answe__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK_T_BriefAnswerSheet_T_AnswerSheet" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_AnswerS__Rater__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_BriefAn__Quest__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_BriefSc__Brief__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_BriefSc__Paper__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_ChoiceA__Quest__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_MemberI__Depar__108B795B" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_MemberI__Depar__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_MemberI__Study__1273C1CD" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_MemberI__Study__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_MemberI__Techn__117F9D94" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_MemberI__Techn__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_Ognizat__RoleA__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_OnDuty__StuNum__40F9A68C" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_Project__ProjL__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_Project__ProjP__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_RoleAct__RoleA__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_Ognizat__Organ__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_PaperQu__Paper__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_PaperQu__Quest__1FCDBCEB" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_RolePer__PerId__3B40CD36" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_Project__ProjI__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_Project__ProjT__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_TaskInf__ProjI__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_TaskInf__ProjP__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_Questio__Quest__0CBAE877" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_Questio__Quest__117F9D94" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_RoleAct__RoleI__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_RolePer__RoleI__3A4CA8FD" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK__T_TaskInf__TaskT__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="FinalModel.FK_Tbl_User_Message_MessageId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

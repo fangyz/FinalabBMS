@@ -1,0 +1,369 @@
+﻿body {
+    height:100%;
+	margin:0;
+	background-attachment: fixed;
+    overflow:hidden;
+}
+/***************************************大背景*********************************************/
+#BackGroundDiv {
+    height:768px;
+	width:100%;
+	background-image:url(../Images/background.png);
+	background-repeat:repeat;
+	background-position:center;
+    background-size:cover;
+	margin:0px auto;
+	top:-50%;
+	left:-50%;
+}
+
+
+/***************************************商标Logo+标题*********************************************/
+#TopDivShadow {
+    height:50px;
+	width:100%;
+	background-color: black;
+	opacity:0.5;
+    position:fixed;    
+}
+
+#TopDiv {
+    height:50px;
+	width:100%;
+    position:fixed;
+}
+
+#LogoImg {
+    width:30px;
+    height:32px;
+    background:url('../Images/登陆界面图标.png') no-repeat;           
+    background-position:-35px -35px;
+    /*border:0px solid red;*/
+    float:left;
+    margin-left:40px;
+    margin-top:10px;
+    margin-right:10px;     
+}
+
+/******************************************标题********************************************/
+#title {
+    color:white;
+    font-family:微软雅黑;
+    margin-top:15px;
+
+}
+
+/***************************************登录框*********************************************/
+#LoginBoxShadow {
+    width:380px;
+	height:265px;
+    top:27%;
+    left:35%;
+    position:fixed;
+    background-color:black;
+    opacity:0.4;
+    border-radius:5px;
+}
+
+#LoginBox {
+    width:380px;
+	height:265px;
+    top:27%;
+    left:35%;
+    position:fixed;
+    border-radius:5px;    
+}
+/*********************用户名************************/
+#UserNameDiv {
+    top:18%;
+    left:25px;
+    width:310px;
+    height:30px;   
+    /*border:1px solid white;*/
+    float:left; 
+    position:relative;
+}
+    #UserNameDiv span,#PasswordDiv span,#VCodeDiv span{
+        color:white;
+        top:5px;
+        position:relative;
+        letter-spacing:2px
+    }
+    #UserNameDiv div,#PasswordDiv div,#VCodeDiv div,#CheckBoxDiv div {
+        float:left;
+    }
+
+#UserNameText,#PasswordText {
+    width:200px;
+    height:26px;
+    border-radius:12px;
+    background-color:white;
+    margin-left:5px;
+    margin-top:2px;
+    padding:0px;
+}
+
+#UserNameImg,#PasswordImg {
+     left:10px;
+     top:2px;
+     position:relative;
+     width:22px;
+     height:20px;
+     background:url('../Images/登陆界面图标.png') no-repeat;
+     background-position:-193px -84px;    
+}
+
+#PasswordImg {
+    background-position:-230px -83px;    
+}
+
+    #UserNameText input,#PasswordText input {
+        top:2px;
+        left:14px;
+        border:none;
+        width:150px;
+        height:20px;
+        position:relative;
+        margin:0px;
+       outline:none;
+    }
+
+/**************密码*****************/
+#PasswordDiv {
+    top:22%;
+    left:25px;
+    width:335px;
+    height:30px;   
+    /*border:1px solid red;*/
+    float:left; 
+    position:relative;    
+}
+/**************找回密码*****************/
+#BackPassword {
+    color:white;
+    width:64px;
+    height:20px; 
+    float:left;
+    margin-top:4px;
+    margin-left:4px;
+}
+
+    #BackPassword a {
+        color:white;
+        font-size:small;
+    }
+        #BackPassword a:hover {
+            color:#0E879D;    
+        }
+/*************************验证码***************************/
+#VCodeDiv {
+    top:26%;
+    left:25px;
+    width:335px;
+    height:30px;   
+    /*border:1px solid white;*/
+    float:left; 
+    position:relative;        
+}
+
+#VCodeText {
+    width:90px;        
+    height:26px;
+    border-radius:12px;
+    background-color:white;
+    margin-left:5px;
+    margin-top:2px;
+    padding:0px;
+}
+    #VCodeText input {
+        top:2px;
+        left:12px;
+        border:none;
+        width:70px;
+        height:20px;
+        position:relative;
+        margin:0px;
+        outline:none;    
+    }
+
+#VCodeImg {
+    width:90px;
+    height:30px;
+    margin-left:15px;
+    background-color:white;
+}
+    #VCodeImg img {
+        width:90px;
+        height:30px;    
+    }
+
+
+/*************************记住密码、自动登录*************************************/
+#CheckBoxDiv {
+    top:30%;
+    left:25px;
+    width:335px;
+    height:30px;   
+    float:left; 
+    position:relative;   
+}
+
+    #CheckBoxDiv div span {
+        color:white;
+        font-size:small;
+    }
+
+
+#RememberPwd {
+    margin-left:70px;
+}
+
+#AutoLogin {
+   margin-left:30px;
+}
+
+/******************************登录按钮****************************/
+#btnLogin {
+    top:31%;
+    left:120px;
+    width:110px;
+    height:30px;
+    /*border:1px solid red;*/
+    position:relative;
+    float:left;
+    text-align:center;
+}
+
+#btnLogin {
+    width:138px;
+    height:43px;
+    /*background: url('../Images/登陆界面图标.png') no-repeat;*/
+    background-position:-34px -81px;
+}
+
+    #btnLogin div {
+        /*border:1px solid red;*/
+        margin-top:10px;    
+    }
+
+        #btnLogin div a {
+            color:white;
+        }
+    
+
+/*************************背景切换**********************************/
+#BgSwitch {
+    height:20px;
+    width:380px;
+    border:0px solid red;
+    top:84%;
+    left:36%;
+    position:absolute;
+}
+
+
+
+#bgOne,#bgTwo,#bgThree {
+    width:14px;
+    height:14px;
+    border:0px solid red;
+    float:left;
+    margin-top:1px;
+    margin-right:5px;
+    border-radius:7px;
+    background-color:#F4F4F4;
+}
+
+#bgOne {
+    margin-left:150px;                      
+    background-color:#D4D4D4;
+}
+
+
+#BelowDiv {
+    height:63px;
+    width:100%;
+    text-align:center;
+    background-color:black;
+    opacity:0.3;
+    position:fixed;
+    bottom:0px;
+    color:white;
+}
+
+    #BelowDiv a {
+        color:white;
+        font-family:微软雅黑;
+        font-size:small;
+        margin-right:20px;
+    }
+
+    #BelowDiv hr {
+        color:white;
+        width:450px;
+        margin-top:5px;
+        margin-bottom:0px;
+    }
+
+    #BelowDiv span {
+        margin-top:0px;
+        font-family:微软雅黑;
+        font-size:smaller;
+
+    }
+
+/*************************登陆按钮样式**********************************/
+
+.login-img { 
+display: inline-block; 
+zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */ 
+*display: inline; 
+vertical-align: baseline; 
+margin: 0 2px; 
+outline: none; 
+cursor: pointer; 
+text-align: center; 
+text-decoration: none; 
+font: 14px/100% Arial, Helvetica, sans-serif; 
+text-shadow: 0 1px 1px rgba(0,0,0,.3); 
+-webkit-border-radius: .5em; 
+-moz-border-radius: .5em; 
+border-radius: .5em; 
+-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2); 
+-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2); 
+box-shadow: 0 1px 2px rgba(0,0,0,.2); 
+height:40px;
+width:140px;
+font-family:'Microsoft YaHei'
+} 
+.login-img:hover { 
+text-decoration: none; 
+} 
+.login-img:active { 
+position: relative; 
+top: 1px; 
+} 
+
+
+/* color styles 
+---------------------------------------------- */ 
+.black { 
+color: #d7d7d7; 
+border: solid 1px #333; 
+background: #333; 
+background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#000)); 
+background: -moz-linear-gradient(top, #666, #000); 
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#000000'); 
+} 
+.black:hover { 
+background: #000; 
+background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#000)); 
+background: -moz-linear-gradient(top, #444, #000); 
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#444444', endColorstr='#000000'); 
+} 
+.black:active { 
+color: #666; 
+background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#444)); 
+background: -moz-linear-gradient(top, #000, #444); 
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#666666'); 
+} 

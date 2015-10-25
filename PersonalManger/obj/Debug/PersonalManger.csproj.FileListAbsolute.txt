@@ -1,0 +1,5 @@
+F:\实验室网站\FinalabBMS\UI\bin\PersonalManger.dll
+F:\实验室网站\FinalabBMS\UI\bin\PersonalManger.pdb
+F:\实验室网站\FinalabBMS\PersonalManger\obj\Debug\PersonalManger.csprojResolveAssemblyReference.cache
+F:\实验室网站\FinalabBMS\PersonalManger\obj\Debug\PersonalManger.dll
+F:\实验室网站\FinalabBMS\PersonalManger\obj\Debug\PersonalManger.pdb

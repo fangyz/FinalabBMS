@@ -1,0 +1,109 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>开始答题</title>
+    <!-- css -->
+    <link href="~/Amaze%20UI/amazeui.min.css" rel="stylesheet" />
+    <link href="~/Areas/JoinUs/CSS/init.css" rel="stylesheet" />
+    <link href="~/Areas/JoinUs/CSS/myui.css" rel="stylesheet" />
+    <link href="~/Areas/JoinUs/CSS/begin-test-index-doquestion.css" rel="stylesheet" />
+  
+
+    
+
+</head>
+<body>
+    <!-- hidden -->
+    
+    <input type="text" id="questionindex" value=" @ViewData["questionIndex"]" />
+    <input type="text" id="questioncount" value="@ViewData["questionCount"]" />
+    <input type="hidden" id="question_index" value="@ViewData["questionID"]" />
+    <div id="header">
+        <div id="logo">
+            <div></div>
+        </div>
+        <div id="brand">
+            <div></div>
+        </div>
+        <div id="hello">
+            <span>您好，欢迎来到FINAL测评</span>
+        </div>
+    </div>
+    <div id="div_tip">
+        <hr />
+        <div id="tip">
+            <button class="am-btn am-btn-primary">第 @ViewData["questionIndex"] 题/共 @ViewData["questionCount"] 题 </button>
+        </div>
+    </div>
+
+    <div id="question">
+        <form id="questionForm" method="post" action="/JoinUs/BeginTest/SubmitAnswer/@ViewData["typeId"]">
+
+            <div id="timer" style="color: red"></div>
+
+            <input type="hidden" id="questionId" name="questionId" />
+            <input type="hidden" id="questionTypeId" name="questionTypeId" />
+            <input type="hidden" id="judge" name="timer1" value="intime" />
+            <input type="hidden" id="Index"  value="@ViewData["questionIndex"]" />
+            <input type="hidden" id="count"  value="@ViewData["questionCount"]" />
+            <table class="am-table am-table-bordered am-table-radius am-table-striped">
+                <thead>
+                    <tr>
+                        <th colspan="2">58. 公元前453年</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <div id="next_step">
+        <button class="am-btn am-btn-primary" type="submit" id="btn_next_step">下一步</button>
+    </div>
+    <div id="footer">
+        <div>
+            <span>© 2015 Finalab </span>
+            <span>长沙理工大学 未来网络与应用实验室</span>
+        </div>
+    </div>
+    <!-- js -->
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Areas/JoinUs/JS/begin-test-doquestion.js"></script>
+      <script>
+          var maxtime;
+
+          window.onload = function () {
+              if (window.name == '') {
+                  maxtime = 30 * 60;
+              } else {
+                  maxtime = window.name;
+              }
+              timer = setInterval("CountDown()", 1000);
+          }
+          function CountDown() {
+              if (maxtime >= 0) {
+                  minutes = Math.floor(maxtime / 60);
+                  seconds = Math.floor(maxtime % 60);
+                  msg = "距离考试结束还有" + minutes + "分" + seconds + "秒";
+                  document.all["timer"].innerHTML = msg;
+                  --maxtime;
+                  window.name = maxtime;
+              }
+              else {
+                  clearInterval(timer);
+                  window.name = ''
+                  document.getElementById("judge").value = "outtime";
+                  alert("考试结束，系统将自动提交试卷！");
+                  document.getElementById("questionForm").submit();
+              }
+          }
+
+    </script>
+</body>
+</html>

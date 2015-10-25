@@ -1,0 +1,19 @@
+
+
+
+需要小小修改的
+
+
+4.部分导出时，加上部门，在数据层加上
+     DataTable dt=new DataTable();
+            if (depart != 0)
+            {
+                where += " and Department=" + depart;
+                dt = SqlHelper.ExecuteDataTable(where);
+            }
+            else
+            {
+                dt = SqlHelper.ExecuteDataTable(where);
+            }
+5.新增成员是面板标题没改
+6.数据库权限修改密码区域名写错了

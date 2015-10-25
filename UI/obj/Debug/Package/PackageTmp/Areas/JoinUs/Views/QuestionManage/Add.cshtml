@@ -1,0 +1,100 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>新增题目</title>
+    <!-- css -->
+    <link href="~/Amaze%20UI/amazeui.min.css" rel="stylesheet" />
+    <link href="~/Areas/JoinUs/CSS/question-manage-add.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="panel">
+        <!-- 选择题型 -->
+        <div id="div_choose">
+            <span>题目类型</span>
+            <select id="type_select">
+                <option value="1">选择题</option>
+                <option value="2">简答题</option>
+            </select>
+        </div>
+        <!-- 简答题 -->
+        <form id="form_brief" action="/JoinUs/QuestionManage/ConfirmAdd" method="post">
+            <div id="div_brief">
+                <input type="hidden" name="questionType" value="2" />
+                <span>题目内容</span>
+                <textarea name="questionContent" required="required"></textarea>
+                <span>分值</span>
+                <input type="number" class="am-form-field am-radius" name="questionGrade" required="required"
+                    min="1" max="100" />
+               
+                <span>标签</span>
+                <input type="text" class="am-form-field am-radius"  name="questionTag" required="required" />
+                <input type="submit" class="am-btn am-btn-primary btn_submit"  value="确定" />
+                <a href="/JoinUs/QuestionManage/Index/1">
+                 <input type="button" class="am-btn am-btn-primary btn_submit " style="float:left;"  value="取消" />
+                    </a>
+            </div>
+        </form>
+        <!-- 选择题 -->
+        <form id="form_choice" action="/JoinUs/QuestionManage/ConfirmAdd" method="post">
+            <div id="div_choice">
+                <input type="hidden" name="questionType" value="1" />
+                <span>题目内容</span>
+                <textarea name="questionContent" required="required"></textarea>
+                <!-- 选项列表 -->
+                <table id="tb_options">
+                    <tr>
+                        <td id="option_id">选项ID</td>
+                        <td id="option_content">选项内容</td>
+                        <td id="option_weight">选项权值</td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>
+                            <input class="option_content" name="optionAContent" required="required" /></td>
+                        <td>
+                            <input type="number" min="1" max="100" class="option_weight" name="optionAWeight" required="required" /></td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td>
+                            <input class="option_content" name="optionBContent" required="required" /></td>
+                        <td>
+                            <input type="number" min="1" max="100" class="option_weight" name="optionBWeight" required="required" /></td>
+                    </tr>
+                    <tr>
+                        <td>C</td>
+                        <td>
+                            <input class="option_content" name="optionCContent" required="required" /></td>
+                        <td>
+                            <input type="number" min="1" max="100" class="option_weight" name="optionCWeight" required="required" /></td>
+                    </tr>
+                    <tr>
+                        <td>D</td>
+                        <td>
+                            <input class="option_content" name="optionDContent" required="required" /></td>
+                        <td>
+                            <input type="number" min="1" max="100" class="option_weight" name="optionDWeight" required="required" /></td>
+                    </tr>
+                </table>
+                <span>分值</span>
+                <input type="number" min="1" max="100" class="am-form-field am-radius" name="questionGrade" required="required" />
+                <span>标签</span>
+                <input type="text" class="am-form-field am-radius"  name="questionTag" required="required" />
+                <input type="submit" class="am-btn am-btn-primary btn_submit" value="确定" />
+                <a href="/JoinUs/QuestionManage/Index">
+                 <input type="button" class="am-btn am-btn-primary btn_submit " style="float:left;"  value="取消" />
+                    </a>
+            </div>
+        </form>
+    </div>
+    <!-- js -->
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Areas/JoinUs/JS/question-manage-add.js"></script>
+</body>
+</html>

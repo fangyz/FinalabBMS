@@ -1,0 +1,176 @@
+﻿@charset "utf-8";
+
+/* iw_wrapper */
+.iw_wrapper {
+    width: 90%;
+    position: relative;
+    margin-top: 30px;
+    margin-right: auto;
+    margin-bottom: 60px;
+    margin-left: auto;
+    /*border: 1px solid red;*/
+    display: table;
+}
+
+ul.iw_thumbs li {
+    float: left;
+    margin: 5px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    /*border: 1px solid red;*/
+    display: table;
+    margin: 20px;
+}
+
+    ul.iw_thumbs li div {
+        position: absolute;
+        top: 5px;
+        width: 300px;
+        padding: 0px 10px;
+        display: none;
+        color: #fff;
+        z-index: 100;
+    }
+
+        ul.iw_thumbs li div h2 {
+            font-family: 'Wire One', arial, serif;
+            font-size: 38px;
+            text-transform: uppercase;
+            text-shadow: 0px 0px 1px #fff;
+        }
+
+        ul.iw_thumbs li div p {
+            font-size: 12px;
+            line-height: 22px;
+            font-style: normal;
+            font-family: "宋体";
+        }
+
+    /*ul.iw_thumbs li:nth-child(1) {
+        margin-left: 30px;
+    }
+
+    ul.iw_thumbs li:nth-child(even) {
+        margin-top: 20px;
+    }
+
+    ul.iw_thumbs li:nth-child(3n) {
+        margin-left: 50px;
+    }*/
+
+    ul.iw_thumbs li img {
+        border: 7px solid #fff;
+        cursor: pointer;
+        position: relative;
+        -moz-box-shadow: 1px 1px 1px #aaa;
+        -webkit-box-shadow: 1px 1px 1px #aaa;
+        box-shadow: 1px 1px 1px #aaa;
+    }
+
+        ul.iw_thumbs li img:hover {
+            -moz-box-shadow: 1px 1px 7px #777;
+            -webkit-box-shadow: 1px 1px 7px #777;
+            box-shadow: 1px 1px 7px #777;
+           
+        }
+
+
+
+ul.iw_thumbs li:nth-child(even) img {
+    height: 185px;
+    transform: rotate(9deg);
+    -ms-transform: rotate(9deg); /* Internet Explorer */
+    -moz-transform: rotate(9deg); /* Firefox */
+    -webkit-transform: rotate(9deg); /* Safari 和 Chrome */
+    -o-transform: rotate(9deg); /* Opera */
+}
+
+ul.iw_thumbs li:nth-child(odd) img {
+    height: 185px;
+    transform: rotate(-5deg);
+    -ms-transform: rotate(9deg); /* Internet Explorer */
+    -moz-transform: rotate(9deg); /* Firefox */
+    -webkit-transform: rotate(-5deg); /* Safari 和 Chrome */
+    -o-transform: rotate(9deg); /* Opera */
+}
+
+ul.iw_thumbs li:nth-child(5n) img {
+    height: 185px;
+    height: 185px;
+    transform: rotate(-3deg);
+    -ms-transform: rotate(9deg); /* Internet Explorer */
+    -moz-transform: rotate(9deg); /* Firefox */
+    -webkit-transform: rotate(-3deg); /* Safari 和 Chrome */
+    -o-transform: rotate(9deg); /* Opera */
+}
+
+ul.iw_thumbs li:nth-child(6n) img {
+    height: 185px;
+    transform: rotate(-3deg);
+    -ms-transform: rotate(9deg); /* Internet Explorer */
+    -moz-transform: rotate(9deg); /* Firefox */
+    -webkit-transform: rotate(3deg); /* Safari 和 Chrome */
+    -o-transform: rotate(9deg); /* Opera */
+}
+
+ul.iw_thumbs li:nth-child(7n) img {
+    height: 185px;
+    transform: rotate(-3deg);
+    -ms-transform: rotate(9deg); /* Internet Explorer */
+    -moz-transform: rotate(9deg); /* Firefox */
+    -webkit-transform: rotate(-9deg); /* Safari 和 Chrome */
+    -o-transform: rotate(9deg); /* Opera */
+}
+
+.iw_ribbon {
+    position: fixed;
+    height: 126px; /*first 126 then 0 to close and 100% to open (while top goes to 0) */
+    width: 0px; /*first 0 then animate to 100%*/
+    left: 0px; /*or right 0*/
+    top: 0px; /*First, top of thumb, then animate to 0*/
+    background: #000;
+    opacity: 0.8;
+    z-index: 10;
+    overflow: hidden;
+    display: none;
+}
+
+.iw_close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #f0f0f0 url(../images/close.gif) no-repeat center center;
+    width: 18px;
+    height: 18px;
+    display: none;
+    cursor: pointer;
+}
+
+.iw_zoom {
+    color: white;
+    font-size: 8px;
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    padding: 14px;
+    display: none;
+    float: right;
+    margin-right: 30px;
+}
+
+.iw_ribbon img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 7px solid #fff;
+}
+
+.iw_loading {
+    background: #fff url(../images/loader.gif) no-repeat center center;
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10000;
+    margin: -14px 0px 0px -14px;
+    opacity: 0.8;
+}

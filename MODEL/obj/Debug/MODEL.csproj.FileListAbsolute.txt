@@ -1,0 +1,9 @@
+F:\实验室网站\FinalabBMS\MODEL\bin\Debug\MODEL.dll.config
+F:\实验室网站\FinalabBMS\MODEL\bin\Debug\MODEL.dll
+F:\实验室网站\FinalabBMS\MODEL\bin\Debug\MODEL.pdb
+F:\实验室网站\FinalabBMS\MODEL\bin\Debug\EntityFramework.dll
+F:\实验室网站\FinalabBMS\MODEL\bin\Debug\EntityFramework.xml
+F:\实验室网站\FinalabBMS\MODEL\bin\Debug\zh-Hans\EntityFramework.resources.dll
+F:\实验室网站\FinalabBMS\MODEL\obj\Debug\MODEL.csprojResolveAssemblyReference.cache
+F:\实验室网站\FinalabBMS\MODEL\obj\Debug\MODEL.dll
+F:\实验室网站\FinalabBMS\MODEL\obj\Debug\MODEL.pdb

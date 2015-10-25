@@ -1,0 +1,26 @@
+﻿body
+{
+    font-size:14px;
+}
+#tb_list
+{
+    width:800px;
+    margin:20px auto;
+}
+    #tb_list textarea
+    {
+        width:100%;
+        resize:none;        
+    }
+.option_id {
+    width:50px;
+    text-align:center;
+}
+#nav_temp {
+    width:370px;
+    margin:5px auto;
+    font-size:1.6rem;
+}
+#hr_temp {
+    margin-top:0px;
+}

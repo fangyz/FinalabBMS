@@ -1,0 +1,186 @@
+﻿@{
+    Layout = null;
+}
+@{
+    List<MODEL.T_TaskType> listTaskType = ViewData["listTaskType"] as List<MODEL.T_TaskType>;
+    List<MODEL.T_ProjPhase> listProjPhase = ViewData["listProjPhase"] as List<MODEL.T_ProjPhase>;
+    List<MODEL.T_ProjectInformation> listProjectInfo = ViewData["listProjectInfo"] as List<MODEL.T_ProjectInformation>;
+    List<MODEL.T_MemberInformation> listMemberInfo = ViewData["listMemberInfo"] as List<MODEL.T_MemberInformation>;
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="~/Areas/Task/CSS/TaskRelease.css" rel="stylesheet" />
+    <link href="~/Areas/Task/CSS/uploadify.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Areas/Task/JS/JSHelper.js"></script>
+    <script src="~/My97DatePicker/WdatePicker.js"></script>
+    <script src="~/Areas/Task/JS/TaskRelease.js"></script>
+    <script src="~/Areas/Task/JS/ckeditor/ckeditor.js"></script>
+    <script src="~/Areas/Task/JS/uploadfiy/jquery.uploadify.min.js"></script>
+    <script src="~/Areas/Task/JS/uploadfiy/swfobject.js"></script>
+    <script src="~/Areas/Task/JS/uploadfiy/releaseFile.js"></script>
+   
+    <title></title>
+   
+    <script type="text/javascript">
+    var editor = null;
+    var releaseContent = null;
+    window.onload = function () {
+        var editor = CKEDITOR.replace('editor01',{
+            width: 630,                                        //宽度
+            height: 280,
+        });
+        var release = document.getElementById("releaseContent");
+        release.onclick = function () {
+            releaseContent = editor.document.getBody().getHtml();
+            ReleaseContent(releaseContent);
+        }
+    }
+   
+    </script>
+</head>
+<body>
+    <input type="hidden" name="fileName" value=" " id="txt-file-name" />
+    <div class="main_panel">
+        <div class="title_panel">
+            <div class="title_image"></div>
+            <div class="title_text">任务发布</div>
+        </div>
+        <div class="content_panel">
+            <form id="task-form" class="task_form">
+                <div class="group">
+                    <div class="text_title">任务标题：</div>
+                    <div class="text_border">
+                        <input type="text" name="txtTaskName" id="txt-task-name" class="long_text" />
+                    </div>
+                </div>
+                <div class="group">
+                    <div class="text_title">任务类型：</div>
+                    <div class="text_border">
+                        <select onchange="TaskTypeOnChange(this.options[this.selectedIndex].value)" name="sltTaskType" id="slt-task-type" class="short_text">
+                            @foreach (MODEL.T_TaskType taskType in listTaskType)
+                            {
+                                <option value="@taskType.TaskTypeId">@taskType.TaskTypeName</option>
+                            }
+                            @*<option selected="selected">学习任务</option>
+                                <option>开发任务</option>
+                                <option>项目任务</option>
+                                <option>学生讲座</option>*@
+                        </select>
+                    </div>
+                </div>
+                <div class="group">
+                    <div class="text_title">开始时间：</div>
+                    <div class="text_border">
+                        <input type="text" onclick="WdatePicker({ dateFmt: 'yyyy年MM月dd日' })" name="txtTaskBegTime" id="txt-task-beg-time" class="short_text" />
+                    </div>
+                    <div class="text_title">截止时间：</div>
+                    <div class="text_border">
+                        <input type="text" onclick="WdatePicker({ dateFmt: 'yyyy年MM月dd日' })" name="txtTaskEndTime" id="txt-task-end-time" class="short_text" />
+                    </div>
+                </div>
+                <div id="group-proj" class="group">
+                    <div class="text_title">项目名称：</div>
+                    <div class="text_border">
+                        <select onchange="OnchangeSltProj(this.options[this.selectedIndex].value)" name="sltProjName" id="slt-proj-name" class="short_text">
+                            @foreach (MODEL.T_ProjectInformation projInfo in listProjectInfo)
+                            {
+                                <option value="@projInfo.ProjId">@projInfo.ProjName</option>
+                            }
+                            @*<option selected="selected">测试项目1</option>
+                                <option>测试项目2</option>
+                                <option>测试项目3</option>
+                                <option>测试项目4</option>
+                                <option>测试项目5</option>*@
+                        </select>
+                    </div>
+                    <div class="text_title">项目阶段：</div>
+                    <div class="text_border">
+                        <select name="txtProjPhases" id="txt-proj-phases" class="short_text">
+                            @foreach (MODEL.T_ProjPhase projPhase in listProjPhase)
+                            {
+                                <option value="@projPhase.ProjPhaseId">@projPhase.ProjPhaseName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="group">
+                    <div class="text_title">任务内容：</div>
+                    <div style="float:left" class="txt-area">
+                        <textarea rows="30" cols="50" name="editor01" id="txt-task-content"></textarea>
+                    </div>
+                </div>
+
+                <div class="group">        
+                                <div id="uploadfileQueue" style="padding: 3px;margin-left:-28px;">
+                                </div>
+                    <div style="margin-left:90px;">
+                        <div id="file_upload">
+                        </div>
+                        <img alt="" src="~/Areas/Task/Images/BeginUpload.gif" width="77" height="23" onclick="doUplaod()" style="cursor:hand" />
+                        <img alt="" src="~/Areas/Task/Images/CancelUpload.gif" width="77" height="23" onclick="closeLoad()" style="cursor: hand" />
+                    </div>
+                </div>
+                <div class="group">
+                    <div class="btn" onclick=" history.go(-1);">取&nbsp消</div>
+                    <div class="btn" id="releaseContent">发&nbsp布</div>
+                  
+                </div>
+            </form>
+            <div class="members_panel">
+                <div class="member_title">
+                    <div class="text_border">
+                        <input id="slt-members-option-10001" value="0" type="hidden" />
+                        <input id="slt-members-option-10002" value="10001" type="hidden" />
+                        <input id="slt-members-option-10003" value="0" type="hidden" />
+                        <input id="slt-members-option-10004" value="10001" type="hidden" />
+                        <input id="slt-members-option-10005" value="10002" type="hidden" />
+                        <input id="slt-members-option-10006" value="10003" type="hidden" />
+                        <input id="slt-members-option-10007" value="10004" type="hidden" />
+                        <input id="slt-members-option-10008" value="@listProjectInfo[0].ProjId" type="hidden" />
+
+                        <select onchange="ChangeSltMembers(this.options[this.selectedIndex].value)" id="slt-members" name="sltMembers" class="short_text">
+                            <option value="10001">所有成员</option>
+                            <option value="10002">实习生</option>
+                            <option value="10003">正式成员</option>
+                            <option value="10004">.NET部门</option>
+                            <option value="10005">JAVA开发部门</option>
+                            <option value="10006">物联网开发部门</option>
+                            <option value="10007">系统编程开发部门</option>
+                            <option value="10008">项目组成员</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="table_panel">
+                    <div class="make_scrollbar">
+                    </div>
+                    <form id="members-form">
+                        <table id="tb-members" class="members_table">
+                            <tr>
+                                <th class="check_td"><input onclick="CheckAll(this)" class="check_box" type="checkbox" name="checkAllBox" /></th>
+                                <th class="name_td">姓&nbsp&nbsp名</th>
+                                <th class="num_td">学&nbsp&nbsp号</th>
+                            </tr>
+                            @foreach (MODEL.T_MemberInformation memberInfo in listMemberInfo)
+                            {
+                                <tr onclick="MembersTableTrOnclick(@memberInfo.StuNum)">
+                                    <td>
+                                        <input onclick="MembersTableTrOnclick(@memberInfo.StuNum)" id="check-box-@memberInfo.StuNum" value="@memberInfo.StuNum" class="check_box" type="checkbox" name="checkbox" />
+                                    </td>
+                                    <td>@memberInfo.StuName</td>
+                                    <td>@memberInfo.StuNum</td>
+                                </tr>
+                            }
+
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

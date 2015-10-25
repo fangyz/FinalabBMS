@@ -1,0 +1,87 @@
+﻿#div_list
+{
+    width: 1000px;
+    margin: auto auto;
+    margin-top: 46px;
+    font-size: 14px;
+    text-align: center;
+}
+
+    #div_list ul
+    {
+        margin: auto auto;
+        float:left;
+        font-size: 14px;
+        width:420px;
+    }
+
+    #div_list button
+    {
+        font-size: 14px;
+        margin:auto auto;
+        float:right;
+        margin-left:10px;
+    }
+
+.am-pagination-select select
+{
+    height: 32px;
+    width: 70px;
+    border: 1px solid #ddd;
+    color: #0e90d2;
+    margin-bottom: 2px;
+}
+#answersheet_checkbox {
+    width:40px;
+}
+#answersheet_id
+{
+    width: 70px;
+}
+
+#answersheet_person
+{
+    width: 100px;
+}
+
+#answersheet_person_info
+{
+    width: 240px;
+}
+
+#answersheet_choice_score
+{
+    width: 100px;
+}
+#answersheet_brief_score {
+    width:100px;
+}
+#answersheet_total_score {
+    width:50px;
+}
+#grade_score {
+    width:50px;
+}
+#answersheet_status {
+    width:100px;
+}
+#answersheet_option
+{
+    width:auto;
+}
+#nav_temp {
+    width:370px;
+    margin:5px auto;
+}
+#hr_temp {
+    margin-top:0px;
+}
+#my-modal {
+    font-size:14px;
+    width:500px;
+    margin-left:-250px;
+}
+#details_thead
+{
+    /*text-align:left;*/
+}

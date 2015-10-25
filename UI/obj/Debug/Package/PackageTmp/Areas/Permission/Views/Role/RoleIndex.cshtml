@@ -1,0 +1,164 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RoleIndex</title>
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/PersonalManger/CSS/CheckMember.css" rel="stylesheet" />
+    <script src="~/bootstrap/jquery/jquery-1.11.3.min.js"></script>
+    <script src="~/bootstrap/jquery/jquery-1.11.3.js"></script>
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+
+    
+    <script>
+        var clickobj;
+        var trobj;
+        var lasttr;
+        var count = 1;
+        function clickrow(obj) {
+            trobj = obj;
+            obj.style.backgroundColor = "#16CFF1";
+            if (count != 1) {
+                lasttr.style.backgroundColor = "rgb(237,241,249)";
+            }
+            count = count + 1;
+            clickobj = obj.cells[2];
+            lasttr = obj;
+        }
+        function edit() {
+            var roleid = document.getElementById("roleid");
+            if (trobj ==null) {
+                alert("请您先选择角色");
+                return;
+            }
+            roleid.value = trobj.cells[1].innerText;
+            $("#add").slideUp(800);
+            document.getElementById("editrole").style.display = "";
+            document.getElementById("title").textContent = "编辑成员";
+            roleid.readOnly = true;
+        }
+        function add() {
+            $("#add").slideUp(800);
+            document.getElementById("editrole").style.display = "";
+            document.getElementById("title").textContent="新增成员";
+            var roleid = document.getElementById("roleid");
+            roleid.value = "";
+            //如果是1，这说明是新增
+            document.getElementById("hidden").value = 1;
+        }
+        function del() {
+            if (trobj == null) {
+                alert("请您先选择角色");
+                return;
+            }
+            var roleid = trobj.cells[1].innerText;
+            var roleName = trobj.cells[2].innerText;
+            Delete(roleid,roleName);
+        }
+        function Delete(roleId, roleName) {
+            if (confirm("确定要删除吗？")) {
+                $.ajax({
+                    url: '/Permission/Role/DeleteById',
+                    type: 'post',
+                    data: { "roleId": roleId,"roleName":roleName},
+                    success: function (data) {
+                        if (data.Statu == "ok") {
+                            alert(data.Msg);
+                            window.location = "/Permission/Role/RoleIndex";
+                        } else {
+                            alert(data.Msg);
+                        }
+                    }
+                })
+            }
+        }
+
+        function setPer() {
+            if (trobj == null) {
+                alert("请您先选择角色");
+                return;
+            }
+            var roleid = trobj.cells[1].innerText;
+            window.location = "/Permission/Role/SetRolePer?roleId=" + roleid;
+        }
+        function setStudent() {
+            if (trobj == null) {
+                alert("请您先选择角色");
+                return;
+            }
+            window.location = "/PersonalManger/CheckMember/Index?backurl='fromrole'";
+        }
+        function cancel() {
+            $("#editrole").slideUp(800);
+            document.getElementById("add").style.display = "";
+        }
+    </script>
+
+</head>
+<body style="font-family: 'Microsoft YaHei'; background-color: rgb(237,241,249)">
+    <div style="margin: 20px auto;width:700px;">
+        @* -------------------表格----------------------------------------------------------*@
+
+         <div  id="add">
+                <table class="table table-bordered"  id="table" style="text-align:center;">
+                    <thead>
+                        <tr>
+                            <th colspan="3">
+                                <button type="button" class="btn btn-primary" onclick="add()">新增角色</button>
+                                <button type="button" class="btn btn-success" onclick="edit()">编辑角色</button>
+                                <button type="button" class="btn btn-info" onclick="del()">删除角色</button>
+                                <button type="button" class="btn btn-info" onclick="setPer()">分配权限</button>
+                                <button type="button" class="btn btn-info" onclick="setStudent()">指定角色</button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tr style ="font-weight: 500; color:chocolate;">
+                        <td style="font-size:18px;">序号</td>
+                        <td style="font-size:18px;">编号</td>
+                        <td style="font-size:18px;">角色</td>
+                    </tr>
+                    
+                    <tbody id="body">
+                        @foreach (MODEL.T_Role role in ViewBag.roleData as List<MODEL.T_Role>)
+{
+    <tr onclick="clickrow(this);">
+        <td>@(ViewBag.count++)</td>
+        <td>@role.RoleId</td>
+        <td>@role.RoleName</td>
+    </tr>
+}
+                    </tbody>
+                </table>
+            </div>
+
+    </div>
+    
+    <form id="editrole" method="post" action="/Permission/Role/EditRole" style="display:none;width:450px;height:350px;margin:80px auto;">
+        <div class="panel panel-primary" style="width:420px;height:320px;">
+            <div class="panel-heading">
+                <h3 class="panel-title" id="title"></h3>
+            </div>
+            <div class="panel-body">
+                <div style="width:200px;margin:40px auto;">
+                    <label style="margin-top:6px;">编   号：</label><input type="text" name="roleid" id="roleid" class="form-control" style="width:150px;float:right" maxlength="10" /><br />
+                </div>
+                <div style="width: 210px; margin: 40px auto;">
+                    <label style="margin-top:6px;">角色名：</label><input type="text" name="role" class="form-control" style="width:150px;float:right" maxlength="12" /><br />
+                </div>
+                <input type="hidden" id="hidden" name="hidden" />
+                <br />
+                <div style="width:205px;margin:0px auto;">
+                    <button class="btn btn-info" type="submit" style="width:90px;height:31px;">确定</button>
+                    <button class="btn btn-info" type="button" onclick="cancel()" style="width:90px;height:31px;">取消</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</body>
+</html>

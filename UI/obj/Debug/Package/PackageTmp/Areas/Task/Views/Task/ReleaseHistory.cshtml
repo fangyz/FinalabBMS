@@ -1,0 +1,92 @@
+﻿@{
+    Layout = null;
+}
+@{
+    List<MODEL.T_TaskInformation> taskList = ViewData["taskList"] as List<MODEL.T_TaskInformation>;
+    int taskCount = (int)ViewData["taskCount"];
+    int listSize = (int)ViewData["listSize"];    
+    bool[] canBeModify = ViewData["canBeModify"] as bool[];    
+    }
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Areas/Task/CSS/ReleaseHistory.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Areas/Task/JS/JSHelper.js"></script>
+    <script src="~/Areas/Task/JS/ReleaseHistory.js"></script>
+    <title>发布历史</title>
+</head>
+<body>
+    <div class="main_panel">
+        <div class="btn"><a href="/Task/Task/TaskRelease" style="text-decoration:none;"><span style="color:white;">发&nbsp;布</span></a></div>
+        <div class="title_panel">
+            <div class="title_image"></div>
+            <div class="title_text">任务列表</div>
+        </div>
+        <div class="table_panel">
+            <table id="task-table" class="task_table">
+                <tr>
+                    <th>任务名称</th>
+                    <th>任务类型</th>
+                    <th>发布时间</th>
+                    <th>截止时间</th>
+                    <th>评价任务</th>
+                    <th>修改任务</th>
+                    <th>删除任务</th>
+                </tr>
+
+                @for (int i = 0; i < listSize; i++ )
+                    {
+                        if (taskCount <=i)
+                        {
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>  
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        }else{
+                            <tr>
+                                <td><a title ="@taskList[i].TaskName" href="/Task/Task/TaskDetail?taskId=@taskList[i].TaskId">
+                                    @taskList[i].TaskName.Substring(0,(taskList[i].TaskName.Length>=10?10:taskList[i].TaskName.Length))
+                                    </a></td>
+                                <td>@ViewData["taskType"+taskList[i].TaskTypeId]</td>
+                                <td>@taskList[i].TaskBegTime.ToString("yyyy年MM月dd日")</td>
+                                <td>@taskList[i].TaskEndTime.ToString("yyyy年MM月dd日")</td>
+                                <td><a title ="评价任务" href="/Task/Task/TaskEvaluate?taskId=@taskList[i].TaskId">评价</a></td>
+                                @if(canBeModify[i])
+                                {
+                                    <td><a title ="修改任务" href="/Task/Task/ModifyTask?taskId=@taskList[i].TaskId">修改</a></td>
+                                    <td><a onclick="DeleteTask(@taskList[i].TaskId)" title ="删除任务" href="javascript:void(0)">删除</a></td>
+                                }else
+                                {
+                                    <td title="任务已接收无法修改">无法修改</td>
+                                    <td title="任务已接收不可删除">不可删除</td>
+                                }
+                                
+                            </tr>
+                        }
+                        }
+            </table>
+        </div>
+        <div class="page_bar_panel">
+            &nbsp&nbsp&nbsp&nbsp
+            共<span id="span-task-count" class="page_bar_task_count">@taskCount</span>条记录&nbsp&nbsp
+            【<a onclick="ReloadTable(1)" href="javascript:void(0)">首页</a>】
+            【<a onclick="ReloadTable(parseInt(@taskCount/10)+1)" href="javascript:void(0)">尾页</a>】跳转到第
+                <select id="slt-page-bar" onchange="ReloadTable(this.options[this.selectedIndex].value)"  class="page_bar_slt">
+                    <option  selected="selected">1</option>
+                    @for(int k=2;k<=(taskCount+9)/10;k++)
+                    {
+                        <option>@k</option>
+                    } 
+                </select>页
+        </div>
+    </div>
+</body>
+</html>

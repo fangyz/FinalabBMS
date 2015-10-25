@@ -1,0 +1,147 @@
+﻿@model MODEL.ViewModel.RolePermissionTree
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <title>SetRolePer</title>
+
+    <script type="text/javascript">
+        //拿到所有复选框
+        function GetAllCheckbox() {
+            var domList = document.getElementsByTagName('input')  // checkbox属于input，所以通过getElementsByTagName即标签名获取所有的input数组，包含文本框text，单选按钮radio，复选框checkbox等等
+            var checkBoxList = [];  // 定义一个存储checkbox的空数组
+            var len = domList.length;　　//缓存到局部变量  // 第一步获取的数组的长度
+            while (len--) {　　//使用while的效率会比for循环更高   // 开始循环判断
+                if (domList[len].type == 'checkbox') {   // 如果类型为checkbox即为题目所需的复选框
+                    checkBoxList.push(domList[len]);          // 就把那个元素加入到上面定义的数组中
+                }
+            }
+            return checkBoxList;
+        }
+
+        //判断是不是父节点
+        function JudgeIsParent(CurrentId) {
+            var checklist = GetAllCheckbox();
+            var count = 0;
+            checklist.forEach(function (per) {
+                if (per.id == CurrentId) {
+                    count = count + 1;
+                }
+            });
+            if (count > 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+
+        function parentClick(parentId) {
+            var checklist = GetAllCheckbox();
+            var IsCheck=0;
+            if (JudgeIsParent(parentId)) {
+                var rt = document.getElementsByName(parentId);
+                var parent = rt[0];
+                if (parent.checked == true) {
+                    IsCheck=0
+                }
+                else {
+                    IsCheck = 1;
+                }
+            }
+            //接下来进行遍历，如果是父复选框，则子复选框会做相应的改变
+            checklist.forEach(function (per) {
+                if (per.id ==parentId) {
+                    if (IsCheck == 1) {
+                        if (JudgeIsParent(per.name)) {
+                            MakeChecked(per.name, 0);
+                        }
+                        per.checked = false;
+                    }
+                    if (IsCheck == 0) {
+                        if (JudgeIsParent(per.name)) {
+                            MakeChecked(per.name, 1);
+                        }
+                        per.checked = true;
+                    }
+                    
+                }
+
+            });
+
+        }
+
+        //传入当前复选框的权限id，如果是父亲复选框，让子节点选中或不选中,传1为让子节点选中，2为让子节点不选中
+        function MakeChecked(CurrentId, IsChecked) {
+            checkBoxList = GetAllCheckbox();
+            //如果是复选框
+            if (JudgeIsParent(CurrentId)) {
+                checkBoxList.forEach(function (per) {
+                    if (per.id == CurrentId) {
+                        if (IsChecked == 1) { per.checked = true; }//父复选框选中
+                        else { per.checked = false; }//如果父复选框不选中
+                    }
+                })
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div style="width:700px;margin:20px auto;">
+        <form style="font-size:15px; font-family:'Microsoft YaHei'" action="/Permission/Role/SetPer" method="post">
+            <input type="hidden" value="@ViewBag.roleId"  name="roleId" />
+            @for (int i = 0; i < Model.ParentPer.Count; i++)
+            {
+                //现在循环所有父菜单，为每个父菜单生成一棵树
+                var parent = Model.ParentPer[i];
+                if(Model.UserPer.Where(uper=>uper.PerId==parent.PerId).Count()>0){
+                    <input type="checkbox" value="@parent.PerId" checked="checked" name="@parent.PerId" id="@parent.PerId" onclick="parentClick(@parent.PerId)"/>
+                }
+                else{
+                    <input type="checkbox" value="@parent.PerId" name="@parent.PerId" id="@parent.PerId" onclick="parentClick(@parent.PerId)"/>
+                }
+                <span>@parent.PerName</span>
+                <br />
+                foreach (var son in Model.AllPer.Where(p => p.PerParent == parent.PerId).ToList())
+                {
+                    if (Model.UserPer.Where(uper => uper.PerId == son.PerId).Count() > 0)
+                    {
+                        <input type="checkbox" value="@son.PerId" checked="checked" name="@son.PerId" style="margin-left:10px;" id="@son.PerParent" onclick="parentClick(@son.PerId)"/>
+                    }
+                    else
+                    {
+                        <input type="checkbox" value="@son.PerId" name="@son.PerId" style="margin-left:10px;" id="@son.PerParent" onclick="parentClick(@son.PerId)"/>
+                    }
+                    <span>@son.PerName</span><br />
+                    //如果子权限还是一个父权限
+                    if (Model.AllPer.Where(p => p.PerParent == son.PerId).Count() > 0)
+                    {
+                        foreach (var sonson in Model.AllPer.Where(p => p.PerParent == son.PerId).ToList())
+                        {
+                            if (Model.UserPer.Where(uper => uper.PerId == sonson.PerId).Count() > 0)
+                            {
+                                <input type="checkbox" value="@sonson.PerId" checked="checked" name="@sonson.PerId" style="margin-left:20px;" id="@sonson.PerParent"/>
+                            }
+                            else
+                            {
+                                <input type="checkbox" value="@sonson.PerId"  name="@sonson.PerId" style="margin-left:20px;" id="@sonson.PerParent"/>
+                            }
+                            <span>@sonson.PerName</span><br />
+                        }
+                    }
+                }
+                <br /><br /><br />
+            }
+            <button type="submit" class="btn btn-success">提交修改</button>
+        </form>
+    </div>
+
+
+
+
+</body>
+</html>

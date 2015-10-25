@@ -1,0 +1,14 @@
+D:\桌面\FinalabBMS\Common\bin\Debug\Common.dll
+D:\桌面\FinalabBMS\Common\bin\Debug\Common.pdb
+D:\桌面\FinalabBMS\Common\obj\Debug\Common.dll
+D:\桌面\FinalabBMS\Common\obj\Debug\Common.pdb
+F:\FINAL\FinalabBMS\Common\bin\Debug\Common.dll
+F:\FINAL\FinalabBMS\Common\bin\Debug\Common.pdb
+F:\FINAL\FinalabBMS\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+F:\FINAL\FinalabBMS\Common\obj\Debug\Common.dll
+F:\FINAL\FinalabBMS\Common\obj\Debug\Common.pdb
+F:\实验室网站\FinalabBMS\Common\bin\Debug\Common.dll
+F:\实验室网站\FinalabBMS\Common\bin\Debug\Common.pdb
+F:\实验室网站\FinalabBMS\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+F:\实验室网站\FinalabBMS\Common\obj\Debug\Common.dll
+F:\实验室网站\FinalabBMS\Common\obj\Debug\Common.pdb

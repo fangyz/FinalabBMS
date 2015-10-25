@@ -1,0 +1,71 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Login/CSS/HeadAndFoot.css" rel="stylesheet" />
+    <title>EditPwd</title>
+
+    <script type="text/javascript">
+        function btnClick() {
+            var newp = document.getElementById("newPwd");
+            var newpo = document.getElementById("newPwdO");
+            var hidpwd = document.getElementById("hidpwd");
+            if (newp.value != newpo.value) {
+                alert("您两次输入的新密码不一样！");
+                newp.value = "";
+                newp.focus();
+                return;
+            }
+            formpwd.submit();
+        }
+    </script>
+</head>
+<body style="background-color: #EDF1F9;font-family:'Microsoft YaHei'">
+    <div id="header">
+        <div title="FINAL实验室" id="header-left">
+            <div id="header-left-logo"></div>
+            <div id="header-left-name">FINAL实验室</div>
+        </div>
+        <div id="header-right">
+        </div>
+    </div>
+
+    <form class="panel panel-primary" style="width:600px;margin:80px auto;height:350px;" id="formpwd" method="post" action="/Login/Login/ReallyModifyPwd">
+        <div class="panel-heading">
+            <h3 class="panel-title">修改密码</h3>
+        </div>
+        <div class="panel-body">
+            <div style="width:320px;margin:0 auto;">
+                <label style="margin-top:5px;">请输入学号:</label>
+                <input type="password" class="form-control" style="width: 200px; float: right;margin-right: 10px;" maxlength="20" name="stunum" />
+            </div>
+            <br />
+            <div style="width:320px;margin:0 auto;">
+                <label style="margin-top:5px;">请输入新密码:</label>
+                <input type="password" class="form-control" style="width: 200px; float: right;margin-right: 10px;" maxlength="20" id="newPwd" name="newPwd" />
+            </div>
+            <br />
+            <div style="width:320px;margin:0 auto;">
+                <label style="margin-top:5px;">请您再次输入:</label>
+                <input type="password" class="form-control" style="width: 200px; float: right;margin-right: 10px;" maxlength="20" id="newPwdO" />
+            </div>
+            <div style="width:203px;margin:50px auto;">
+                <button type="button" onclick="btnClick();" class="btn btn-info" style="width:200px;height:34px;">确认修改</button>
+            </div>
+        </div>
+    </form>
+
+    <div id="footer" >
+        <div id="content">
+            再长的路，一步步也能走完；再短的路，不迈开双脚也无法到达!<br />
+            &nbsp;&nbsp;Copyright ©2014-2015 FINAL LAB. All Rights Reserved
+        </div>
+    </div>
+</body>
+</html>

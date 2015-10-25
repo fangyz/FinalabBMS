@@ -1,0 +1,135 @@
+﻿/*--------------------------------------header---------------------------------------*/
+#header
+{
+    background-color: #0072C6;
+    height: 50px;
+    width: 100%;
+    top: 0px;
+    position: fixed;
+}
+
+#logo
+{
+    border-right: 1px solid rgba(255,255,255,.3);
+    height: 50px;
+    width: 50px;
+    float: left;
+}
+
+    #logo:hover
+    {
+        background-color: #00709f;
+    }
+
+    #logo div
+    {
+        float: right;
+        width: 25px;
+        height: 25px;
+        background-image: url(../../../Areas/JoinUs/img/logo.png);
+        margin-top: 12px;
+        margin-right: 13px;
+    }
+
+#brand
+{
+    width: 146px;
+    height: 48px;
+    float: left;
+    border: 1px solid black;
+    border-color: transparent;
+}
+
+    #brand div
+    {
+        border: 1px solid black;
+        height: 34px;
+        width: 121px;
+        float: right;
+        margin-top: 6px;
+        background-image: url(../../../Areas/JoinUs/img/finalab_test.png);
+        border-color: transparent;
+        margin-right: 12px;
+    }
+
+    #brand:hover
+    {
+        background-color: #00709f;
+    }
+
+#hello
+{
+    /*width: 200px;*/
+    height: 48px;
+    float: right;
+    border: 1px solid black;
+    border-color: transparent;
+}
+
+    #hello:hover
+    {
+        background-color: #00709f;
+    }
+
+    #hello span
+    {
+        font-family: 'STXihei';
+        color: white;
+        float: right;
+        margin-top: 14px;
+        margin-right: 30px;
+        margin-left: 30px;
+    }
+/*--------------------------------------form_div---------------------------------------*/
+#form_div
+{
+    width: 60%;
+    border: 1px solid black;
+    /*height: 100px;*/
+    margin: auto auto;
+    margin-top: 100px;
+    border-color: transparent;
+    margin-bottom: 100px;
+}
+
+.form_control_group
+{
+    border: 1px solid black;
+    width: 50%;
+    /*height: 100px;*/
+    margin: auto auto;
+    margin-bottom: 30px;
+    border-color: transparent;
+}
+
+#next_step_div
+{
+    width: 100px;
+    margin: auto auto;
+}
+/*--------------------------------------footer---------------------------------------*/
+#footer
+{
+    border: 1px solid black;
+    border-color: transparent;
+    border-top-color: #CDCDCD;
+}
+
+    #footer div
+    {
+        width: 310px;
+        margin: 15px auto;
+    }
+
+        #footer div span
+        {
+            color: #666;
+            font-family: 'Microsoft YaHei UI';
+            font-size: 86%;
+            margin-right: 5px;
+            margin-left: 5px;
+        }
+#my-confirm
+{
+    font-family:'Microsoft YaHei';
+}

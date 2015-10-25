@@ -1,0 +1,25 @@
+﻿.left-title { border: 1px solid rgb(202,224,227); border-bottom: none; height: 35px; margin: 0px; background-color: rgb(222,235,237); }
+
+.left-div-img { height: 22px; width: 22px; border: none; margin-left: 12px; margin-top: 6px; float: left; background-image: url(/Areas/PersonalManger/Images/page.png); }
+.left-span-img { border: none; font-family: 'Microsoft YaHei'; margin-left: 24px; margin-top: 9px; display: inline-block; font-weight: bold; letter-spacing: 1px; }
+.left-table { border: 1px solid red; border-bottom: none; width: 100%; height: auto; border-collapse: collapse; margin: 0px; padding: 0px; }
+.left-content { border: none; width: 465px; margin: 0px; height: auto; position: relative; z-index: 5; background-color: white; }
+
+.left-td-one { border: 1px solid rgb(202,224,227); height: 35px; width: 10%; margin: 0px; padding: 0px; }
+    .left-td-one > div { height: 22px; width: 22px; background-image: url(/Areas/PersonalManger/Images/page.png); border: none; margin: 0 auto; }
+.left-td-two { border: 1px solid rgb(202,224,227); height: 35px; }
+    .left-td-two > span { border: none; font-family: 'Microsoft YaHei'; margin-left: 24px; }
+.left-bottom-back { background-image: url(/Areas/PersonalManger/Images/page.png); border: none; width: 22px; height: 22px; margin: 15px auto; }
+
+/*------------------------------------------------------------------------------------------------------------------*/
+.right-table { border: red solid 1px; height: 228px; width: 100%; border-collapse: collapse; }
+.right-content-my { border: none; width: 630px; margin: 0px; height: auto; position: relative; z-index: 5; background-color: white; }
+
+.right-table td { border: 1px solid rgb(202,224,227); height: auto; margin: 0px; padding: 0px; width: 50%; }
+.right-td-div { height: 22px; width: 22px; border: none; margin: 0 auto; background-image: url(/Areas/PersonalManger/Images/page.png); margin-left: 12px; float: left; }
+.right-td-div-position { background-position: -68px -155px; }
+.right-td-div-position1 { background-position: -67px -198px; }
+
+.right-table-span1 { font-family: 'Microsoft YaHei'; margin-left: 20px; width: 75px; display: inline-block; }
+
+.right-table-span2 { font-family: 'Microsoft YaHei'; margin-left: 10px; }

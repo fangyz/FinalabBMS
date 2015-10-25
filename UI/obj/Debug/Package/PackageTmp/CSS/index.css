@@ -1,0 +1,19 @@
+﻿* {
+    font-family: 'Microsoft YaHei';
+}
+
+#divArea {
+    margin: auto auto;
+    width: 600px;
+    margin-top: 180px;
+}
+
+    #divArea > div {
+        margin-bottom: 50px;
+    }
+
+        #divArea > div > a {
+            width: 600px;
+            height: 100px;
+            font-size: 56px;
+        }

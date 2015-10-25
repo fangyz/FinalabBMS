@@ -1,0 +1,124 @@
+﻿@{
+    Layout = null;
+}
+@{
+    List<MODEL.T_MemberInformation> memberInfo = ViewData["list"] as List<MODEL.T_MemberInformation>;
+    MODEL.ViewModel.PageModelInMsg pageModel = ViewData["pageModel"] as MODEL.ViewModel.PageModelInMsg;
+    MODEL.T_MemberInformation user = Session["user"] as MODEL.T_MemberInformation;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MessageHome</title>
+    <link href="~/Areas/Message/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Message/css/home.css" rel="stylesheet" />
+    <script src="~/Areas/Message/js/bootstrap.min.js"></script>
+    <script src="~/Areas/Message/js/jquery-1.11.3.min.js"></script>
+    <script src="~/Areas/Message/Views/js/MessageAddressMenu.js"></script>
+    <link href="~/Areas/Message/pathMenu/css/wheelmenu.css" rel="stylesheet" />
+    <script src="~/Areas/Message/pathMenu/js/jquery.wheelmenu.js"></script>
+    <link href="~/Areas/Message/pathMenu/css/pageMenu.css" rel="stylesheet" />
+    <script>
+        $(document).ready(function () {
+            $(".wheel-button").wheelmenu({
+                trigger: "hover",
+                animation: "fly",
+                animationSpeed: "fast"
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            if (parseInt($("#pageIndex").text()) == parseInt($("#pageCount").text())) {
+                $("#nextPage").css("visibility", "hidden");
+            }
+            if (parseInt($("#pageIndex").text()) == 1) {
+                $("#frontPage").css("visibility", "hidden");
+            }
+        });
+
+    </script>
+</head>
+<body>
+    <div class="container-fluid ">
+
+        <div class=" main">
+            @*/*===============<< 通讯录  >>======================*/*@
+
+            <div class="messagaAddress" id="messagaAddress">
+                <label style=" color: #0546F0;">当前位置：我的消息 -> 通讯录</label>
+                <table class="table table-striped table-hover ">
+                    <thead>
+                        <tr style="background: #9BDBF0;">
+                            <th style="width:10%;">
+                                姓名
+                            </th>
+                            <th style="width:20%;">
+                                邮箱
+                            </th>
+                            <th style="width:20%;">
+                                QQ
+                            </th>
+                            <th style="width:20%;">
+                                电话
+                            </th>
+                            <th style="width:10%;">
+                                写信
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (MODEL.T_MemberInformation mi in memberInfo)
+                        {
+                            <tr>
+                                <td>
+                                    @mi.StuName
+                                </td>
+                                <td>
+                                    @mi.Email
+                                </td>
+                                <td>
+                                    @mi.QQNum
+                                </td>
+                                <td>
+                                    @mi.TelephoneNumber
+                                </td>
+                                <td>
+                                    @Html.ActionLink("写信", "SendMessage", "InsideMsg", new { receiveId = @mi.StuNum, receiveName = @mi.StuName }, new { target = "_self" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="page">
+                    @Html.ActionLink("上一页", "MessageAddressMenu", "InsideMsg", new { pageIndex = @pageModel.PageIndex, flage = "front", PageSize = 7 }, new { id = "frontPage" })
+                    &nbsp;&nbsp;<label id="pageIndex">@pageModel.PageIndex</label>
+                    <label>&nbsp;\&nbsp;</label>
+                    <label id="pageCount">@pageModel.PageCount</label>&nbsp;&nbsp;
+                    <label>页</label>&nbsp;
+                    @Html.ActionLink("下一页", "MessageAddressMenu", "InsideMsg", new { pageIndex = @pageModel.PageIndex, flage = "next", PageSize = 7 }, new { id = "nextPage" })
+                </div>
+            </div>
+            <div class="wrapper">
+                <a href="#wheel2" class="wheel-button ne">
+                    <span>+</span>
+                </a>
+                <ul id="wheel2" data-angle="NE" class="wheel">
+                    <li class="item"><a href="/Message/InsideMsg/SendMessage" id="writeMenu" data-toggle="tooltip" data-placement="top" title="写信"><i class="  icon-edit"></i></a></li>
+                    <li class="item"><a href="/Message/InsideMsg/SendBoxMenu" id="sendBoxMenu" data-toggle="tooltip" data-placement="top" title="发件箱"><i class=" icon-share"></i></a></li>
+                    <li class="item"><a href="/Message/InsideMsg/Index" id="receiveBoxMenu" data-toggle="tooltip" data-placement="top" title="收件箱"><i class=" icon-envelope"></i></a></li>
+                </ul>
+                <a href="#wheel3" class="wheel-button nw">
+                    <span>+</span>
+                </a>
+                <ul id="wheel3" data-angle="NW" class="wheel">
+                    <li class="item"><a href="/Message/InsideMsg/MessageAddressMenu" id="messageAddressMenu" data-toggle="tooltip" data-placement="top" title="通讯录"><i class="  icon-list"></i></a></li>
+                    <li class="item"><a href="/Message/InsideMsg/DraftBoxMenu" id="draftBoxMenu" data-toggle="tooltip" data-placement="top" title="草稿箱"><i class=" icon-briefcase"></i></a></li>
+                    <li class="item"><a href="/Message/InsideMsg/RecycleBoxMenu" id="recycleBoxMenu" data-toggle="tooltip" data-placement="top" title="垃圾箱"><i class=" icon-trash"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

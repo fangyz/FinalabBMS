@@ -1,0 +1,1033 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FinalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="SystemMessage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="SendId" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ReceiveId" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Content" Type="ntext" Nullable="false" />
+    <Property Name="Atachment" Type="varchar" MaxLength="100" />
+    <Property Name="SendTime" Type="datetime" Nullable="false" />
+    <Property Name="IsRead" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_Abnormal">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Area" Type="nvarchar" MaxLength="32" />
+    <Property Name="Controller" Type="nvarchar" MaxLength="32" />
+    <Property Name="ACtion" Type="nvarchar" MaxLength="32" />
+    <Property Name="Message" Type="nvarchar" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="T_AnswerSheet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InterviewerID" Type="int" Nullable="false" />
+    <Property Name="PaperID" Type="int" Nullable="false" />
+    <Property Name="Score" Type="int" />
+  </EntityType>
+  <EntityType Name="T_AnswerSheetComment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AnswerSheetID" Type="int" Nullable="false" />
+    <Property Name="RaterID" Type="int" Nullable="false" />
+    <Property Name="CommentContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserCom" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="T_BriefAnswerSheet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AnswerSheetID" Type="int" Nullable="false" />
+    <Property Name="QuestionID" Type="int" Nullable="false" />
+    <Property Name="Answer" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_BriefScore">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BriefAnswerSheetID" Type="int" Nullable="false" />
+    <Property Name="PaperRaterID" Type="int" Nullable="false" />
+    <Property Name="Score" Type="int" Nullable="false" />
+    <Property Name="UserB" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="T_ChoiceAnswerSheet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AnswerSheetID" Type="int" Nullable="false" />
+    <Property Name="QuestionID" Type="int" Nullable="false" />
+    <Property Name="Answer" Type="nvarchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_Department">
+    <Key>
+      <PropertyRef Name="DepartmentId" />
+    </Key>
+    <Property Name="DepartmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_InterviewerInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Num" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Academy" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Major" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Class" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="QQ" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TelNum" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="LearningExperience" Type="nvarchar(max)" />
+    <Property Name="SelfEvaluation" Type="nvarchar(max)" />
+    <Property Name="IsRequestTech" Type="bit" Nullable="false" />
+    <Property Name="type" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“Final.dbo.T_IsShow”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="T_IsShow">
+    <Key>
+      <PropertyRef Name="ShowId" />
+      <PropertyRef Name="familyTel" />
+      <PropertyRef Name="address" />
+      <PropertyRef Name="phone" />
+    </Key>
+    <Property Name="ShowId" Type="int" Nullable="false" />
+    <Property Name="familyTel" Type="bit" Nullable="false" />
+    <Property Name="address" Type="bit" Nullable="false" />
+    <Property Name="phone" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_MemberInformation">
+    <Key>
+      <PropertyRef Name="StuNum" />
+    </Key>
+    <Property Name="StuNum" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="StuName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="1" Nullable="false" />
+    <Property Name="QQNum" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LoginPwd" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Birthday" Type="datetime" />
+    <Property Name="PhotoPath" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Class" Type="nvarchar" MaxLength="20" />
+    <Property Name="JoinTime" Type="datetime" Nullable="false" />
+    <Property Name="EndTime" Type="datetime" />
+    <Property Name="Major" Type="nvarchar" MaxLength="20" />
+    <Property Name="Counselor" Type="nvarchar" MaxLength="20" />
+    <Property Name="HeadTeacher" Type="nvarchar" MaxLength="20" />
+    <Property Name="UndergraduateTutor" Type="nvarchar" MaxLength="20" />
+    <Property Name="TelephoneNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="HomPhoneNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="FamilyAddress" Type="nvarchar" MaxLength="80" />
+    <Property Name="Department" Type="int" Nullable="false" />
+    <Property Name="TechnicalLevel" Type="int" Nullable="false" />
+    <Property Name="StudyGuideNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="IsAdmin" Type="bit" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="Sign" Type="nvarchar" MaxLength="32" />
+    <Property Name="OtheInfor" Type="nvarchar" MaxLength="128" />
+    <Property Name="SecretShow" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_OgnizationAct">
+    <Key>
+      <PropertyRef Name="OrganizationId" />
+      <PropertyRef Name="RoleActor" />
+    </Key>
+    <Property Name="OrganizationId" Type="int" Nullable="false" />
+    <Property Name="RoleActor" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsDel" Type="bit" Nullable="false" />
+    <Property Name="AddTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="T_OnDuty">
+    <Key>
+      <PropertyRef Name="StuNum" />
+      <PropertyRef Name="Week" />
+    </Key>
+    <Property Name="StuNum" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Week" Type="int" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_Organization">
+    <Key>
+      <PropertyRef Name="OrganizationId" />
+    </Key>
+    <Property Name="OrganizationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrganizationName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_Paper">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaperName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AddDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="IsDel" Type="bit" Nullable="false" />
+    <Property Name="IsPublished" Type="bit" Nullable="false" />
+    <Property Name="typeId" Type="int" Nullable="false" />
+    <Property Name="PaperProducerID" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="T_PaperQuestion">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaperID" Type="int" Nullable="false" />
+    <Property Name="QuestionID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_Permission">
+    <Key>
+      <PropertyRef Name="PerId" />
+    </Key>
+    <Property Name="PerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PerName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PerParent" Type="int" />
+    <Property Name="PerAreaName" Type="nvarchar" MaxLength="20" />
+    <Property Name="PerController" Type="nvarchar" MaxLength="20" />
+    <Property Name="PerActionName" Type="nvarchar" MaxLength="32" />
+    <Property Name="PerFormMethod" Type="int" />
+    <Property Name="PerIsShow" Type="bit" Nullable="false" />
+    <Property Name="PerAddTime" Type="datetime" />
+    <Property Name="PerIco" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsCommon" Type="bit" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="bpx" Type="int" />
+    <Property Name="bpy" Type="int" />
+    <Property Name="perExplain" Type="nvarchar" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="T_ProjectInformation">
+    <Key>
+      <PropertyRef Name="ProjId" />
+    </Key>
+    <Property Name="ProjId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjTypeId" Type="int" Nullable="false" />
+    <Property Name="ProjName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProjLeader" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ProjPublisher" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ProjStartTime" Type="datetime" Nullable="false" />
+    <Property Name="ExFinishiTime" Type="datetime" Nullable="false" />
+    <Property Name="AcFinishiTime" Type="datetime" Nullable="false" />
+    <Property Name="ProjProfile" Type="text" Nullable="false" />
+    <Property Name="ProjPay" Type="float" Nullable="false" />
+    <Property Name="ProjIncome" Type="float" Nullable="false" />
+    <Property Name="ProjMark" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_ProjectParticipation">
+    <Key>
+      <PropertyRef Name="ProjId" />
+      <PropertyRef Name="ProjReceiver" />
+    </Key>
+    <Property Name="ProjId" Type="int" Nullable="false" />
+    <Property Name="ProjReceiver" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsDel" Type="bit" Nullable="false" />
+    <Property Name="AddTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="T_ProjectType">
+    <Key>
+      <PropertyRef Name="ProjTypeId" />
+    </Key>
+    <Property Name="ProjTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjTypeName" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_ProjPhase">
+    <Key>
+      <PropertyRef Name="ProjPhaseId" />
+    </Key>
+    <Property Name="ProjPhaseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjPhaseName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_Question">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QuestionContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="QuestionTypeID" Type="int" Nullable="false" />
+    <Property Name="IsDel" Type="bit" Nullable="false" />
+    <Property Name="QuestionGrade" Type="int" />
+    <Property Name="QuestionTag" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="T_QuestionOption">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QuestionID" Type="int" Nullable="false" />
+    <Property Name="OptionID" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="OptionContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OptionWeight" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_QuestionType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QuestionTypeName" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_RoleAct">
+    <Key>
+      <PropertyRef Name="RoleId" />
+      <PropertyRef Name="RoleActor" />
+    </Key>
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="RoleActor" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsDel" Type="bit" Nullable="false" />
+    <Property Name="AddTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="T_RolePermission">
+    <Key>
+      <PropertyRef Name="RoleId" />
+      <PropertyRef Name="PerId" />
+    </Key>
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="PerId" Type="int" Nullable="false" />
+    <Property Name="AddTime" Type="datetime" />
+    <Property Name="IsDel" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_TaskInformation">
+    <Key>
+      <PropertyRef Name="TaskId" />
+    </Key>
+    <Property Name="TaskId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TaskSender" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TaskName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TaskTypeId" Type="int" Nullable="false" />
+    <Property Name="TaskContent" Type="text" Nullable="false" />
+    <Property Name="TaskBegTime" Type="datetime" Nullable="false" />
+    <Property Name="TaskEndTime" Type="datetime" Nullable="false" />
+    <Property Name="TaskFinishTime" Type="datetime" />
+    <Property Name="ProjId" Type="int" Nullable="false" />
+    <Property Name="ProjPhaseId" Type="int" Nullable="false" />
+    <Property Name="TaskAttachmentPath" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StandbyB" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="T_TaskParticipation">
+    <Key>
+      <PropertyRef Name="TaskId" />
+      <PropertyRef Name="TaskReceiver" />
+    </Key>
+    <Property Name="TaskId" Type="int" Nullable="false" />
+    <Property Name="TaskReceiver" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TaskGrade" Type="int" Nullable="false" />
+    <Property Name="IsRead" Type="bit" Nullable="false" />
+    <Property Name="IsComplete" Type="bit" Nullable="false" />
+    <Property Name="TaskResponse" Type="text" Nullable="false" />
+    <Property Name="TaskSubmition" Type="nvarchar" MaxLength="500" />
+    <Property Name="TaskFinishTime" Type="datetime" />
+    <Property Name="TaskAttachmentPath" Type="nvarchar" MaxLength="70" />
+  </EntityType>
+  <EntityType Name="T_TaskType">
+    <Key>
+      <PropertyRef Name="TaskTypeId" />
+    </Key>
+    <Property Name="TaskTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TaskTypeName" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_TeacherInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_TechnicaLevel">
+    <Key>
+      <PropertyRef Name="TechLevelId" />
+    </Key>
+    <Property Name="TechLevelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TechLevelName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tbl_Message">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="Content" Type="ntext" />
+    <Property Name="SendTime" Type="datetime" Nullable="false" />
+    <Property Name="Atachment" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Tbl_User_Message">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReceiveId" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="SendId" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="MessageId" Type="int" Nullable="false" />
+    <Property Name="IsRead" Type="bit" Nullable="false" />
+    <Property Name="ReceiveIsDelete" Type="bit" Nullable="false" />
+    <Property Name="IsDraft" Type="bit" Nullable="false" />
+    <Property Name="SendIsDelete" Type="bit" Nullable="false" />
+    <Property Name="SendTrueDel" Type="bit" />
+    <Property Name="RecTrueDel" Type="bit" />
+  </EntityType>
+  <Association Name="FK__T_AnswerS__Answe__3F466844">
+    <End Role="T_AnswerSheet" Type="Self.T_AnswerSheet" Multiplicity="1" />
+    <End Role="T_AnswerSheetComment" Type="Self.T_AnswerSheetComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_AnswerSheet">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_AnswerSheetComment">
+        <PropertyRef Name="AnswerSheetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_AnswerS__Inter__286302EC">
+    <End Role="T_InterviewerInfo" Type="Self.T_InterviewerInfo" Multiplicity="1" />
+    <End Role="T_AnswerSheet" Type="Self.T_AnswerSheet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_InterviewerInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_AnswerSheet">
+        <PropertyRef Name="InterviewerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_AnswerS__Paper__29572725">
+    <End Role="T_Paper" Type="Self.T_Paper" Multiplicity="1" />
+    <End Role="T_AnswerSheet" Type="Self.T_AnswerSheet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Paper">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_AnswerSheet">
+        <PropertyRef Name="PaperID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_AnswerS__Rater__403A8C7D">
+    <End Role="T_TeacherInfo" Type="Self.T_TeacherInfo" Multiplicity="1" />
+    <End Role="T_AnswerSheetComment" Type="Self.T_AnswerSheetComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_TeacherInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_AnswerSheetComment">
+        <PropertyRef Name="RaterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_BriefAn__Quest__34C8D9D1">
+    <End Role="T_Question" Type="Self.T_Question" Multiplicity="1" />
+    <End Role="T_BriefAnswerSheet" Type="Self.T_BriefAnswerSheet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Question">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_BriefAnswerSheet">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_BriefSc__Brief__398D8EEE">
+    <End Role="T_BriefAnswerSheet" Type="Self.T_BriefAnswerSheet" Multiplicity="1" />
+    <End Role="T_BriefScore" Type="Self.T_BriefScore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_BriefAnswerSheet">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_BriefScore">
+        <PropertyRef Name="BriefAnswerSheetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_BriefSc__Paper__3A81B327">
+    <End Role="T_TeacherInfo" Type="Self.T_TeacherInfo" Multiplicity="1" />
+    <End Role="T_BriefScore" Type="Self.T_BriefScore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_TeacherInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_BriefScore">
+        <PropertyRef Name="PaperRaterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_ChoiceA__Answe__2E1BDC42">
+    <End Role="T_AnswerSheet" Type="Self.T_AnswerSheet" Multiplicity="1" />
+    <End Role="T_ChoiceAnswerSheet" Type="Self.T_ChoiceAnswerSheet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_AnswerSheet">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_ChoiceAnswerSheet">
+        <PropertyRef Name="AnswerSheetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_ChoiceA__Quest__2F10007B">
+    <End Role="T_Question" Type="Self.T_Question" Multiplicity="1" />
+    <End Role="T_ChoiceAnswerSheet" Type="Self.T_ChoiceAnswerSheet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Question">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_ChoiceAnswerSheet">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_MemberI__Depar__108B795B">
+    <End Role="T_Department" Type="Self.T_Department" Multiplicity="1" />
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Department">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="T_MemberInformation">
+        <PropertyRef Name="Department" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_MemberI__Depar__403A8C7D">
+    <End Role="T_Department" Type="Self.T_Department" Multiplicity="1" />
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Department">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="T_MemberInformation">
+        <PropertyRef Name="Department" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_MemberI__Study__1273C1CD">
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="0..1" />
+    <End Role="T_MemberInformation1" Type="Self.T_MemberInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_MemberInformation">
+        <PropertyRef Name="StuNum" />
+      </Principal>
+      <Dependent Role="T_MemberInformation1">
+        <PropertyRef Name="StudyGuideNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_MemberI__Study__4222D4EF">
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="0..1" />
+    <End Role="T_MemberInformation1" Type="Self.T_MemberInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_MemberInformation">
+        <PropertyRef Name="StuNum" />
+      </Principal>
+      <Dependent Role="T_MemberInformation1">
+        <PropertyRef Name="StudyGuideNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_MemberI__Techn__117F9D94">
+    <End Role="T_TechnicaLevel" Type="Self.T_TechnicaLevel" Multiplicity="1" />
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_TechnicaLevel">
+        <PropertyRef Name="TechLevelId" />
+      </Principal>
+      <Dependent Role="T_MemberInformation">
+        <PropertyRef Name="TechnicalLevel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_MemberI__Techn__4316F928">
+    <End Role="T_TechnicaLevel" Type="Self.T_TechnicaLevel" Multiplicity="1" />
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_TechnicaLevel">
+        <PropertyRef Name="TechLevelId" />
+      </Principal>
+      <Dependent Role="T_MemberInformation">
+        <PropertyRef Name="TechnicalLevel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_Ognizat__Organ__6FE99F9F">
+    <End Role="T_Organization" Type="Self.T_Organization" Multiplicity="1" />
+    <End Role="T_OgnizationAct" Type="Self.T_OgnizationAct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Organization">
+        <PropertyRef Name="OrganizationId" />
+      </Principal>
+      <Dependent Role="T_OgnizationAct">
+        <PropertyRef Name="OrganizationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_Ognizat__RoleA__70DDC3D8">
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="1" />
+    <End Role="T_OgnizationAct" Type="Self.T_OgnizationAct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_MemberInformation">
+        <PropertyRef Name="StuNum" />
+      </Principal>
+      <Dependent Role="T_OgnizationAct">
+        <PropertyRef Name="RoleActor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_OnDuty__StuNum__40F9A68C">
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="1" />
+    <End Role="T_OnDuty" Type="Self.T_OnDuty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_MemberInformation">
+        <PropertyRef Name="StuNum" />
+      </Principal>
+      <Dependent Role="T_OnDuty">
+        <PropertyRef Name="StuNum" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_PaperQu__Paper__1ED998B2">
+    <End Role="T_Paper" Type="Self.T_Paper" Multiplicity="1" />
+    <End Role="T_PaperQuestion" Type="Self.T_PaperQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Paper">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_PaperQuestion">
+        <PropertyRef Name="PaperID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_PaperQu__Quest__1FCDBCEB">
+    <End Role="T_Question" Type="Self.T_Question" Multiplicity="1" />
+    <End Role="T_PaperQuestion" Type="Self.T_PaperQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Question">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_PaperQuestion">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_Project__ProjI__47DBAE45">
+    <End Role="T_ProjectInformation" Type="Self.T_ProjectInformation" Multiplicity="1" />
+    <End Role="T_ProjectParticipation" Type="Self.T_ProjectParticipation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_ProjectInformation">
+        <PropertyRef Name="ProjId" />
+      </Principal>
+      <Dependent Role="T_ProjectParticipation">
+        <PropertyRef Name="ProjId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_Project__ProjL__44FF419A">
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="1" />
+    <End Role="T_ProjectInformation" Type="Self.T_ProjectInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_MemberInformation">
+        <PropertyRef Name="StuNum" />
+      </Principal>
+      <Dependent Role="T_ProjectInformation">
+        <PropertyRef Name="ProjLeader" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_Project__ProjP__45F365D3">
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="1" />
+    <End Role="T_ProjectInformation" Type="Self.T_ProjectInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_MemberInformation">
+        <PropertyRef Name="StuNum" />
+      </Principal>
+      <Dependent Role="T_ProjectInformation">
+        <PropertyRef Name="ProjPublisher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_Project__ProjT__46E78A0C">
+    <End Role="T_ProjectType" Type="Self.T_ProjectType" Multiplicity="1" />
+    <End Role="T_ProjectInformation" Type="Self.T_ProjectInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_ProjectType">
+        <PropertyRef Name="ProjTypeId" />
+      </Principal>
+      <Dependent Role="T_ProjectInformation">
+        <PropertyRef Name="ProjTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_Questio__Quest__0CBAE877">
+    <End Role="T_QuestionType" Type="Self.T_QuestionType" Multiplicity="1" />
+    <End Role="T_Question" Type="Self.T_Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_QuestionType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_Question">
+        <PropertyRef Name="QuestionTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_Questio__Quest__117F9D94">
+    <End Role="T_Question" Type="Self.T_Question" Multiplicity="1" />
+    <End Role="T_QuestionOption" Type="Self.T_QuestionOption" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Question">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_QuestionOption">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_RoleAct__RoleA__6A30C649">
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="1" />
+    <End Role="T_RoleAct" Type="Self.T_RoleAct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_MemberInformation">
+        <PropertyRef Name="StuNum" />
+      </Principal>
+      <Dependent Role="T_RoleAct">
+        <PropertyRef Name="RoleActor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_RoleAct__RoleI__693CA210">
+    <End Role="T_Role" Type="Self.T_Role" Multiplicity="1" />
+    <End Role="T_RoleAct" Type="Self.T_RoleAct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="T_RoleAct">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_RolePer__PerId__3B40CD36">
+    <End Role="T_Permission" Type="Self.T_Permission" Multiplicity="1" />
+    <End Role="T_RolePermission" Type="Self.T_RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Permission">
+        <PropertyRef Name="PerId" />
+      </Principal>
+      <Dependent Role="T_RolePermission">
+        <PropertyRef Name="PerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_RolePer__RoleI__3A4CA8FD">
+    <End Role="T_Role" Type="Self.T_Role" Multiplicity="1" />
+    <End Role="T_RolePermission" Type="Self.T_RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="T_RolePermission">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_TaskInf__ProjI__4D94879B">
+    <End Role="T_ProjectInformation" Type="Self.T_ProjectInformation" Multiplicity="1" />
+    <End Role="T_TaskInformation" Type="Self.T_TaskInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_ProjectInformation">
+        <PropertyRef Name="ProjId" />
+      </Principal>
+      <Dependent Role="T_TaskInformation">
+        <PropertyRef Name="ProjId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_TaskInf__ProjP__4E88ABD4">
+    <End Role="T_ProjPhase" Type="Self.T_ProjPhase" Multiplicity="1" />
+    <End Role="T_TaskInformation" Type="Self.T_TaskInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_ProjPhase">
+        <PropertyRef Name="ProjPhaseId" />
+      </Principal>
+      <Dependent Role="T_TaskInformation">
+        <PropertyRef Name="ProjPhaseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_TaskInf__TaskT__4F7CD00D">
+    <End Role="T_TaskType" Type="Self.T_TaskType" Multiplicity="1" />
+    <End Role="T_TaskInformation" Type="Self.T_TaskInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_TaskType">
+        <PropertyRef Name="TaskTypeId" />
+      </Principal>
+      <Dependent Role="T_TaskInformation">
+        <PropertyRef Name="TaskTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_BriefAnswerSheet_T_AnswerSheet">
+    <End Role="T_AnswerSheet" Type="Self.T_AnswerSheet" Multiplicity="1" />
+    <End Role="T_BriefAnswerSheet" Type="Self.T_BriefAnswerSheet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_AnswerSheet">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_BriefAnswerSheet">
+        <PropertyRef Name="AnswerSheetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_User_Message_MessageId">
+    <End Role="Tbl_Message" Type="Self.Tbl_Message" Multiplicity="1" />
+    <End Role="Tbl_User_Message" Type="Self.Tbl_User_Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Message">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tbl_User_Message">
+        <PropertyRef Name="MessageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="FinalModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SystemMessage" EntityType="Self.SystemMessage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_Abnormal" EntityType="Self.T_Abnormal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_AnswerSheet" EntityType="Self.T_AnswerSheet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_AnswerSheetComment" EntityType="Self.T_AnswerSheetComment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_BriefAnswerSheet" EntityType="Self.T_BriefAnswerSheet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_BriefScore" EntityType="Self.T_BriefScore" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_ChoiceAnswerSheet" EntityType="Self.T_ChoiceAnswerSheet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_Department" EntityType="Self.T_Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_InterviewerInfo" EntityType="Self.T_InterviewerInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_MemberInformation" EntityType="Self.T_MemberInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_OgnizationAct" EntityType="Self.T_OgnizationAct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_OnDuty" EntityType="Self.T_OnDuty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_Organization" EntityType="Self.T_Organization" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_Paper" EntityType="Self.T_Paper" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_PaperQuestion" EntityType="Self.T_PaperQuestion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_Permission" EntityType="Self.T_Permission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_ProjectInformation" EntityType="Self.T_ProjectInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_ProjectParticipation" EntityType="Self.T_ProjectParticipation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_ProjectType" EntityType="Self.T_ProjectType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_ProjPhase" EntityType="Self.T_ProjPhase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_Question" EntityType="Self.T_Question" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_QuestionOption" EntityType="Self.T_QuestionOption" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_QuestionType" EntityType="Self.T_QuestionType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_Role" EntityType="Self.T_Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_RoleAct" EntityType="Self.T_RoleAct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_RolePermission" EntityType="Self.T_RolePermission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_TaskInformation" EntityType="Self.T_TaskInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_TaskParticipation" EntityType="Self.T_TaskParticipation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_TaskType" EntityType="Self.T_TaskType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_TeacherInfo" EntityType="Self.T_TeacherInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_TechnicaLevel" EntityType="Self.T_TechnicaLevel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Message" EntityType="Self.Tbl_Message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_User_Message" EntityType="Self.Tbl_User_Message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_IsShow" EntityType="Self.T_IsShow" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[T_IsShow].[ShowId] AS [ShowId], 
+[T_IsShow].[familyTel] AS [familyTel], 
+[T_IsShow].[address] AS [address], 
+[T_IsShow].[phone] AS [phone]
+FROM [dbo].[T_IsShow] AS [T_IsShow]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__T_AnswerS__Answe__3F466844" Association="Self.FK__T_AnswerS__Answe__3F466844">
+      <End Role="T_AnswerSheet" EntitySet="T_AnswerSheet" />
+      <End Role="T_AnswerSheetComment" EntitySet="T_AnswerSheetComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_AnswerS__Inter__286302EC" Association="Self.FK__T_AnswerS__Inter__286302EC">
+      <End Role="T_InterviewerInfo" EntitySet="T_InterviewerInfo" />
+      <End Role="T_AnswerSheet" EntitySet="T_AnswerSheet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_AnswerS__Paper__29572725" Association="Self.FK__T_AnswerS__Paper__29572725">
+      <End Role="T_Paper" EntitySet="T_Paper" />
+      <End Role="T_AnswerSheet" EntitySet="T_AnswerSheet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_AnswerS__Rater__403A8C7D" Association="Self.FK__T_AnswerS__Rater__403A8C7D">
+      <End Role="T_TeacherInfo" EntitySet="T_TeacherInfo" />
+      <End Role="T_AnswerSheetComment" EntitySet="T_AnswerSheetComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_BriefAn__Quest__34C8D9D1" Association="Self.FK__T_BriefAn__Quest__34C8D9D1">
+      <End Role="T_Question" EntitySet="T_Question" />
+      <End Role="T_BriefAnswerSheet" EntitySet="T_BriefAnswerSheet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_BriefSc__Brief__398D8EEE" Association="Self.FK__T_BriefSc__Brief__398D8EEE">
+      <End Role="T_BriefAnswerSheet" EntitySet="T_BriefAnswerSheet" />
+      <End Role="T_BriefScore" EntitySet="T_BriefScore" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_BriefSc__Paper__3A81B327" Association="Self.FK__T_BriefSc__Paper__3A81B327">
+      <End Role="T_TeacherInfo" EntitySet="T_TeacherInfo" />
+      <End Role="T_BriefScore" EntitySet="T_BriefScore" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_ChoiceA__Answe__2E1BDC42" Association="Self.FK__T_ChoiceA__Answe__2E1BDC42">
+      <End Role="T_AnswerSheet" EntitySet="T_AnswerSheet" />
+      <End Role="T_ChoiceAnswerSheet" EntitySet="T_ChoiceAnswerSheet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_ChoiceA__Quest__2F10007B" Association="Self.FK__T_ChoiceA__Quest__2F10007B">
+      <End Role="T_Question" EntitySet="T_Question" />
+      <End Role="T_ChoiceAnswerSheet" EntitySet="T_ChoiceAnswerSheet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_MemberI__Depar__108B795B" Association="Self.FK__T_MemberI__Depar__108B795B">
+      <End Role="T_Department" EntitySet="T_Department" />
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_MemberI__Depar__403A8C7D" Association="Self.FK__T_MemberI__Depar__403A8C7D">
+      <End Role="T_Department" EntitySet="T_Department" />
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_MemberI__Study__1273C1CD" Association="Self.FK__T_MemberI__Study__1273C1CD">
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+      <End Role="T_MemberInformation1" EntitySet="T_MemberInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_MemberI__Study__4222D4EF" Association="Self.FK__T_MemberI__Study__4222D4EF">
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+      <End Role="T_MemberInformation1" EntitySet="T_MemberInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_MemberI__Techn__117F9D94" Association="Self.FK__T_MemberI__Techn__117F9D94">
+      <End Role="T_TechnicaLevel" EntitySet="T_TechnicaLevel" />
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_MemberI__Techn__4316F928" Association="Self.FK__T_MemberI__Techn__4316F928">
+      <End Role="T_TechnicaLevel" EntitySet="T_TechnicaLevel" />
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_Ognizat__Organ__6FE99F9F" Association="Self.FK__T_Ognizat__Organ__6FE99F9F">
+      <End Role="T_Organization" EntitySet="T_Organization" />
+      <End Role="T_OgnizationAct" EntitySet="T_OgnizationAct" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_Ognizat__RoleA__70DDC3D8" Association="Self.FK__T_Ognizat__RoleA__70DDC3D8">
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+      <End Role="T_OgnizationAct" EntitySet="T_OgnizationAct" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_OnDuty__StuNum__40F9A68C" Association="Self.FK__T_OnDuty__StuNum__40F9A68C">
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+      <End Role="T_OnDuty" EntitySet="T_OnDuty" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_PaperQu__Paper__1ED998B2" Association="Self.FK__T_PaperQu__Paper__1ED998B2">
+      <End Role="T_Paper" EntitySet="T_Paper" />
+      <End Role="T_PaperQuestion" EntitySet="T_PaperQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_PaperQu__Quest__1FCDBCEB" Association="Self.FK__T_PaperQu__Quest__1FCDBCEB">
+      <End Role="T_Question" EntitySet="T_Question" />
+      <End Role="T_PaperQuestion" EntitySet="T_PaperQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_Project__ProjI__47DBAE45" Association="Self.FK__T_Project__ProjI__47DBAE45">
+      <End Role="T_ProjectInformation" EntitySet="T_ProjectInformation" />
+      <End Role="T_ProjectParticipation" EntitySet="T_ProjectParticipation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_Project__ProjL__44FF419A" Association="Self.FK__T_Project__ProjL__44FF419A">
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+      <End Role="T_ProjectInformation" EntitySet="T_ProjectInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_Project__ProjP__45F365D3" Association="Self.FK__T_Project__ProjP__45F365D3">
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+      <End Role="T_ProjectInformation" EntitySet="T_ProjectInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_Project__ProjT__46E78A0C" Association="Self.FK__T_Project__ProjT__46E78A0C">
+      <End Role="T_ProjectType" EntitySet="T_ProjectType" />
+      <End Role="T_ProjectInformation" EntitySet="T_ProjectInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_Questio__Quest__0CBAE877" Association="Self.FK__T_Questio__Quest__0CBAE877">
+      <End Role="T_QuestionType" EntitySet="T_QuestionType" />
+      <End Role="T_Question" EntitySet="T_Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_Questio__Quest__117F9D94" Association="Self.FK__T_Questio__Quest__117F9D94">
+      <End Role="T_Question" EntitySet="T_Question" />
+      <End Role="T_QuestionOption" EntitySet="T_QuestionOption" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_RoleAct__RoleA__6A30C649" Association="Self.FK__T_RoleAct__RoleA__6A30C649">
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+      <End Role="T_RoleAct" EntitySet="T_RoleAct" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_RoleAct__RoleI__693CA210" Association="Self.FK__T_RoleAct__RoleI__693CA210">
+      <End Role="T_Role" EntitySet="T_Role" />
+      <End Role="T_RoleAct" EntitySet="T_RoleAct" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_RolePer__PerId__3B40CD36" Association="Self.FK__T_RolePer__PerId__3B40CD36">
+      <End Role="T_Permission" EntitySet="T_Permission" />
+      <End Role="T_RolePermission" EntitySet="T_RolePermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_RolePer__RoleI__3A4CA8FD" Association="Self.FK__T_RolePer__RoleI__3A4CA8FD">
+      <End Role="T_Role" EntitySet="T_Role" />
+      <End Role="T_RolePermission" EntitySet="T_RolePermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_TaskInf__ProjI__4D94879B" Association="Self.FK__T_TaskInf__ProjI__4D94879B">
+      <End Role="T_ProjectInformation" EntitySet="T_ProjectInformation" />
+      <End Role="T_TaskInformation" EntitySet="T_TaskInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_TaskInf__ProjP__4E88ABD4" Association="Self.FK__T_TaskInf__ProjP__4E88ABD4">
+      <End Role="T_ProjPhase" EntitySet="T_ProjPhase" />
+      <End Role="T_TaskInformation" EntitySet="T_TaskInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_TaskInf__TaskT__4F7CD00D" Association="Self.FK__T_TaskInf__TaskT__4F7CD00D">
+      <End Role="T_TaskType" EntitySet="T_TaskType" />
+      <End Role="T_TaskInformation" EntitySet="T_TaskInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_BriefAnswerSheet_T_AnswerSheet" Association="Self.FK_T_BriefAnswerSheet_T_AnswerSheet">
+      <End Role="T_AnswerSheet" EntitySet="T_AnswerSheet" />
+      <End Role="T_BriefAnswerSheet" EntitySet="T_BriefAnswerSheet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_User_Message_MessageId" Association="Self.FK_Tbl_User_Message_MessageId">
+      <End Role="Tbl_Message" EntitySet="Tbl_Message" />
+      <End Role="Tbl_User_Message" EntitySet="Tbl_User_Message" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

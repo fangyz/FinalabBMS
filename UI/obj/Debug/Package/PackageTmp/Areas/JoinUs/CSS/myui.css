@@ -1,0 +1,48 @@
+﻿
+.my_btn
+{
+    background-color: #0072C6;
+    color: white;
+    width: 100px;
+    height: 40px;
+    /*border:1px solid black;*/
+    border-style: none;
+    text-align: center;
+    font-family: 'Microsoft YaHei UI';
+}
+
+    .my_btn:hover
+    {
+        background-color: #2672ec;
+        cursor: default;
+    }
+
+.my_label
+{
+    font-family: 'Microsoft YaHei UI';
+    font-size: 14px;
+}
+
+    .my_label span
+    {
+        color: red;
+    }
+
+
+.my_input_control
+{
+    height: 34px;
+    width: 100%;
+    font-family: 'Microsoft YaHei UI';
+    padding-left: 5px;
+}
+
+.my_textarea
+{
+    height: 100px;
+    width: 100%;
+    font-family: 'Microsoft YaHei UI';
+    padding-left: 5px;
+    resize: vertical;
+    padding-top: 5px;
+}

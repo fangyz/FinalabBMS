@@ -1,0 +1,21 @@
+﻿.am-table 
+{
+    width:800px;
+    margin:auto auto;
+    font-size:14px;
+}
+#comment_content {
+    width:486px;
+}
+#ok_submit {
+    margin:20px auto;
+    width:100px;
+}
+#tb_paper {
+    margin-top:20px;
+}
+#choose_rater {
+    font-size:14px;
+    width:180px;
+    margin:20px auto;
+}

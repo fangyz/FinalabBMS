@@ -1,0 +1,1104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FinalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="SystemMessage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="SendId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ReceiveId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Atachment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SendTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsRead" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T_Abnormal">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Area" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="Controller" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="ACtion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="Message" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="T_AnswerSheet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InterviewerID" Type="Int32" Nullable="false" />
+    <Property Name="PaperID" Type="Int32" Nullable="false" />
+    <Property Name="Score" Type="Int32" />
+    <NavigationProperty Name="T_AnswerSheetComment" Relationship="Self.FK__T_AnswerS__Answe__3F466844" FromRole="T_AnswerSheet" ToRole="T_AnswerSheetComment" />
+    <NavigationProperty Name="T_InterviewerInfo" Relationship="Self.FK__T_AnswerS__Inter__286302EC" FromRole="T_AnswerSheet" ToRole="T_InterviewerInfo" />
+    <NavigationProperty Name="T_Paper" Relationship="Self.FK__T_AnswerS__Paper__29572725" FromRole="T_AnswerSheet" ToRole="T_Paper" />
+    <NavigationProperty Name="T_ChoiceAnswerSheet" Relationship="Self.FK__T_ChoiceA__Answe__2E1BDC42" FromRole="T_AnswerSheet" ToRole="T_ChoiceAnswerSheet" />
+    <NavigationProperty Name="T_BriefAnswerSheet" Relationship="Self.FK_T_BriefAnswerSheet_T_AnswerSheet" FromRole="T_AnswerSheet" ToRole="T_BriefAnswerSheet" />
+  </EntityType>
+  <EntityType Name="T_AnswerSheetComment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AnswerSheetID" Type="Int32" Nullable="false" />
+    <Property Name="RaterID" Type="Int32" Nullable="false" />
+    <Property Name="CommentContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserCom" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="T_AnswerSheet" Relationship="Self.FK__T_AnswerS__Answe__3F466844" FromRole="T_AnswerSheetComment" ToRole="T_AnswerSheet" />
+    <NavigationProperty Name="T_TeacherInfo" Relationship="Self.FK__T_AnswerS__Rater__403A8C7D" FromRole="T_AnswerSheetComment" ToRole="T_TeacherInfo" />
+  </EntityType>
+  <EntityType Name="T_BriefAnswerSheet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AnswerSheetID" Type="Int32" Nullable="false" />
+    <Property Name="QuestionID" Type="Int32" Nullable="false" />
+    <Property Name="Answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="T_AnswerSheet" Relationship="Self.FK_T_BriefAnswerSheet_T_AnswerSheet" FromRole="T_BriefAnswerSheet" ToRole="T_AnswerSheet" />
+    <NavigationProperty Name="T_Question" Relationship="Self.FK__T_BriefAn__Quest__34C8D9D1" FromRole="T_BriefAnswerSheet" ToRole="T_Question" />
+    <NavigationProperty Name="T_BriefScore" Relationship="Self.FK__T_BriefSc__Brief__398D8EEE" FromRole="T_BriefAnswerSheet" ToRole="T_BriefScore" />
+  </EntityType>
+  <EntityType Name="T_BriefScore">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BriefAnswerSheetID" Type="Int32" Nullable="false" />
+    <Property Name="PaperRaterID" Type="Int32" Nullable="false" />
+    <Property Name="Score" Type="Int32" Nullable="false" />
+    <Property Name="UserB" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="T_BriefAnswerSheet" Relationship="Self.FK__T_BriefSc__Brief__398D8EEE" FromRole="T_BriefScore" ToRole="T_BriefAnswerSheet" />
+    <NavigationProperty Name="T_TeacherInfo" Relationship="Self.FK__T_BriefSc__Paper__3A81B327" FromRole="T_BriefScore" ToRole="T_TeacherInfo" />
+  </EntityType>
+  <EntityType Name="T_ChoiceAnswerSheet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AnswerSheetID" Type="Int32" Nullable="false" />
+    <Property Name="QuestionID" Type="Int32" Nullable="false" />
+    <Property Name="Answer" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="T_AnswerSheet" Relationship="Self.FK__T_ChoiceA__Answe__2E1BDC42" FromRole="T_ChoiceAnswerSheet" ToRole="T_AnswerSheet" />
+    <NavigationProperty Name="T_Question" Relationship="Self.FK__T_ChoiceA__Quest__2F10007B" FromRole="T_ChoiceAnswerSheet" ToRole="T_Question" />
+  </EntityType>
+  <EntityType Name="T_Department">
+    <Key>
+      <PropertyRef Name="DepartmentId" />
+    </Key>
+    <Property Name="DepartmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="T_MemberInformation" Relationship="Self.FK__T_MemberI__Depar__108B795B" FromRole="T_Department" ToRole="T_MemberInformation" />
+    <NavigationProperty Name="T_MemberInformation1" Relationship="Self.FK__T_MemberI__Depar__403A8C7D" FromRole="T_Department" ToRole="T_MemberInformation" />
+  </EntityType>
+  <EntityType Name="T_InterviewerInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Num" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Academy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Major" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Class" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="QQ" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TelNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LearningExperience" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SelfEvaluation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsRequestTech" Type="Boolean" Nullable="false" />
+    <Property Name="type" Type="Int32" />
+    <NavigationProperty Name="T_AnswerSheet" Relationship="Self.FK__T_AnswerS__Inter__286302EC" FromRole="T_InterviewerInfo" ToRole="T_AnswerSheet" />
+  </EntityType>
+  <EntityType Name="T_MemberInformation">
+    <Key>
+      <PropertyRef Name="StuNum" />
+    </Key>
+    <Property Name="StuNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StuName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="QQNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LoginPwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Birthday" Type="DateTime" Precision="3" />
+    <Property Name="PhotoPath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Class" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="JoinTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndTime" Type="DateTime" Precision="3" />
+    <Property Name="Major" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Counselor" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="HeadTeacher" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="UndergraduateTutor" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="TelephoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="HomPhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="FamilyAddress" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="Department" Type="Int32" Nullable="false" />
+    <Property Name="TechnicalLevel" Type="Int32" Nullable="false" />
+    <Property Name="StudyGuideNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="Sign" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="OtheInfor" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="SecretShow" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="T_Department" Relationship="Self.FK__T_MemberI__Depar__108B795B" FromRole="T_MemberInformation" ToRole="T_Department" />
+    <NavigationProperty Name="T_Department1" Relationship="Self.FK__T_MemberI__Depar__403A8C7D" FromRole="T_MemberInformation" ToRole="T_Department" />
+    <NavigationProperty Name="T_MemberInformation1" Relationship="Self.FK__T_MemberI__Study__1273C1CD" FromRole="T_MemberInformation" ToRole="T_MemberInformation1" />
+    <NavigationProperty Name="T_MemberInformation2" Relationship="Self.FK__T_MemberI__Study__1273C1CD" FromRole="T_MemberInformation1" ToRole="T_MemberInformation" />
+    <NavigationProperty Name="T_MemberInformation11" Relationship="Self.FK__T_MemberI__Study__4222D4EF" FromRole="T_MemberInformation" ToRole="T_MemberInformation1" />
+    <NavigationProperty Name="T_MemberInformation3" Relationship="Self.FK__T_MemberI__Study__4222D4EF" FromRole="T_MemberInformation1" ToRole="T_MemberInformation" />
+    <NavigationProperty Name="T_TechnicaLevel" Relationship="Self.FK__T_MemberI__Techn__117F9D94" FromRole="T_MemberInformation" ToRole="T_TechnicaLevel" />
+    <NavigationProperty Name="T_TechnicaLevel1" Relationship="Self.FK__T_MemberI__Techn__4316F928" FromRole="T_MemberInformation" ToRole="T_TechnicaLevel" />
+    <NavigationProperty Name="T_OgnizationAct" Relationship="Self.FK__T_Ognizat__RoleA__70DDC3D8" FromRole="T_MemberInformation" ToRole="T_OgnizationAct" />
+    <NavigationProperty Name="T_OnDuty" Relationship="Self.FK__T_OnDuty__StuNum__40F9A68C" FromRole="T_MemberInformation" ToRole="T_OnDuty" />
+    <NavigationProperty Name="T_ProjectInformation" Relationship="Self.FK__T_Project__ProjL__44FF419A" FromRole="T_MemberInformation" ToRole="T_ProjectInformation" />
+    <NavigationProperty Name="T_ProjectInformation1" Relationship="Self.FK__T_Project__ProjP__45F365D3" FromRole="T_MemberInformation" ToRole="T_ProjectInformation" />
+    <NavigationProperty Name="T_RoleAct" Relationship="Self.FK__T_RoleAct__RoleA__6A30C649" FromRole="T_MemberInformation" ToRole="T_RoleAct" />
+  </EntityType>
+  <EntityType Name="T_OgnizationAct">
+    <Key>
+      <PropertyRef Name="OrganizationId" />
+      <PropertyRef Name="RoleActor" />
+    </Key>
+    <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+    <Property Name="RoleActor" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsDel" Type="Boolean" Nullable="false" />
+    <Property Name="AddTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="T_MemberInformation" Relationship="Self.FK__T_Ognizat__RoleA__70DDC3D8" FromRole="T_OgnizationAct" ToRole="T_MemberInformation" />
+    <NavigationProperty Name="T_Organization" Relationship="Self.FK__T_Ognizat__Organ__6FE99F9F" FromRole="T_OgnizationAct" ToRole="T_Organization" />
+  </EntityType>
+  <EntityType Name="T_OnDuty">
+    <Key>
+      <PropertyRef Name="StuNum" />
+      <PropertyRef Name="Week" />
+    </Key>
+    <Property Name="StuNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Week" Type="Int32" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="T_MemberInformation" Relationship="Self.FK__T_OnDuty__StuNum__40F9A68C" FromRole="T_OnDuty" ToRole="T_MemberInformation" />
+  </EntityType>
+  <EntityType Name="T_Organization">
+    <Key>
+      <PropertyRef Name="OrganizationId" />
+    </Key>
+    <Property Name="OrganizationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrganizationName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="T_OgnizationAct" Relationship="Self.FK__T_Ognizat__Organ__6FE99F9F" FromRole="T_Organization" ToRole="T_OgnizationAct" />
+  </EntityType>
+  <EntityType Name="T_Paper">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaperName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AddDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="IsDel" Type="Boolean" Nullable="false" />
+    <Property Name="IsPublished" Type="Boolean" Nullable="false" />
+    <Property Name="typeId" Type="Int32" Nullable="false" />
+    <Property Name="PaperProducerID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="T_AnswerSheet" Relationship="Self.FK__T_AnswerS__Paper__29572725" FromRole="T_Paper" ToRole="T_AnswerSheet" />
+    <NavigationProperty Name="T_PaperQuestion" Relationship="Self.FK__T_PaperQu__Paper__1ED998B2" FromRole="T_Paper" ToRole="T_PaperQuestion" />
+  </EntityType>
+  <EntityType Name="T_PaperQuestion">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaperID" Type="Int32" Nullable="false" />
+    <Property Name="QuestionID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="T_Paper" Relationship="Self.FK__T_PaperQu__Paper__1ED998B2" FromRole="T_PaperQuestion" ToRole="T_Paper" />
+    <NavigationProperty Name="T_Question" Relationship="Self.FK__T_PaperQu__Quest__1FCDBCEB" FromRole="T_PaperQuestion" ToRole="T_Question" />
+  </EntityType>
+  <EntityType Name="T_Permission">
+    <Key>
+      <PropertyRef Name="PerId" />
+    </Key>
+    <Property Name="PerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PerName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PerParent" Type="Int32" />
+    <Property Name="PerAreaName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PerController" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PerActionName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="PerFormMethod" Type="Int32" />
+    <Property Name="PerIsShow" Type="Boolean" Nullable="false" />
+    <Property Name="PerAddTime" Type="DateTime" Precision="3" />
+    <Property Name="PerIco" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsCommon" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="bpx" Type="Int32" />
+    <Property Name="bpy" Type="Int32" />
+    <Property Name="perExplain" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="T_RolePermission" Relationship="Self.FK__T_RolePer__PerId__3B40CD36" FromRole="T_Permission" ToRole="T_RolePermission" />
+  </EntityType>
+  <EntityType Name="T_ProjectInformation">
+    <Key>
+      <PropertyRef Name="ProjId" />
+    </Key>
+    <Property Name="ProjId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjTypeId" Type="Int32" Nullable="false" />
+    <Property Name="ProjName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProjLeader" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProjPublisher" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProjStartTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExFinishiTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AcFinishiTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ProjProfile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProjPay" Type="Double" Nullable="false" />
+    <Property Name="ProjIncome" Type="Double" Nullable="false" />
+    <Property Name="ProjMark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="T_MemberInformation" Relationship="Self.FK__T_Project__ProjL__44FF419A" FromRole="T_ProjectInformation" ToRole="T_MemberInformation" />
+    <NavigationProperty Name="T_MemberInformation1" Relationship="Self.FK__T_Project__ProjP__45F365D3" FromRole="T_ProjectInformation" ToRole="T_MemberInformation" />
+    <NavigationProperty Name="T_ProjectParticipation" Relationship="Self.FK__T_Project__ProjI__47DBAE45" FromRole="T_ProjectInformation" ToRole="T_ProjectParticipation" />
+    <NavigationProperty Name="T_ProjectType" Relationship="Self.FK__T_Project__ProjT__46E78A0C" FromRole="T_ProjectInformation" ToRole="T_ProjectType" />
+    <NavigationProperty Name="T_TaskInformation" Relationship="Self.FK__T_TaskInf__ProjI__4D94879B" FromRole="T_ProjectInformation" ToRole="T_TaskInformation" />
+  </EntityType>
+  <EntityType Name="T_ProjectParticipation">
+    <Key>
+      <PropertyRef Name="ProjId" />
+      <PropertyRef Name="ProjReceiver" />
+    </Key>
+    <Property Name="ProjId" Type="Int32" Nullable="false" />
+    <Property Name="ProjReceiver" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsDel" Type="Boolean" Nullable="false" />
+    <Property Name="AddTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="T_ProjectInformation" Relationship="Self.FK__T_Project__ProjI__47DBAE45" FromRole="T_ProjectParticipation" ToRole="T_ProjectInformation" />
+  </EntityType>
+  <EntityType Name="T_ProjectType">
+    <Key>
+      <PropertyRef Name="ProjTypeId" />
+    </Key>
+    <Property Name="ProjTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjTypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="T_ProjectInformation" Relationship="Self.FK__T_Project__ProjT__46E78A0C" FromRole="T_ProjectType" ToRole="T_ProjectInformation" />
+  </EntityType>
+  <EntityType Name="T_ProjPhase">
+    <Key>
+      <PropertyRef Name="ProjPhaseId" />
+    </Key>
+    <Property Name="ProjPhaseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjPhaseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="T_TaskInformation" Relationship="Self.FK__T_TaskInf__ProjP__4E88ABD4" FromRole="T_ProjPhase" ToRole="T_TaskInformation" />
+  </EntityType>
+  <EntityType Name="T_Question">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuestionContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="QuestionTypeID" Type="Int32" Nullable="false" />
+    <Property Name="IsDel" Type="Boolean" Nullable="false" />
+    <Property Name="QuestionGrade" Type="Int32" />
+    <Property Name="QuestionTag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="T_BriefAnswerSheet" Relationship="Self.FK__T_BriefAn__Quest__34C8D9D1" FromRole="T_Question" ToRole="T_BriefAnswerSheet" />
+    <NavigationProperty Name="T_ChoiceAnswerSheet" Relationship="Self.FK__T_ChoiceA__Quest__2F10007B" FromRole="T_Question" ToRole="T_ChoiceAnswerSheet" />
+    <NavigationProperty Name="T_PaperQuestion" Relationship="Self.FK__T_PaperQu__Quest__1FCDBCEB" FromRole="T_Question" ToRole="T_PaperQuestion" />
+    <NavigationProperty Name="T_QuestionType" Relationship="Self.FK__T_Questio__Quest__0CBAE877" FromRole="T_Question" ToRole="T_QuestionType" />
+    <NavigationProperty Name="T_QuestionOption" Relationship="Self.FK__T_Questio__Quest__117F9D94" FromRole="T_Question" ToRole="T_QuestionOption" />
+  </EntityType>
+  <EntityType Name="T_QuestionOption">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuestionID" Type="Int32" Nullable="false" />
+    <Property Name="OptionID" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OptionContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OptionWeight" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="T_Question" Relationship="Self.FK__T_Questio__Quest__117F9D94" FromRole="T_QuestionOption" ToRole="T_Question" />
+  </EntityType>
+  <EntityType Name="T_QuestionType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuestionTypeName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="T_Question" Relationship="Self.FK__T_Questio__Quest__0CBAE877" FromRole="T_QuestionType" ToRole="T_Question" />
+  </EntityType>
+  <EntityType Name="T_Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="T_RoleAct" Relationship="Self.FK__T_RoleAct__RoleI__693CA210" FromRole="T_Role" ToRole="T_RoleAct" />
+    <NavigationProperty Name="T_RolePermission" Relationship="Self.FK__T_RolePer__RoleI__3A4CA8FD" FromRole="T_Role" ToRole="T_RolePermission" />
+  </EntityType>
+  <EntityType Name="T_RoleAct">
+    <Key>
+      <PropertyRef Name="RoleId" />
+      <PropertyRef Name="RoleActor" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="RoleActor" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsDel" Type="Boolean" Nullable="false" />
+    <Property Name="AddTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="T_MemberInformation" Relationship="Self.FK__T_RoleAct__RoleA__6A30C649" FromRole="T_RoleAct" ToRole="T_MemberInformation" />
+    <NavigationProperty Name="T_Role" Relationship="Self.FK__T_RoleAct__RoleI__693CA210" FromRole="T_RoleAct" ToRole="T_Role" />
+  </EntityType>
+  <EntityType Name="T_RolePermission">
+    <Key>
+      <PropertyRef Name="RoleId" />
+      <PropertyRef Name="PerId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="PerId" Type="Int32" Nullable="false" />
+    <Property Name="AddTime" Type="DateTime" Precision="3" />
+    <Property Name="IsDel" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="T_Permission" Relationship="Self.FK__T_RolePer__PerId__3B40CD36" FromRole="T_RolePermission" ToRole="T_Permission" />
+    <NavigationProperty Name="T_Role" Relationship="Self.FK__T_RolePer__RoleI__3A4CA8FD" FromRole="T_RolePermission" ToRole="T_Role" />
+  </EntityType>
+  <EntityType Name="T_TaskInformation">
+    <Key>
+      <PropertyRef Name="TaskId" />
+    </Key>
+    <Property Name="TaskId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TaskSender" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TaskName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TaskTypeId" Type="Int32" Nullable="false" />
+    <Property Name="TaskContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TaskBegTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TaskEndTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TaskFinishTime" Type="DateTime" Precision="3" />
+    <Property Name="ProjId" Type="Int32" Nullable="false" />
+    <Property Name="ProjPhaseId" Type="Int32" Nullable="false" />
+    <Property Name="TaskAttachmentPath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StandbyB" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="T_ProjectInformation" Relationship="Self.FK__T_TaskInf__ProjI__4D94879B" FromRole="T_TaskInformation" ToRole="T_ProjectInformation" />
+    <NavigationProperty Name="T_ProjPhase" Relationship="Self.FK__T_TaskInf__ProjP__4E88ABD4" FromRole="T_TaskInformation" ToRole="T_ProjPhase" />
+    <NavigationProperty Name="T_TaskType" Relationship="Self.FK__T_TaskInf__TaskT__4F7CD00D" FromRole="T_TaskInformation" ToRole="T_TaskType" />
+  </EntityType>
+  <EntityType Name="T_TaskParticipation">
+    <Key>
+      <PropertyRef Name="TaskId" />
+      <PropertyRef Name="TaskReceiver" />
+    </Key>
+    <Property Name="TaskId" Type="Int32" Nullable="false" />
+    <Property Name="TaskReceiver" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TaskGrade" Type="Int32" Nullable="false" />
+    <Property Name="IsRead" Type="Boolean" Nullable="false" />
+    <Property Name="IsComplete" Type="Boolean" Nullable="false" />
+    <Property Name="TaskResponse" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TaskSubmition" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="TaskFinishTime" Type="DateTime" Precision="3" />
+    <Property Name="TaskAttachmentPath" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="T_TaskType">
+    <Key>
+      <PropertyRef Name="TaskTypeId" />
+    </Key>
+    <Property Name="TaskTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TaskTypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="T_TaskInformation" Relationship="Self.FK__T_TaskInf__TaskT__4F7CD00D" FromRole="T_TaskType" ToRole="T_TaskInformation" />
+  </EntityType>
+  <EntityType Name="T_TeacherInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="T_AnswerSheetComment" Relationship="Self.FK__T_AnswerS__Rater__403A8C7D" FromRole="T_TeacherInfo" ToRole="T_AnswerSheetComment" />
+    <NavigationProperty Name="T_BriefScore" Relationship="Self.FK__T_BriefSc__Paper__3A81B327" FromRole="T_TeacherInfo" ToRole="T_BriefScore" />
+  </EntityType>
+  <EntityType Name="T_TechnicaLevel">
+    <Key>
+      <PropertyRef Name="TechLevelId" />
+    </Key>
+    <Property Name="TechLevelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TechLevelName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="T_MemberInformation" Relationship="Self.FK__T_MemberI__Techn__117F9D94" FromRole="T_TechnicaLevel" ToRole="T_MemberInformation" />
+    <NavigationProperty Name="T_MemberInformation1" Relationship="Self.FK__T_MemberI__Techn__4316F928" FromRole="T_TechnicaLevel" ToRole="T_MemberInformation" />
+  </EntityType>
+  <EntityType Name="Tbl_Message">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SendTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Atachment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Tbl_User_Message" Relationship="Self.FK_Tbl_User_Message_MessageId" FromRole="Tbl_Message" ToRole="Tbl_User_Message" />
+  </EntityType>
+  <EntityType Name="Tbl_User_Message">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReceiveId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SendId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MessageId" Type="Int32" Nullable="false" />
+    <Property Name="IsRead" Type="Boolean" Nullable="false" />
+    <Property Name="ReceiveIsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="IsDraft" Type="Boolean" Nullable="false" />
+    <Property Name="SendIsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="SendTrueDel" Type="Boolean" />
+    <Property Name="RecTrueDel" Type="Boolean" />
+    <NavigationProperty Name="Tbl_Message" Relationship="Self.FK_Tbl_User_Message_MessageId" FromRole="Tbl_User_Message" ToRole="Tbl_Message" />
+  </EntityType>
+  <EntityType Name="T_IsShow">
+    <Key>
+      <PropertyRef Name="ShowId" />
+      <PropertyRef Name="familyTel" />
+      <PropertyRef Name="address" />
+      <PropertyRef Name="phone" />
+    </Key>
+    <Property Name="ShowId" Type="Int32" Nullable="false" />
+    <Property Name="familyTel" Type="Boolean" Nullable="false" />
+    <Property Name="address" Type="Boolean" Nullable="false" />
+    <Property Name="phone" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__T_AnswerS__Answe__3F466844">
+    <End Role="T_AnswerSheet" Type="Self.T_AnswerSheet" Multiplicity="1" />
+    <End Role="T_AnswerSheetComment" Type="Self.T_AnswerSheetComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_AnswerSheet">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_AnswerSheetComment">
+        <PropertyRef Name="AnswerSheetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_AnswerS__Inter__286302EC">
+    <End Role="T_InterviewerInfo" Type="Self.T_InterviewerInfo" Multiplicity="1" />
+    <End Role="T_AnswerSheet" Type="Self.T_AnswerSheet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_InterviewerInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_AnswerSheet">
+        <PropertyRef Name="InterviewerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_AnswerS__Paper__29572725">
+    <End Role="T_Paper" Type="Self.T_Paper" Multiplicity="1" />
+    <End Role="T_AnswerSheet" Type="Self.T_AnswerSheet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Paper">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_AnswerSheet">
+        <PropertyRef Name="PaperID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_ChoiceA__Answe__2E1BDC42">
+    <End Role="T_AnswerSheet" Type="Self.T_AnswerSheet" Multiplicity="1" />
+    <End Role="T_ChoiceAnswerSheet" Type="Self.T_ChoiceAnswerSheet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_AnswerSheet">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_ChoiceAnswerSheet">
+        <PropertyRef Name="AnswerSheetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_BriefAnswerSheet_T_AnswerSheet">
+    <End Role="T_AnswerSheet" Type="Self.T_AnswerSheet" Multiplicity="1" />
+    <End Role="T_BriefAnswerSheet" Type="Self.T_BriefAnswerSheet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_AnswerSheet">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_BriefAnswerSheet">
+        <PropertyRef Name="AnswerSheetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_AnswerS__Rater__403A8C7D">
+    <End Role="T_TeacherInfo" Type="Self.T_TeacherInfo" Multiplicity="1" />
+    <End Role="T_AnswerSheetComment" Type="Self.T_AnswerSheetComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_TeacherInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_AnswerSheetComment">
+        <PropertyRef Name="RaterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_BriefAn__Quest__34C8D9D1">
+    <End Role="T_Question" Type="Self.T_Question" Multiplicity="1" />
+    <End Role="T_BriefAnswerSheet" Type="Self.T_BriefAnswerSheet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Question">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_BriefAnswerSheet">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_BriefSc__Brief__398D8EEE">
+    <End Role="T_BriefAnswerSheet" Type="Self.T_BriefAnswerSheet" Multiplicity="1" />
+    <End Role="T_BriefScore" Type="Self.T_BriefScore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_BriefAnswerSheet">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_BriefScore">
+        <PropertyRef Name="BriefAnswerSheetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_BriefSc__Paper__3A81B327">
+    <End Role="T_TeacherInfo" Type="Self.T_TeacherInfo" Multiplicity="1" />
+    <End Role="T_BriefScore" Type="Self.T_BriefScore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_TeacherInfo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_BriefScore">
+        <PropertyRef Name="PaperRaterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_ChoiceA__Quest__2F10007B">
+    <End Role="T_Question" Type="Self.T_Question" Multiplicity="1" />
+    <End Role="T_ChoiceAnswerSheet" Type="Self.T_ChoiceAnswerSheet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Question">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_ChoiceAnswerSheet">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_MemberI__Depar__108B795B">
+    <End Role="T_Department" Type="Self.T_Department" Multiplicity="1" />
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Department">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="T_MemberInformation">
+        <PropertyRef Name="Department" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_MemberI__Depar__403A8C7D">
+    <End Role="T_Department" Type="Self.T_Department" Multiplicity="1" />
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Department">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="T_MemberInformation">
+        <PropertyRef Name="Department" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_MemberI__Study__1273C1CD">
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="0..1" />
+    <End Role="T_MemberInformation1" Type="Self.T_MemberInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_MemberInformation">
+        <PropertyRef Name="StuNum" />
+      </Principal>
+      <Dependent Role="T_MemberInformation1">
+        <PropertyRef Name="StudyGuideNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_MemberI__Study__4222D4EF">
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="0..1" />
+    <End Role="T_MemberInformation1" Type="Self.T_MemberInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_MemberInformation">
+        <PropertyRef Name="StuNum" />
+      </Principal>
+      <Dependent Role="T_MemberInformation1">
+        <PropertyRef Name="StudyGuideNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_MemberI__Techn__117F9D94">
+    <End Role="T_TechnicaLevel" Type="Self.T_TechnicaLevel" Multiplicity="1" />
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_TechnicaLevel">
+        <PropertyRef Name="TechLevelId" />
+      </Principal>
+      <Dependent Role="T_MemberInformation">
+        <PropertyRef Name="TechnicalLevel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_MemberI__Techn__4316F928">
+    <End Role="T_TechnicaLevel" Type="Self.T_TechnicaLevel" Multiplicity="1" />
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_TechnicaLevel">
+        <PropertyRef Name="TechLevelId" />
+      </Principal>
+      <Dependent Role="T_MemberInformation">
+        <PropertyRef Name="TechnicalLevel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_Ognizat__RoleA__70DDC3D8">
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="1" />
+    <End Role="T_OgnizationAct" Type="Self.T_OgnizationAct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_MemberInformation">
+        <PropertyRef Name="StuNum" />
+      </Principal>
+      <Dependent Role="T_OgnizationAct">
+        <PropertyRef Name="RoleActor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_OnDuty__StuNum__40F9A68C">
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="1" />
+    <End Role="T_OnDuty" Type="Self.T_OnDuty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_MemberInformation">
+        <PropertyRef Name="StuNum" />
+      </Principal>
+      <Dependent Role="T_OnDuty">
+        <PropertyRef Name="StuNum" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_Project__ProjL__44FF419A">
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="1" />
+    <End Role="T_ProjectInformation" Type="Self.T_ProjectInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_MemberInformation">
+        <PropertyRef Name="StuNum" />
+      </Principal>
+      <Dependent Role="T_ProjectInformation">
+        <PropertyRef Name="ProjLeader" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_Project__ProjP__45F365D3">
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="1" />
+    <End Role="T_ProjectInformation" Type="Self.T_ProjectInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_MemberInformation">
+        <PropertyRef Name="StuNum" />
+      </Principal>
+      <Dependent Role="T_ProjectInformation">
+        <PropertyRef Name="ProjPublisher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_RoleAct__RoleA__6A30C649">
+    <End Role="T_MemberInformation" Type="Self.T_MemberInformation" Multiplicity="1" />
+    <End Role="T_RoleAct" Type="Self.T_RoleAct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_MemberInformation">
+        <PropertyRef Name="StuNum" />
+      </Principal>
+      <Dependent Role="T_RoleAct">
+        <PropertyRef Name="RoleActor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_Ognizat__Organ__6FE99F9F">
+    <End Role="T_Organization" Type="Self.T_Organization" Multiplicity="1" />
+    <End Role="T_OgnizationAct" Type="Self.T_OgnizationAct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Organization">
+        <PropertyRef Name="OrganizationId" />
+      </Principal>
+      <Dependent Role="T_OgnizationAct">
+        <PropertyRef Name="OrganizationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_PaperQu__Paper__1ED998B2">
+    <End Role="T_Paper" Type="Self.T_Paper" Multiplicity="1" />
+    <End Role="T_PaperQuestion" Type="Self.T_PaperQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Paper">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_PaperQuestion">
+        <PropertyRef Name="PaperID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_PaperQu__Quest__1FCDBCEB">
+    <End Role="T_Question" Type="Self.T_Question" Multiplicity="1" />
+    <End Role="T_PaperQuestion" Type="Self.T_PaperQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Question">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_PaperQuestion">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_RolePer__PerId__3B40CD36">
+    <End Role="T_Permission" Type="Self.T_Permission" Multiplicity="1" />
+    <End Role="T_RolePermission" Type="Self.T_RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Permission">
+        <PropertyRef Name="PerId" />
+      </Principal>
+      <Dependent Role="T_RolePermission">
+        <PropertyRef Name="PerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_Project__ProjI__47DBAE45">
+    <End Role="T_ProjectInformation" Type="Self.T_ProjectInformation" Multiplicity="1" />
+    <End Role="T_ProjectParticipation" Type="Self.T_ProjectParticipation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_ProjectInformation">
+        <PropertyRef Name="ProjId" />
+      </Principal>
+      <Dependent Role="T_ProjectParticipation">
+        <PropertyRef Name="ProjId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_Project__ProjT__46E78A0C">
+    <End Role="T_ProjectType" Type="Self.T_ProjectType" Multiplicity="1" />
+    <End Role="T_ProjectInformation" Type="Self.T_ProjectInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_ProjectType">
+        <PropertyRef Name="ProjTypeId" />
+      </Principal>
+      <Dependent Role="T_ProjectInformation">
+        <PropertyRef Name="ProjTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_TaskInf__ProjI__4D94879B">
+    <End Role="T_ProjectInformation" Type="Self.T_ProjectInformation" Multiplicity="1" />
+    <End Role="T_TaskInformation" Type="Self.T_TaskInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_ProjectInformation">
+        <PropertyRef Name="ProjId" />
+      </Principal>
+      <Dependent Role="T_TaskInformation">
+        <PropertyRef Name="ProjId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_TaskInf__ProjP__4E88ABD4">
+    <End Role="T_ProjPhase" Type="Self.T_ProjPhase" Multiplicity="1" />
+    <End Role="T_TaskInformation" Type="Self.T_TaskInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_ProjPhase">
+        <PropertyRef Name="ProjPhaseId" />
+      </Principal>
+      <Dependent Role="T_TaskInformation">
+        <PropertyRef Name="ProjPhaseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_Questio__Quest__0CBAE877">
+    <End Role="T_QuestionType" Type="Self.T_QuestionType" Multiplicity="1" />
+    <End Role="T_Question" Type="Self.T_Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_QuestionType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_Question">
+        <PropertyRef Name="QuestionTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_Questio__Quest__117F9D94">
+    <End Role="T_Question" Type="Self.T_Question" Multiplicity="1" />
+    <End Role="T_QuestionOption" Type="Self.T_QuestionOption" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Question">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_QuestionOption">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_RoleAct__RoleI__693CA210">
+    <End Role="T_Role" Type="Self.T_Role" Multiplicity="1" />
+    <End Role="T_RoleAct" Type="Self.T_RoleAct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="T_RoleAct">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_RolePer__RoleI__3A4CA8FD">
+    <End Role="T_Role" Type="Self.T_Role" Multiplicity="1" />
+    <End Role="T_RolePermission" Type="Self.T_RolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="T_RolePermission">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__T_TaskInf__TaskT__4F7CD00D">
+    <End Role="T_TaskType" Type="Self.T_TaskType" Multiplicity="1" />
+    <End Role="T_TaskInformation" Type="Self.T_TaskInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T_TaskType">
+        <PropertyRef Name="TaskTypeId" />
+      </Principal>
+      <Dependent Role="T_TaskInformation">
+        <PropertyRef Name="TaskTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tbl_User_Message_MessageId">
+    <End Role="Tbl_Message" Type="Self.Tbl_Message" Multiplicity="1" />
+    <End Role="Tbl_User_Message" Type="Self.Tbl_User_Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Message">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tbl_User_Message">
+        <PropertyRef Name="MessageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FinalEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="SystemMessages" EntityType="Self.SystemMessage" />
+    <EntitySet Name="T_Abnormal" EntityType="Self.T_Abnormal" />
+    <EntitySet Name="T_AnswerSheet" EntityType="Self.T_AnswerSheet" />
+    <EntitySet Name="T_AnswerSheetComment" EntityType="Self.T_AnswerSheetComment" />
+    <EntitySet Name="T_BriefAnswerSheet" EntityType="Self.T_BriefAnswerSheet" />
+    <EntitySet Name="T_BriefScore" EntityType="Self.T_BriefScore" />
+    <EntitySet Name="T_ChoiceAnswerSheet" EntityType="Self.T_ChoiceAnswerSheet" />
+    <EntitySet Name="T_Department" EntityType="Self.T_Department" />
+    <EntitySet Name="T_InterviewerInfo" EntityType="Self.T_InterviewerInfo" />
+    <EntitySet Name="T_MemberInformation" EntityType="Self.T_MemberInformation" />
+    <EntitySet Name="T_OgnizationAct" EntityType="Self.T_OgnizationAct" />
+    <EntitySet Name="T_OnDuty" EntityType="Self.T_OnDuty" />
+    <EntitySet Name="T_Organization" EntityType="Self.T_Organization" />
+    <EntitySet Name="T_Paper" EntityType="Self.T_Paper" />
+    <EntitySet Name="T_PaperQuestion" EntityType="Self.T_PaperQuestion" />
+    <EntitySet Name="T_Permission" EntityType="Self.T_Permission" />
+    <EntitySet Name="T_ProjectInformation" EntityType="Self.T_ProjectInformation" />
+    <EntitySet Name="T_ProjectParticipation" EntityType="Self.T_ProjectParticipation" />
+    <EntitySet Name="T_ProjectType" EntityType="Self.T_ProjectType" />
+    <EntitySet Name="T_ProjPhase" EntityType="Self.T_ProjPhase" />
+    <EntitySet Name="T_Question" EntityType="Self.T_Question" />
+    <EntitySet Name="T_QuestionOption" EntityType="Self.T_QuestionOption" />
+    <EntitySet Name="T_QuestionType" EntityType="Self.T_QuestionType" />
+    <EntitySet Name="T_Role" EntityType="Self.T_Role" />
+    <EntitySet Name="T_RoleAct" EntityType="Self.T_RoleAct" />
+    <EntitySet Name="T_RolePermission" EntityType="Self.T_RolePermission" />
+    <EntitySet Name="T_TaskInformation" EntityType="Self.T_TaskInformation" />
+    <EntitySet Name="T_TaskParticipation" EntityType="Self.T_TaskParticipation" />
+    <EntitySet Name="T_TaskType" EntityType="Self.T_TaskType" />
+    <EntitySet Name="T_TeacherInfo" EntityType="Self.T_TeacherInfo" />
+    <EntitySet Name="T_TechnicaLevel" EntityType="Self.T_TechnicaLevel" />
+    <EntitySet Name="Tbl_Message" EntityType="Self.Tbl_Message" />
+    <EntitySet Name="Tbl_User_Message" EntityType="Self.Tbl_User_Message" />
+    <EntitySet Name="T_IsShow" EntityType="Self.T_IsShow" />
+    <AssociationSet Name="FK__T_AnswerS__Answe__3F466844" Association="Self.FK__T_AnswerS__Answe__3F466844">
+      <End Role="T_AnswerSheet" EntitySet="T_AnswerSheet" />
+      <End Role="T_AnswerSheetComment" EntitySet="T_AnswerSheetComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_AnswerS__Inter__286302EC" Association="Self.FK__T_AnswerS__Inter__286302EC">
+      <End Role="T_InterviewerInfo" EntitySet="T_InterviewerInfo" />
+      <End Role="T_AnswerSheet" EntitySet="T_AnswerSheet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_AnswerS__Paper__29572725" Association="Self.FK__T_AnswerS__Paper__29572725">
+      <End Role="T_Paper" EntitySet="T_Paper" />
+      <End Role="T_AnswerSheet" EntitySet="T_AnswerSheet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_ChoiceA__Answe__2E1BDC42" Association="Self.FK__T_ChoiceA__Answe__2E1BDC42">
+      <End Role="T_AnswerSheet" EntitySet="T_AnswerSheet" />
+      <End Role="T_ChoiceAnswerSheet" EntitySet="T_ChoiceAnswerSheet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_BriefAnswerSheet_T_AnswerSheet" Association="Self.FK_T_BriefAnswerSheet_T_AnswerSheet">
+      <End Role="T_AnswerSheet" EntitySet="T_AnswerSheet" />
+      <End Role="T_BriefAnswerSheet" EntitySet="T_BriefAnswerSheet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_AnswerS__Rater__403A8C7D" Association="Self.FK__T_AnswerS__Rater__403A8C7D">
+      <End Role="T_TeacherInfo" EntitySet="T_TeacherInfo" />
+      <End Role="T_AnswerSheetComment" EntitySet="T_AnswerSheetComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_BriefAn__Quest__34C8D9D1" Association="Self.FK__T_BriefAn__Quest__34C8D9D1">
+      <End Role="T_Question" EntitySet="T_Question" />
+      <End Role="T_BriefAnswerSheet" EntitySet="T_BriefAnswerSheet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_BriefSc__Brief__398D8EEE" Association="Self.FK__T_BriefSc__Brief__398D8EEE">
+      <End Role="T_BriefAnswerSheet" EntitySet="T_BriefAnswerSheet" />
+      <End Role="T_BriefScore" EntitySet="T_BriefScore" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_BriefSc__Paper__3A81B327" Association="Self.FK__T_BriefSc__Paper__3A81B327">
+      <End Role="T_TeacherInfo" EntitySet="T_TeacherInfo" />
+      <End Role="T_BriefScore" EntitySet="T_BriefScore" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_ChoiceA__Quest__2F10007B" Association="Self.FK__T_ChoiceA__Quest__2F10007B">
+      <End Role="T_Question" EntitySet="T_Question" />
+      <End Role="T_ChoiceAnswerSheet" EntitySet="T_ChoiceAnswerSheet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_MemberI__Depar__108B795B" Association="Self.FK__T_MemberI__Depar__108B795B">
+      <End Role="T_Department" EntitySet="T_Department" />
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_MemberI__Depar__403A8C7D" Association="Self.FK__T_MemberI__Depar__403A8C7D">
+      <End Role="T_Department" EntitySet="T_Department" />
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_MemberI__Study__1273C1CD" Association="Self.FK__T_MemberI__Study__1273C1CD">
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+      <End Role="T_MemberInformation1" EntitySet="T_MemberInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_MemberI__Study__4222D4EF" Association="Self.FK__T_MemberI__Study__4222D4EF">
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+      <End Role="T_MemberInformation1" EntitySet="T_MemberInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_MemberI__Techn__117F9D94" Association="Self.FK__T_MemberI__Techn__117F9D94">
+      <End Role="T_TechnicaLevel" EntitySet="T_TechnicaLevel" />
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_MemberI__Techn__4316F928" Association="Self.FK__T_MemberI__Techn__4316F928">
+      <End Role="T_TechnicaLevel" EntitySet="T_TechnicaLevel" />
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_Ognizat__RoleA__70DDC3D8" Association="Self.FK__T_Ognizat__RoleA__70DDC3D8">
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+      <End Role="T_OgnizationAct" EntitySet="T_OgnizationAct" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_OnDuty__StuNum__40F9A68C" Association="Self.FK__T_OnDuty__StuNum__40F9A68C">
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+      <End Role="T_OnDuty" EntitySet="T_OnDuty" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_Project__ProjL__44FF419A" Association="Self.FK__T_Project__ProjL__44FF419A">
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+      <End Role="T_ProjectInformation" EntitySet="T_ProjectInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_Project__ProjP__45F365D3" Association="Self.FK__T_Project__ProjP__45F365D3">
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+      <End Role="T_ProjectInformation" EntitySet="T_ProjectInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_RoleAct__RoleA__6A30C649" Association="Self.FK__T_RoleAct__RoleA__6A30C649">
+      <End Role="T_MemberInformation" EntitySet="T_MemberInformation" />
+      <End Role="T_RoleAct" EntitySet="T_RoleAct" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_Ognizat__Organ__6FE99F9F" Association="Self.FK__T_Ognizat__Organ__6FE99F9F">
+      <End Role="T_Organization" EntitySet="T_Organization" />
+      <End Role="T_OgnizationAct" EntitySet="T_OgnizationAct" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_PaperQu__Paper__1ED998B2" Association="Self.FK__T_PaperQu__Paper__1ED998B2">
+      <End Role="T_Paper" EntitySet="T_Paper" />
+      <End Role="T_PaperQuestion" EntitySet="T_PaperQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_PaperQu__Quest__1FCDBCEB" Association="Self.FK__T_PaperQu__Quest__1FCDBCEB">
+      <End Role="T_Question" EntitySet="T_Question" />
+      <End Role="T_PaperQuestion" EntitySet="T_PaperQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_RolePer__PerId__3B40CD36" Association="Self.FK__T_RolePer__PerId__3B40CD36">
+      <End Role="T_Permission" EntitySet="T_Permission" />
+      <End Role="T_RolePermission" EntitySet="T_RolePermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_Project__ProjI__47DBAE45" Association="Self.FK__T_Project__ProjI__47DBAE45">
+      <End Role="T_ProjectInformation" EntitySet="T_ProjectInformation" />
+      <End Role="T_ProjectParticipation" EntitySet="T_ProjectParticipation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_Project__ProjT__46E78A0C" Association="Self.FK__T_Project__ProjT__46E78A0C">
+      <End Role="T_ProjectType" EntitySet="T_ProjectType" />
+      <End Role="T_ProjectInformation" EntitySet="T_ProjectInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_TaskInf__ProjI__4D94879B" Association="Self.FK__T_TaskInf__ProjI__4D94879B">
+      <End Role="T_ProjectInformation" EntitySet="T_ProjectInformation" />
+      <End Role="T_TaskInformation" EntitySet="T_TaskInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_TaskInf__ProjP__4E88ABD4" Association="Self.FK__T_TaskInf__ProjP__4E88ABD4">
+      <End Role="T_ProjPhase" EntitySet="T_ProjPhase" />
+      <End Role="T_TaskInformation" EntitySet="T_TaskInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_Questio__Quest__0CBAE877" Association="Self.FK__T_Questio__Quest__0CBAE877">
+      <End Role="T_QuestionType" EntitySet="T_QuestionType" />
+      <End Role="T_Question" EntitySet="T_Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_Questio__Quest__117F9D94" Association="Self.FK__T_Questio__Quest__117F9D94">
+      <End Role="T_Question" EntitySet="T_Question" />
+      <End Role="T_QuestionOption" EntitySet="T_QuestionOption" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_RoleAct__RoleI__693CA210" Association="Self.FK__T_RoleAct__RoleI__693CA210">
+      <End Role="T_Role" EntitySet="T_Role" />
+      <End Role="T_RoleAct" EntitySet="T_RoleAct" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_RolePer__RoleI__3A4CA8FD" Association="Self.FK__T_RolePer__RoleI__3A4CA8FD">
+      <End Role="T_Role" EntitySet="T_Role" />
+      <End Role="T_RolePermission" EntitySet="T_RolePermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK__T_TaskInf__TaskT__4F7CD00D" Association="Self.FK__T_TaskInf__TaskT__4F7CD00D">
+      <End Role="T_TaskType" EntitySet="T_TaskType" />
+      <End Role="T_TaskInformation" EntitySet="T_TaskInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tbl_User_Message_MessageId" Association="Self.FK_Tbl_User_Message_MessageId">
+      <End Role="Tbl_Message" EntitySet="Tbl_Message" />
+      <End Role="Tbl_User_Message" EntitySet="Tbl_User_Message" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(FinalModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(FinalModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

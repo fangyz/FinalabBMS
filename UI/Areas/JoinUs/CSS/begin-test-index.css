@@ -1,0 +1,49 @@
+﻿/*--------------------------------------viwepager---------------------------------------*/
+#viwepager
+{
+    height: auto;
+    width: 100%;
+}
+
+/*--------------------------------------to_resume---------------------------------------*/
+#to_resume
+{
+    width: 200px;
+    margin: 50px auto;
+}
+
+.my_btn
+{
+    width: 200px;
+    height: 60px;
+    font-size: 20px;
+    font-family: STXihei;
+}
+
+/*--------------------------------------footer---------------------------------------*/
+#footer
+{
+    border: 1px solid black;
+    border-color: transparent;
+    border-top-color: #CDCDCD;
+}
+
+    #footer div
+    {
+        width: 310px;
+        margin: 15px auto;
+    }
+
+        #footer div span
+        {
+            color: #666;
+            font-family: 'Microsoft YaHei UI';
+            font-size: 86%;
+            margin-right: 5px;
+            margin-left: 5px;
+        }
+
+#my-confirm
+{
+    font-family:'Microsoft YaHei';
+}

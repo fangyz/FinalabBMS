@@ -1,0 +1,518 @@
+﻿@{
+    Layout = null;
+}
+
+<!--1.2个人编辑信息-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>test</title>
+    <!-- bootstrap的CSS文件-->
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+    <script src="~/bootstrap/jquery/jquery-1.11.3.min.js"></script>
+    <script src="~/My97DatePicker/WdatePicker.js"></script>
+    
+    <script src="~/Areas/PersonalManger/JS/modernizr.js"></script>
+    <script src="~/Areas/PersonalManger/JS/prefixfree.min.js"></script>
+    <style>
+        #UpLoadImg{
+            width:800px;
+            float:left;
+        }
+        #back{
+            width:170px;
+            float:right;
+        }
+        #InformationForm{
+            clear:both;
+        }
+
+            #showFont .box {
+                display: none;
+            }
+
+        #showFont .render {
+            width: 80%;
+            display: block;
+            margin: 5px auto;
+        }
+        #showFont .render span {
+                font-size: 70px;
+                font-weight: 300;
+            }
+    </style>
+    <script type="text/javascript">
+        function hide() {
+            file = $("#fileup").val();
+            if (!/.(gif|jpg|jpeg|png|gif|jpg|png)$/.test(file)) {
+                alert("图片类型必须是.gif,jpeg,jpg,png中的一种");
+            }
+            else {
+                $("#UpLoadImg").submit();
+            }
+        }
+
+        /*htm5实现图片本地预览，js代码*/
+        function preImg(sourceId, targetId) {
+            if (typeof FileReader === 'undefined') {
+                alert('你的浏览器不支持...');
+                return;
+            }
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                var img = document.getElementById(targetId);
+                img.src = this.result;
+            }
+            reader.readAsDataURL(document.getElementById(sourceId).files[0]);
+        }
+        //监听鼠标滚轮事件 
+        window.onmousewheel = function (e) {
+            var windowHeight = $(window).outerHeight(); //获取浏览器高度
+            //$("#left").css('height', windowHeight - headerHeight - footerHeight + 'px');
+         //大于0则是向上滑，
+            if (e.wheelDelta > 0) {
+                document.body.scrollTop -= 450;
+            }
+            else {
+                document.body.scrollTop += 450;
+            }
+        }
+    </script>
+</head>
+<body style="font-family: 'Microsoft YaHei'; background-color:#EDF1F9; "> 
+
+    <div class="panel panel-primary" id="main" style="width:900px;margin:50px auto;height:400px;">
+        <div class="panel-heading" style="height: 41px;padding:0 0 0 0; ">
+            <div style="padding-top:5px;">
+                <span class="panel-title" style="width:100px;height:31px;margin-left:14px;">编辑头像
+                <a href="@ViewBag.backurl" class="btn btn-danger" style="width: 100px; margin-left: 708px; height: 31px;">返回</a>
+                </span>
+            </div>
+        </div>
+        <div class="panel-body">
+            <form id="UpLoadImg" action="/PersonalManger/CheckMember/UpLoadImg" method="post" enctype="multipart/form-data" target="submitIform" style="width:890px;height:130px;margin:0 auto;">
+                <div class="row" style="height: 110px; text-align: left">
+                    <div class="col-md-offset-1 col-md-7">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="@ViewBag.member.PhotoPath" alt="" class="img-circle" style="height: 96px; width: 96px" id="update-photo-img">
+                            </div>
+                            <div class="col-md-9">
+                                <p>头像设置</p>
+                                <p>支持 jpg、gif、png 等格式的图片（尺寸80x80）</p>
+                                <div style="position: relative">
+                                    <button style="width: 70px" class="btn btn-success btn-xs">预览</button>
+                                    <input type="file" style="position: absolute; top: 0px; left: 0px; width: 70px; opacity: 0" id="fileup" onchange="preImg(this.id,'update-photo-img')" name="head" />
+                                    <input type="text" hidden name="StuNum" value="@ViewBag.member.StuNum" />
+                                    <a href="#" role="button" style="width: 70px; margin-left: 5px" class="btn btn-success btn-xs" id="btn-submit" onclick="hide()">上传</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div style="width:880px;height:250px;margin:0 auto;" id="showFont">
+                <div class="box">
+                    <h1>We Are FinalLab</h1>
+                </div>
+                <div class="render"></div>
+                <script src="~/Areas/PersonalManger/JS/index.js"></script>
+            </div>
+
+        </div>
+    </div>
+
+
+    <iframe name="submitIform" style="display:none;"></iframe>
+
+    <form id="InformationForm" class="form-horizontal" method="post" action="/PersonalManger/CheckMember/@ViewBag.urlfix" style="width:900px;margin:150px auto;">
+        <input type="hidden" name="LoginPwd" value="@ViewBag.member.LoginPwd" />
+        <input type="hidden" name="IsShow" value="@ViewBag.IsShow" />
+        <input type="hidden" name="oldRoleId" value="@ViewBag.UserRoleId" />
+
+
+        <div class="panel panel-primary" style="width:900px;margin:0 auto;height:420px;">
+            <div class="panel-heading">
+                <h3 class="panel-title">基本信息</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" style="text-align:center;">学&nbsp;&nbsp;&nbsp;号:</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="StuNum" value="@ViewBag.member.StuNum" onfocus=this.blur()>
+                    </div>
+                    <label for="StuName" class="col-sm-2 control-label" style="text-align:center;">姓&nbsp;&nbsp;&nbsp;名:</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="StuName" placeholder="姓名" value="@ViewBag.member.StuName" required="required" maxlength="6">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="QQNum" class="col-sm-2 control-label" style="text-align:center;">Q&nbsp;&nbsp;&nbsp;Q:</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="QQNum" placeholder="QQ" value="@ViewBag.member.QQNum" required="required" maxlength="15">
+                    </div>
+                    <label for="Gender" class="col-sm-2 control-label" style="text-align:center;">性&nbsp;&nbsp;&nbsp;别:</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" name="Gender">
+                            @{
+                                if (ViewBag.member.Gender == "男")
+                                {
+                                    <option>男</option>
+                                    <option>女</option>
+                                }
+                                else
+                                {
+                                    <option>女</option>
+                                    <option>男</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="Class" class="col-sm-2 control-label" style="text-align:center;">班&nbsp;&nbsp;&nbsp;级:</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="Class" placeholder="班级" value="@ViewBag.member.Class" required="required" maxlength="10">
+                    </div>
+                    <label for="Major" class="col-sm-2 control-label" style="text-align:center;">专&nbsp;&nbsp;&nbsp;业:</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" name="Major">
+                            @for (int i = 0; i < ViewBag.count; i++)
+                            {
+                                if (ViewBag.member.Major == ViewBag.Professional[i])
+                                {
+                                    <option value="@ViewBag.member.Major" selected="selected">@ViewBag.Professional[i]</option>
+                                }
+                                else
+                                {
+                                    <option value="@ViewBag.Professional[i]">@ViewBag.Professional[i]</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="Email" class="col-sm-2 control-label" style="text-align:center;">邮&nbsp;&nbsp;&nbsp;箱:</label>
+                    <div class="col-sm-4">
+                        <input type="Email" class="form-control" name="Email" placeholder="邮箱" value="@ViewBag.member.Email" required="required" id="email" maxlength="25">
+                    </div>
+                    <label for="Birthday" class="col-sm-2 control-label" style="text-align:center;">生&nbsp;&nbsp;&nbsp;日:</label>
+                    <div class="col-sm-4">
+                        <input type="text" onclick="WdatePicker({ dateFmt: 'yyyy年M月d日' })" class="form-control" name="Birthday" value="@ViewBag.dtime">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Counselor" class="col-sm-2 control-label" style="text-align:center;">辅导员:</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="Counselor" placeholder="辅导员名称" value="@ViewBag.member.Counselor" required="required" maxlength="6">
+                    </div>
+                    <label for="HeadTeacher" class="col-sm-2 control-label" style="text-align:center;">班主任:</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="HeadTeacher" placeholder="班主任" value="@ViewBag.member.HeadTeacher" required="required" maxlength="6">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="UndergraduateTutor" class="col-sm-2 control-label" style="text-align:center;">指导老师:</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="UndergraduateTutor" placeholder="指导老师" value="@ViewBag.member.UndergraduateTutor" maxlength="6">
+                    </div>
+                    <label for="Sign" class="col-sm-2 control-label" style="text-align:center;">个性签名:</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="Sign" placeholder="不超过25个字" value="@ViewBag.member.Sign" maxlength="25">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="OtheInfor" class="col-sm-2 control-label" style="text-align:center;">补充信息:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="OtheInfor" placeholder="不超过100个字" value="@ViewBag.member.OtheInfor" maxlength="100">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="panel panel-primary" style="width:900px;height:400px;margin:130px 0 auto;">
+            <div class="panel-heading">
+                <h3 class="panel-title">私密信息</h3>
+            </div>
+            <div class="panel-body">
+                <br />
+                <div class="form-group">
+                    <label for="FamilyAddress" class="col-sm-2 control-label" style="text-align: center; color: #ff6a00; font-size: 16px;">家庭住址</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="FamilyAddress" placeholder="家庭住址" value="@ViewBag.member.FamilyAddress" required="required" maxlength="25">
+                    </div>
+                    <label for="Sign" class="col-sm-2 control-label" style="text-align: center; color: #ff6a00; font-size: 16px; ">是否公开</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" name="ShowAddress">
+                            @{
+                                if (ViewBag.address == 1)
+                                {
+                                    <option value="1" selected>公开家庭地址</option>
+                                    <option value="0">不公开家庭地址</option>
+                                }
+                                else
+                                {
+                                    <option value="1">公开家庭地址</option>
+                                    <option value="0" selected>不公开家庭地址</option>
+                                }
+                            }
+                        </select>
+
+                    </div>
+                </div><br />
+
+                <div class="form-group">
+                    <label for="TelephoneNumber" class="col-sm-2 control-label" style="text-align: center; color: #ff6a00; font-size: 16px; ">手机号码</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="TelephoneNumber" placeholder="手机号码" value="@ViewBag.member.TelephoneNumber" required="required" maxlength="11">
+                    </div>
+                    <label for="Sign" class="col-sm-2 control-label" style="text-align: center; color: #ff6a00; font-size: 16px; ">是否公开</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" name="ShowPhone">
+                            @{
+                                if (ViewBag.phone == 1)
+                                {
+                                    <option value="1" selected>公开手机号码</option>
+                                    <option value="0">不公开手机号码</option>
+                                }
+                                else
+                                {
+                                    <option value="1">公开手机号码</option>
+                                    <option value="0" selected>不公开手机号码</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                </div><br />
+
+                <div class="form-group">
+                    <label for="HomPhoneNumber" class="col-sm-2 control-label" style="text-align: center; color: #ff6a00; font-size: 16px; ">家庭电话</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="HomPhoneNumber" placeholder="家庭电话" value="@ViewBag.member.HomPhoneNumber" maxlength="13">
+                    </div>
+                    <label for="Sign" class="col-sm-2 control-label" style="text-align: center; color: #ff6a00; font-size: 16px;">是否公开</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" name="ShowFPhone">
+                            @{
+                                if (ViewBag.familyTel == 1)
+                                {
+                                    <option value="1" selected>公开家庭电话</option>
+                                    <option value="0">不公开家庭电话</option>
+                                }
+                                else
+                                {
+                                    <option value="1">公开家庭电话</option>
+                                    <option value="0" selected>不公开家庭电话</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+
+
+                </div><br />
+
+            </div>
+        </div>
+
+
+
+        <div class="panel panel-primary" style="width:900px;height:300px; margin:150px auto;margin-bottom:0px;">
+            <div class="panel-heading">
+                <h3 class="panel-title">实验室信息</h3>
+            </div>
+            <div class="panel-body">
+                @if (ViewBag.HasPer == true)
+                {
+                    <div class="form-group">
+                        <label for="Department" class="col-sm-2 control-label">部门:</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" name="Department">
+                                @foreach (MODEL.T_Department dep in ViewBag.dep as List<MODEL.T_Department>)
+                                {
+                                    if (dep.DepartmentId == ViewBag.member.Department)
+                                    {
+                                        <option value="@dep.DepartmentId" selected="selected">@dep.DepartmentName</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@dep.DepartmentId">@dep.DepartmentName</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        <label for="TechnicaLevel" class="col-sm-2 control-label">技术层次:</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" name="TechnicalLevel">
+                                @foreach (MODEL.T_TechnicaLevel techLeval in ViewBag.techLeval as List<MODEL.T_TechnicaLevel>)
+                                {
+                                    if (techLeval.TechLevelId == ViewBag.member.TechnicalLevel)
+                                    {
+
+                                        <option value="@techLeval.TechLevelId" selected="selected">@techLeval.TechLevelName</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@techLeval.TechLevelId">@techLeval.TechLevelName</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="JoinTime" class="col-sm-2 control-label">加入时间:</label>
+                        <div class="col-sm-4">
+                            <input type="text" value="@string.Format("{0:d}", ViewBag.member.JoinTime)" class="form-control" name="EndTime" readonly>
+                        </div>
+                        <label for="EndTime" class="col-sm-2 control-label">退出时间:</label>
+                        <div class="col-sm-4">
+                            <input type="text" value="无" class="form_datetime form-control" name="EndTime" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="StudyGuideNumber" class="col-sm-2 control-label">学习顾问:</label>
+                        <div class="col-sm-4">
+                            @if (ViewBag.IsOne == 1)
+                            {
+                                <select class="form-control" name="StudyGuideNumber">
+                                    @foreach (MODEL.T_MemberInformation member in ViewBag.StudyGuide as List<MODEL.T_MemberInformation>)
+                                    {
+                                        if (member.StuNum == ViewBag.member.StudyGuideNumber)
+                                        {
+                                            <option value="@member.StuNum" selected="selected">@member.StuName</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@member.StuNum">@member.StuName</option>
+                                        }
+                                    }
+                                </select>
+                            }
+                            else
+                            {
+                                <select class="form-control" disabled="disabled" name="StudyGuideNumber"><option value="@ViewBag.member.StudyGuideNumber">@ViewBag.StuGuide</option></select>
+                            }
+
+                        </div>
+                        <label for="TechnicalGuideNumber" class="col-sm-2 control-label">组织:</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" name="">
+                                @foreach (MODEL.T_Organization organization in ViewBag.organization as List<MODEL.T_Organization>)
+                                {
+                                    if (organization.OrganizationId == ViewBag.orgId)
+                                    {
+                                        <option value="@organization.OrganizationId" selected="selected">@organization.OrganizationName</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@organization.OrganizationId">@organization.OrganizationName</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group">
+                        <label for="Department" class="col-sm-2 control-label">部门:</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" value="@ViewBag.depName" readonly>
+                        </div>
+                        <label for="TechnicaLevel" class="col-sm-2 control-label">技术层次:</label>
+                        <div class="col-sm-4">
+                            @foreach (MODEL.T_TechnicaLevel techLeval in ViewBag.techLeval as List<MODEL.T_TechnicaLevel>)
+                            {
+                                if (techLeval.TechLevelId == ViewBag.member.TechnicalLevel)
+                                {
+                                    <input type="text" class="form-control" value="@techLeval.TechLevelName" readonly>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="JoinTime" class="col-sm-2 control-label">加入时间:</label>
+                        <div class="col-sm-4">
+                            <input type="text" value="@string.Format("{0:d}", ViewBag.member.JoinTime)" class="form-control" readonly>
+                        </div>
+                        <label for="EndTime" class="col-sm-2 control-label">退出时间:</label>
+                        <div class="col-sm-4">
+                            <input type="text" value="无" class="form_datetime form-control" name="EndTime" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="StudyGuideNumber" class="col-sm-2 control-label">学习顾问:</label>
+                        <div class="col-sm-4">
+                            <input type="text" value="@ViewBag.StuGuide" class=" form-control" readonly />
+                        </div>
+                        <label for="TechnicalGuideNumber" class="col-sm-2 control-label">组织:</label>
+                        <div class="col-sm-4">
+                            <input type="text" value="@ViewBag.org" class=" form-control" readonly />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            @if (ViewBag.user == "admin")
+                        {
+                <div id="role" class="col-md-10">
+                    <label>设置角色：</label>
+                    <select name="role">
+                        @foreach (MODEL.T_Role role in ViewBag.listRole as List<MODEL.T_Role>)
+                                    {
+                                        if (role.RoleId == ViewBag.UserRoleId)
+                                        {
+                                            <option value="@role.RoleId" selected>@role.RoleName</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@role.RoleId">@role.RoleName</option>
+                                        }
+                                    }
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <input type="submit" id="save" class="btn btn-success" style="width: 120px" value="保存" />
+                </div>
+                        }
+            else
+            {
+                <div class="row">
+                    <br />
+                    <label class="col-md-4"></label>
+                    <input type="submit" id="save" class="btn btn-info col-md-4" style="width: 220px" value="保存" />
+                    <label class="col-md-4"></label>
+                </div>
+            }
+        </div>
+    </form>
+
+</body>
+</html>

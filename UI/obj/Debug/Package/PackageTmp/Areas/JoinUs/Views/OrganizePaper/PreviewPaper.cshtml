@@ -1,0 +1,68 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>预览试卷</title>
+    <!-- css -->
+    <link href="~/Amaze%20UI/amazeui.min.css" rel="stylesheet" />
+    <link href="~/Areas/JoinUs/CSS/paper-manage-previewpaper.css" rel="stylesheet" />
+</head>
+<body>
+  @*  <!-- 导航 -->
+    <ul id="nav_temp" class="am-nav am-nav-pills">
+        <li><a href="/">首页</a></li>
+        <li><a href="/JoinUs/QuestionManage/Index/1">题库管理</a></li>
+        <li><a href="/JoinUs/PaperManage/Index/1">试卷管理</a></li>
+        <li><a href="/JoinUs/AnswerSheet/Index/1">答卷管理</a></li>
+    </ul>*@
+    <hr id="hr_temp" />
+    <!-- hidden -->
+    <input type="hidden" id="paper_id" value="@ViewData["paperId"]" />
+    <!-- 题目列表 -->
+    <table id="tb_list" class="am-table am-table-bordered am-table-radius am-table-striped">
+        <tbody>
+            @*<!-- 单选题 -->
+            <tr>
+                <td colspan="2">1. 17、18世纪先后发生了英国资产阶级革命、美国独立战争和法国大革命，这三次革命的共同点不包括</td>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td>都推翻了封建统治，处死了国王</td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td>都具有资产阶级革命性质</td>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td>都促进了资本主义的发展</td>
+            </tr>
+            <tr>
+                <td>D</td>
+                <td>都建立了资产阶级统治</td>
+            </tr>
+            <!-- 空行 -->
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <!-- 简答题 -->
+            <tr>
+                <td colspan="2">2. 儒家学说从创立到作为封建正统思想，经历了艰难的历程。请结合所学知识回答下列问题：（8分）</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea></textarea></td>
+            </tr>*@
+             
+        </tbody>
+    </table>
+    <!-- js -->
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Areas/JoinUs/JS/organize-manage-previewpaper.js"></script>
+</body>
+</html>

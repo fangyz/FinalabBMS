@@ -1,0 +1,56 @@
+ private void btnDelete_Click(object sender, EventArgs e) 
+         { 
+             string strNames = "您选择的是："; 
+             for(int i=0;i<dgvList.Rows.Count;i++) 
+             { 
+                 if (dgvList.Rows[i].Cells[0].Value != null) //判断该行的复选框是否存在 
+                 { 
+                     if (dgvList.Rows[i].Cells[0].Value.ToString() == "True") //判断该复选框是否被选中 
+                     { 
+                         strNames += dgvList.Rows[i].Cells[2].Value.ToString() + "   "; 
+                     } 
+                 } 
+             } 
+             MessageBox.Show(strNames, "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+         }
+孙妍在
+E110.120909
+
+扩展方法 ！
+
+账号：fruitbag 密码：mmfruitbag
+
+
+41:04
+下午05-标准查询运算符-Where-Select-Order-Join
+下午04-创建登陆类和视图-合并js
+
+
+概率论：周四
+计算机网路实验报告：30号 练习题
+软件工程：30号
+数据库：实验报告
+
+CREATE TABLE `admin` (`username` VARCHAR( 20 ) NOT NULL ,`userpass` VARCHAR( 20 ) NOT NULL )charset utf8;
+
+
+1155878
+
+
+Common.DataHelper.MD5(strPwd)
+
+
+insert into [StudentScore].[dbo].[Area] ([ar_name],[ar_uid])
+select [ar_name],[ar_uid] from [第一个数据库].[dbo].[Area]
+
+互联网+：twgdh123
+
+github:username:wanghaoguan
+	password:guanwh123
+
+select * from T_TaskInformation where TaskEndTime>='2015-01-01' and TaskEndTime<='2015-03-19' 
+and convert(char(8),TaskEndTime,108)>='00:00:00' and  convert(char(8),TaskEndTime,108)<='24:00:00'
+
+
+onclick="TaskCompleteConfirmation(@myTaskListNotComplete[j].TaskId)"

@@ -1,0 +1,164 @@
+﻿@{
+    Layout = null;
+}
+@{
+    MODEL.ViewModel.Task.TaskDetail taskDetail = ViewData["taskDetail"] as MODEL.ViewModel.Task.TaskDetail;
+    MODEL.T_TaskParticipation taskParticipation = ViewData["taskParticipation"] as MODEL.T_TaskParticipation;
+    MODEL.ViewModel.Task.TaskEvaluateModel taskEvaluate = ViewData["taskEvaluate"] as MODEL.ViewModel.Task.TaskEvaluateModel;
+    string LoginUser = ViewData["LoginUser"] as string;
+}}
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="~/Scripts/jquery.min.js"></script>
+    <link href="~/Areas/Task/CSS/TaskCorrect.css" rel="stylesheet" />
+    <script src="~/Areas/Task/JS/TaskCorrect.js"></script>
+    <script src="~/Areas/Task/JS/uploadfiy/jquery.uploadify.min.js"></script>
+    <script src="~/Areas/Task/JS/uploadfiy/swfobject.js"></script>
+    <script src="~/Areas/Task/JS/uploadfiy/uploadfiyHelper.js"></script>
+    <title>TaskCorrect</title>
+</head>
+<body>
+    <div id="task-list">
+        @*---------------------任务信息----------------------------*@
+        <div id="task-detail-1" class="task">
+            <input type="hidden" name="TaskId" value="@taskDetail.TaskId" id="txt-task-id" />
+            <input type="hidden" name="TaskReceiver" value="@taskEvaluate.TaskReceiver" id="txt-task-receiver" />
+            <div onclick="TaskListShrink(1,this)" class="task-message">
+                <div id="task-message-title-1" class="task-message-title">
+                    查看任务信息
+                </div>
+                <div id="task-message-img-1" class="task-message-img">
+                </div>
+            </div>
+        </div>
+        <div id="task-content-1" class="task-content">
+            <div>
+                <ul class="task-ul">
+                    <li class="task-ul-li-long">
+                        <div class="circle-red"></div>
+                        <div class="column-title">任务标题&nbsp;&nbsp;：</div>
+                        <div class="column-content">@taskDetail.TaskName</div>
+                    </li>
+                    <li class="task-ul-li-short">
+                        <div class="circle-red"></div>
+                        <div class="column-title">发布成员&nbsp;&nbsp;：</div>
+                        <div class="column-content">@taskDetail.TaskSenderName</div>
+                    </li>
+                    <li class="task-ul-li-short task-ul-li-short-border-left">
+                        <div class="circle-red"></div>
+                        <div class="column-title">担任职务&nbsp;&nbsp;：</div>
+                        <div class="column-content">@taskDetail.TaskSenderRoles</div>
+                    </li>
+                    <li class="task-ul-li-large">
+                        <div class="circle-red"></div>
+                        <div class="column-title">任务内容&nbsp;&nbsp;：</div>
+                        <div class="column-content">
+                            @Html.Raw(taskDetail.TaskContent)
+                            <div>
+                                @if (taskDetail.TaskAttachmentPath != null)
+                                {
+                                    var strDetial = taskDetail.TaskAttachmentPath;
+                                    string[] detialFileName = strDetial.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                                    foreach (var name in detialFileName)
+                                    {
+                                        @Html.Raw("<a href='javascript:downloadFile(\"" + name + "\")');' id='attachmentFile'>" + name + "</br> </a>");
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        @*------------------------任务答案----------------------*@
+        <div id="task-detail-2" class="task">
+            <div onclick="TaskListShrink(2,this)" class="task-message">
+                <div id="task-message-title-2" class="task-message-title">
+                    学生答案
+                </div>
+                <div id="task-message-img-2" class="task-message-img">
+                </div>
+            </div>
+        </div>
+        <div id="task-content-2" class="task-content">
+            <div>
+                <ul class="task-ul">
+                    <li class="task-ul-li-short">
+                        <div class="circle-red"></div>
+                        <div class="column-title">学生学号&nbsp;&nbsp;：</div>
+                        <div class="column-content">@taskEvaluate.TaskReceiver</div>
+                    </li>
+                    <li class="task-ul-li-short task-ul-li-short-border-left">
+                        <div class="circle-red"></div>
+                        <div class="column-title">学生姓名&nbsp;&nbsp;：</div>
+                        <div class="column-content">@taskEvaluate.TaskReceiverName</div>
+                    </li>
+                    <li class="task-ul-li-long">
+                        <div class="circle-red"></div>
+                        <div class="column-title">完成时间&nbsp;&nbsp;：</div>
+                        <div class="column-content">@Convert.ToDateTime(taskEvaluate.TaskFinishTime).ToString("yyyy年MM月dd日")</div>
+                    </li>
+                    <li class="task-ul-li-large" style="overflow:auto;">
+                        <div class="circle-red"></div>
+                        <div class="column-title">提交答案&nbsp;&nbsp;：</div>
+                        <div class="column-content">
+                            @Html.Raw(taskParticipation.TaskSubmition)
+                        <div>
+                                @if (taskEvaluate.TaskAttachmentPath != null)
+                                {
+                                    var strSubmition = taskEvaluate.TaskAttachmentPath;
+                                    string[] fileName = strSubmition.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                                    foreach (var name in fileName)
+                                    {
+                                        @Html.Raw("<a href='javascript:downloadFile(\"" + name + "\")');' id='attachmentFile'>" + name + "</br> </a>");
+                                    }
+                                }
+                               
+                           
+                        </div>
+                    </div>
+                </li>
+                </ul>
+            </div>
+        </div>
+
+        @*--------------------------任务评价-------------------------*@
+        <div id="task-detail-3" class="task">
+            <div onclick="TaskListShrink(3,this)" class="task-message">
+                <div id="task-message-title-3" class="task-message-title">
+                    评语评分
+                </div>
+                <div id="task-message-img-3" class="task-message-img">
+                </div>
+            </div>
+        </div>
+        <div id="task-content-3" class="task-content">
+            <div>
+                <ul class="task-ul">
+                    <li class="task-ul-li-large">
+                        <div class="circle-red"></div>
+                        <div class="column-title">任务评语&nbsp;&nbsp;：</div>
+                        <div><textarea class="large_text" id="txt-evaluate-remark"></textarea></div>
+                    </li>
+                    <li class="task-ul-li-long">
+                        <div class="circle-red"></div>
+                        <div class="column-title">任务评分&nbsp;&nbsp;：</div>
+                        <div><input type="text" name="txt-evaluate-score" id="txt-evaluate-score" value=" " class="long_text" />(*满分为100分)</div>
+                    </li>
+                    <li class="task-ul-li-long">
+                        <div class="circle-red"></div>
+                        <div class="column-title">评&nbsp;价&nbsp;人&nbsp;&nbsp;&nbsp;：</div>
+                        <div class="column-content">@LoginUser</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="btn" onclick=" history.go(-1)">取&nbsp;消</div>
+        <div class="btn" id="remarkContent" onclick="RemarkContent()">提&nbsp;交</div>
+    </div>
+</body>
+</html>

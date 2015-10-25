@@ -1,0 +1,60 @@
+﻿        /*页首--------------------------------------*/
+        #header {
+            position: absolute;
+            top: 0px;
+            width: 100%;
+            min-width: 650px;
+            height: 56px;
+            z-index: 9999;
+            overflow: hidden;
+            background-color: #003466;
+        }
+        /*logo and name*/
+        #header-left {
+            float: left;
+            height: 46px;
+            width: 184px;
+            cursor: pointer;
+        }
+
+        #header-left-logo {
+            float: left;
+            margin-top: 10px;
+            margin-left: 13px;
+            width: 30px;
+            height: 30px;
+            background-image: url('../Images/index_icon.png');
+            background-position-x: -180px;
+            background-position-y: -20px;
+        }
+
+        #header-left-name {
+            float: left;
+            height: 30px;
+            width: 130px;
+            margin-top: 10px;
+            margin-left: 5px;
+            font-size: 18px;
+            line-height: 30px;
+            color: aquamarine;
+        }
+
+        /*header right-------------------------------------------*/
+        #header-right {
+            float: left;
+            height: 46px;
+            min-width: 451px;
+        }
+
+#footer{
+    position:fixed;
+    bottom:0px;
+    background-color:#EDF1F9;
+    width:100%;
+    height:60px;
+    border-top:1px solid rgba(146, 152, 152, 0.67);
+}
+#content{
+    width:500px;
+    margin:10px auto;
+}

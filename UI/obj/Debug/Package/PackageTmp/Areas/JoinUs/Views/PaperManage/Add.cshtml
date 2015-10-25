@@ -1,0 +1,38 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>新增试卷</title>
+    <!-- css -->
+    <link href="~/Amaze%20UI/amazeui.min.css" rel="stylesheet" />
+    <link href="~/Areas/JoinUs/CSS/paper-manage-add.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="panel">
+        <form id="form_brief" action="/JoinUs/PaperManage/ConfirmAdd" method="post">
+            <div id="div_add">
+                <span>试卷名称</span>
+                <input id="paper_name" name="paperName" required="required" />
+                <span>出卷人</span>
+                <input id="Pname" name="Name" value="@ViewData["name"]"  readonly="readonly"/>
+                    <span>试卷方向</span>
+                     <select id="select_typeId" required="required" name="typeId">
+                    <option value="1">技术方向</option>
+                    <option value="2">市场部</option>
+                     <option value="3">设计部</option>
+                </select>
+                <input type="button" class="am-btn am-btn-primary" id="btn_cancel"onclick="window.location.href = '/JoinUs/PaperManage/Index'" value="取消" />
+                <input type="submit" class="am-btn am-btn-primary" id="btn_submit" value="确定" />
+            </div>
+        </form>
+    </div>
+    <!-- js -->
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Areas/JoinUs/JS/paper-manage-add.js"></script>
+</body>
+</html>

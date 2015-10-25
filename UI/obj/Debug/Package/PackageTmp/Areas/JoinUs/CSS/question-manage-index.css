@@ -1,0 +1,72 @@
+﻿#div_list
+{
+    width: 1000px;
+    margin: auto auto;
+    margin-top: 46px;
+    font-size: 14px;
+    text-align: center;
+}
+
+    #div_list ul
+    {
+        margin: auto auto;
+        float:left;
+        font-size: 14px;
+        width:800px;
+    }
+
+    #div_list button
+    {
+        font-size: 14px;
+        margin:auto auto;
+        float:right;
+    }
+
+.am-pagination-select select
+{
+    height: 32px;
+    width: 70px;
+    border: 1px solid #ddd;
+    color: #0e90d2;
+    margin-bottom: 2px;
+}
+
+#question_id
+{
+    width: 70px;
+}
+
+#question_option
+{
+    width: 140px;
+}
+
+#question_type
+{
+    width: 90px;
+}
+
+#question_content
+{
+    width: 700px;
+}
+/*无足轻重的css*/
+#details_thead
+{
+    text-align:left;
+}
+#my-confirm
+{
+    font-size:14px;
+}
+#my-modal
+{
+    font-size:14px;
+}
+#nav_temp {
+    width:370px;
+    margin:5px auto;
+}
+#hr_temp {
+    margin-top:0px;
+}

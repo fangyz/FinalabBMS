@@ -1,0 +1,28 @@
+﻿body { font-family: 'Microsoft YaHei'; }
+/*-----------------------------------个人信息展示页面-----------------------------------------------------*/
+.title-png { border: none; height: 22px; width: 22px; margin: 10px 40px; float: left; margin-right: 0px; background-position: -67px -376px; background-image: url(/Areas/PersonalManger/Images/page.png); }
+
+.title-info { font-weight: bold; font-size: 16px; float: left; margin-top: 11px; margin-left: 2px; font-family: 'Microsoft YaHei'; }
+.title-btn { height: 33px; width: 55px; background-color: rgb(255,116,139); border: none; border-radius: 3px; color: white; font-family: 'Microsoft YaHei'; }
+.div-top-img { border: none; width: 470px; height: 169px; background-color: rgb(220,234,236); background-image: url(/Areas/PersonalManger/Images/page.png); background-position: -129px -25px; z-index: 5; position: relative; top: 0; left: 0; }
+.div-top-shadow { border: none; width: 470px; height: 160px; position: absolute; top: 15px; left: 15px; background-color: rgb(220,234,236); z-index: 1; }
+
+.div-top-circle { border: none; width: 470px; height: 30px; }
+
+    .div-top-circle > div { float: left; height: 14px; width: 14px; margin-left: 23px; border: 1px solid rgb(149,149,149); margin-top: 14px; border-radius: 100%; background-color: rgb(149,149,149); }
+
+.div-top-head { height: 110px; width: 410px; border: none; }
+
+.head-circle-my { float: left; height: 90px; width: 90px; border: 8px solid rgb(203,215,215); -webkit-border-radius: 100%; -moz-border-radius: 100%; -o-border-radius: 100%; border-radius: 100%; margin-left: 24px; }
+
+.head-img { height: 90px; width: 90px; }
+
+.div-top-info { border: none; width: 265px; margin-left: 7px; height: 72px; float: left; margin-top: 20px; }
+
+.top-info-text { border: none; height: 31px; width: 119px; margin-left: 5px; }
+
+.gender-img { background-image: url(/Areas/PersonalManger/Images/page.png); height: 18px; width: 18px; border: none; margin-left: 5px; float: left; background-position: -69px -246px; margin-top: 3px; }
+
+.top-intro { width: 254px; height: 27px; border: 3px solid rgb(208,229,228); border-radius: 3px; }
+
+.intro-text { text-align: center; font-size: 13px; font-family: 'Microsoft YaHei'; margin-top: 6px; color: rgb(208,229,228); }

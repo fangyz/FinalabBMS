@@ -1,0 +1,234 @@
+﻿@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="shortcut icon" type="image/x-icon" href="~/Areas/Login/Images/web_logo.ico" media="screen" />
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Login/CSS/Index.css" rel="stylesheet" />
+    <script src="~/bootstrap/jquery/jquery-1.11.3.min.js"></script>
+    <script src="~/Areas/Login/JS/Index.js"></script>
+    <script src="~/Areas/Login/JS/sketch.min.js"></script>
+    <title>欢迎来到FINAL实验室</title>
+</head>
+<body>
+    <!-- 页首 -->
+    <div id="header">
+        <!-- Lab Logo And Name -->
+        <div title="FINAL实验室" id="header-left">
+            <!-- Logo -->
+            <div id="header-left-logo"></div>
+            <!-- Name -->
+            <div id="header-left-name">FINAL实验室</div>
+        </div>
+        
+        <!--  -->
+        <div id="header-right">
+            <div id="header-right-content">
+                <!-- Msg  --> 
+                <div id="header-msg-btn" >
+                </div>
+                <!-- Photo  -->
+                <div id="header-photo" style="border-radius:50% 50%">
+                    <img src="/HeadImg/final.png" style="border-radius:50% 50%;height:30px;width:30px"/>
+                </div>
+                <!-- Nickname -->
+                <div id="header-nickname" >
+                    <!--<a href="/PersonalManger/CheckMember/PersonPage"></a>-->
+                    @ViewBag.name
+                </div>
+                <!-- Logout -->
+                <div id="header-logout-btn" title="退出登陆" >
+                    <div id="header-logout-img" ></div>
+                    <a href="/Login/Login/Index" id="header-logout-text">退出</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <!-- 左部收缩列表 -->
+        <div id="left" >
+            <div class="menu" id="menu">
+            </div>
+        </div>
+        <!--收缩按钮 ShrinkBotton-->
+        <div id="left-shrink-btn">
+        </div>
+
+        <!-- 主面板main -->
+        <div id="main">
+            <div class="top_nav" id="top-nav">
+                <div id="nav-body">
+                    <ul id="nav-body-ul"></ul>
+                    <div style="width: 12px; height: 36px;  float: right; padding-top: 4px;margin-right:1px;" onmouseover="showClose()" onmouseout="oldClose()">
+                        <span onclick="CloseLeft();" style="cursor: pointer;color:#67a3a1" id="leftClose" title="关闭左侧所有页面">x</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main_panel" id="main-panel">
+                <div id="panel-body-00" style="width: inherit; height: inherit;">
+                    <iframe src="/Login/Login/Welcome?name=@ViewBag.name" style="border: 0px currentColor; border-image: none; width: 100%; height: 100%;"></iframe>
+                </div>
+            </div>
+        </div>
+
+    <!-- 页脚 -->
+    <div id="footer">
+        <div id="img"></div>
+        <div id="myfont">
+            再长的路，一步步也能走完；再短的路，不迈开双脚也无法到达!<br />
+            Copyright ©2014-2015 FINAL LAB. All Rights Reserved
+        </div>
+        
+        <div id="test" style="position:fixed;top:5px;z-index:20;bottom:0px;padding:0;"></div>
+
+        <script>
+            function Particle(x, y, radius) {
+                this.init(x, y, radius);
+            }
+
+            Particle.prototype = {
+                init: function (x, y, radius) {
+
+                    this.alive = true;
+
+                    this.radius = radius || 10;
+                    this.wander = 0.15;
+                    this.theta = random(TWO_PI);
+                    this.drag = 0.92;
+                    this.color = '#fff';
+
+                    this.x = x || 0.0;
+                    this.y = y || 0.0;
+
+                    this.vx = 0.0;
+                    this.vy = 0.0;
+                },
+
+                move: function () {
+
+                    this.x += this.vx;
+                    this.y += this.vy;
+
+                    this.vx *= this.drag;
+                    this.vy *= this.drag;
+
+                    this.theta += random(-0.5, 0.5) * this.wander;
+                    this.vx += sin(this.theta) * 0.1;
+                    this.vy += cos(this.theta) * 0.1;
+
+                    this.radius *= 0.96;
+                    this.alive = this.radius > 0.5;
+                },
+
+                draw: function (ctx) {
+
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, TWO_PI);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                }
+            };
+
+            // ----------------------------------------
+            // Example
+            // ----------------------------------------
+
+            var MAX_PARTICLES = 280;
+            var COLOURS = ['#69D2E7', '#A7DBD8', '#E0E4CC', '#F38630', '#FA6900',
+                    '#FF4E50', '#F9D423'];
+
+            var particles = [];
+            var pool = [];
+
+            var demo = Sketch.create({
+                container: document.getElementById('test')
+            });
+
+            demo.setup = function () {
+
+                // Set off some initial particles.
+                var i, x, y;
+
+                //  for ( i = 0; i < 20; i++ ) {
+                x = (demo.width * 0.5) + random(-100, 100);
+                y = (demo.height * 0.5) + random(-100, 100);
+                demo.spawn(0, 999);
+                // }
+            };
+
+            demo.spawn = function (x, y) {
+
+                if (particles.length >= MAX_PARTICLES)
+                    pool.push(particles.shift());
+
+                particle = pool.length ? pool.pop() : new Particle();
+                particle.init(x, y, random(5, 40));
+
+                particle.wander = random(0.5, 2.0);
+                particle.color = random(COLOURS);
+                particle.drag = random(0.9, 0.99);
+
+                theta = random(TWO_PI);
+                force = random(2, 8);
+
+                particle.vx = sin(theta) * force;
+                particle.vy = cos(theta) * force;
+
+                particles.push(particle);
+            };
+
+            demo.update = function () {
+
+                var i, particle;
+
+                for (i = particles.length - 1; i >= 0; i--) {
+
+                    particle = particles[i];
+
+                    if (particle.alive)
+                        particle.move();
+                    else
+                        pool.push(particles.splice(i, 1)[0]);
+                }
+            };
+
+            demo.draw = function () {
+
+                demo.globalCompositeOperation = 'lighter';
+
+                for (var i = particles.length - 1; i >= 0; i--) {
+                    particles[i].draw(demo);
+                }
+            };
+
+            demo.mousemove = function () {
+
+                var particle, theta, force, touch, max, i, j, n;
+
+                for (i = 0, n = demo.touches.length; i < n; i++) {
+
+                    touch = demo.touches[i], max = random(1, 4);
+                    for (j = 0; j < max; j++) {
+                        demo.spawn(touch.x, touch.y);
+                    }
+
+                }
+            };
+        </script>
+        <script>
+            var skheight = $("#test").height;
+            $("#test").css('height', (skheight - 8) + 'px');
+            $(".sketch").css("margin-bottem","0px");
+        </script>
+    </div>
+</body>
+</html>
+
+

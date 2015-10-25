@@ -1,0 +1,121 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <title>Index</title>
+    <style>
+        .table th, .table td { text-align: center; }
+        /*有问题*/
+        a { color: #d9534f; text-decoration: none; }
+            a:link { text-decoration: none; color: #d9534f; }
+            a:visited { color: green; }
+            a:hover { color: green; }
+        #floot{
+            width:350px;
+            margin:0 auto;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#Edit").one("click", function () {
+                Edit();
+            });
+        })
+        function Edit() {
+            $thead = $("thead");
+            $thead.each(function (index, element) {
+                $(element).children("tr").append("<th>操作</th>");
+            })
+            $tbody = $("tbody");
+            $tbody.each(function (index, element) {
+                /*获取一个tbody的tr集合*/
+                $trs = $(element).children("tr");
+                $trs.each(function (indexTr, elementTr) {
+                    $stunum = $(elementTr).attr("data-num");
+                    $(elementTr).append("<td><a href='##' onclick='Delete(" + $stunum + ")'>删除</a></td>");
+                })
+            })
+        }
+
+        function Delete(num) {
+            if (confirm("确定要删除?")) {
+                $.ajax({
+                    url: '/Duty/Duty/Delete',
+                    type: 'post',
+                    data: { "Num": num },
+                    success: function (jsonObj) {
+                        if (jsonObj.Statu == "ok") {
+                            alert("删除成功");
+                            window.location = jsonObj.BackUrl;
+                        } else {
+                            alert(jsonObj.Msg);
+                        }
+                    }
+                })
+            }
+        }
+        function ClearAll(){
+            if (confirm("确定清空所有数据？")) {
+                $.ajax({
+                    url: '/Duty/Duty/ClearAll',
+                    type: 'post',
+                    success: function (obj) {
+                        if(obj.Statu=="ok"){
+                            alert("清空成功!");
+                            window.location = obj.BackUrl;
+                        } else {
+                            alert("清空失败!");
+                    }
+                }
+                });
+            }
+        }
+    </script>
+</head>
+<body style="font-family: 'Microsoft YaHei'; font-size: 12px">
+    <div style="margin: 0 auto; width: 75%; margin-top: 20px">
+        @foreach (List<MODEL.T_OnDuty> dutyCollec in ViewBag.listdutyCollec as List<List<MODEL.T_OnDuty>>)
+        {
+            <div class="panel panel-success panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">第 @dutyCollec[0].Week 周</div>
+                <!-- Table -->
+                <table class="table">
+                    <thead id="thead">
+                        <tr>
+                            <th>#</th>
+                            <th>周数</th>
+                            <th>值日生</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        @{int i = 1;}
+                        @foreach (MODEL.T_OnDuty duty in dutyCollec)
+                        {
+                            <tr data-num="@duty.T_MemberInformation.StuNum">
+                                <th>@i.ToString()</th>
+                                <td>第 @duty.Week 周</td>
+                                <td>@duty.T_MemberInformation.StuName</td>
+                            </tr>
+                            i++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        @if (ViewBag.IsEdit)
+        {
+            <div id="floot">
+            <button type="button" class="btn btn-info" style=" width: 120px;"onclick="ClearAll()">清空所有数据</button>
+                <button type="button" id="Edit" class="btn btn-info" style="width: 120px;">编辑</button></div>
+        }
+    </div>
+</body>
+</html>

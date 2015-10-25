@@ -1,0 +1,204 @@
+﻿@{
+    Layout = null;
+}
+@{
+    List<MODEL.ViewModel.Task.MyTask> myTaskListComplete = ViewData["myTaskListComplete"] as List<MODEL.ViewModel.Task.MyTask>;
+    List<MODEL.ViewModel.Task.MyTask> myTaskListNotComplete = ViewData["myTaskListNotComplete"] as List<MODEL.ViewModel.Task.MyTask>;
+    int myTaskListCompleteCount = Convert.ToInt32(ViewData["myTaskListCompleteCount"]);
+    int myTaskListNotCompleteCount = Convert.ToInt32(ViewData["myTaskListNotCompleteCount"]);
+    string[] state = {"未完成任务","已完成任务"};
+     }
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="~/Areas/Task/CSS/MyTask.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Areas/Task/JS/JSHelper.js"></script>
+    <script src="~/Areas/Task/JS/MyTask.js"></script>
+    <title>我的任务</title>
+</head>
+<body>
+    <div id="task-list">
+        @*-------------------------------已完成任务列表------------------------------------------------------*@
+            <div id="my-task-1" class="task">
+            <div  onclick="TaskListShrink(1,this)"  class="task_type">
+                <div id="task-type-title-1" class="task_type_title">
+                    已完成任务
+                </div>
+                <div id="task-type-img-1" class="task_type_img">
+                </div>
+            </div>
+            <div id="task-content-1" class="task_content">
+            <div>
+                <table id="task-table-true" class="task_table" >
+                    <tr>
+                		<th>任务名称</th>
+                        <th>发布时间</th>
+                        <th>截止时间</th>
+                        <th>评价等级</th>
+                        <th>发布人</th>
+                        <th>是否完成</th>
+                	</tr>
+                    @for (int j = 0; j < 4;j++ )
+                    {
+                        if (myTaskListCompleteCount <= j)
+                        {
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        }else
+                        { 
+                             <tr>
+                		        <td>
+                                    @if(myTaskListComplete[j].TaskGrade == 0)
+                                {
+                                  <a title="查看任务详情" class="task_detail_link" href="/Task/Task/TaskDetail?taskId=@myTaskListComplete[j].TaskId">@myTaskListComplete[j].TaskName</a>
+                                }
+                                    else
+                                    {
+
+                                        <a title="查看我的任务详情" class="task_detail_link" href="/Task/Task/MyTaskDetail?taskId=@(myTaskListComplete[j].TaskId)&taskReciver=@(myTaskListComplete[j].TaskReceiver)">@myTaskListComplete[j].TaskName</a>
+                                    }
+                                </td>
+                                <td>@myTaskListComplete[j].TaskBegTime.ToString("yyyy年MM月dd日")</td>
+                                <td>@myTaskListComplete[j].TaskEndTime.ToString("yyyy年MM月dd日")</td>
+                                 @if (myTaskListComplete[j].TaskGrade != 0)
+                                 {
+                                    <td>@myTaskListComplete[j].TaskGrade</td>
+                                 }else
+                                 {
+                                     <td>未评价</td>
+                                 }
+                                <td>@myTaskListComplete[j].TaskSenderName</td>
+                                 <td id="task-is-complete-@myTaskListComplete[j].TaskId">
+                                     @if (myTaskListComplete[j].IsComplete == true)
+                                     {
+                                         <span>已完成</span>
+                                     }
+                                     else
+                                     {
+                                        <a class="task_complete_link" onclick="TaskCompleteConfirmation(@myTaskListComplete[j].TaskId)" title="点击完成" href="javascript:void(0)">未完成</a>
+                                     }
+                             </td>
+                	    </tr>
+                        }
+                       
+                    }
+                </table>
+            </div>
+
+
+                @*总页数=（总记录数+每页显示数-1）/每页显示数*@
+
+
+            <div id="page-bar-1" class ="page_bar">
+                共<span class="page_bar_task_count">@myTaskListCompleteCount</span>条记录&nbsp&nbsp
+                【<a onclick="ReloadTable(1,true)" href="JavaScript:void(0)">首页</a>】
+                【<a onclick="ReloadTable(@((myTaskListCompleteCount+3)/4),true)" href="JavaScript:void(0)">尾页</a>】跳转到第
+                <select onchange ="ReloadTable(this.options[this.selectedIndex].value,true)" class="page_bar_slt">
+                    <option  selected="selected">1</option>
+                    @for (int k = 2; k <= (myTaskListCompleteCount + 3) / 4; k++)
+                    {
+                        <option>@k</option>
+                    }                    
+                </select>页
+            </div>
+            </div>
+        </div>
+        @*------------------------------------已完成任务-----------------------------------------------*@
+        <div id="my-task-2" class="task">
+            <div onclick="TaskListShrink(2,this);" class="task_type">
+                <div id="task-type-title-2" class="task_type_title">
+                    未完成任务
+                </div>
+                <div id="task-type-img-2" class="task_type_img">
+                </div>
+            </div>
+
+            <div id="task-content-2" class="task_content">
+                <div>
+                    <table id="task-table-false" class="task_table">
+                        <tr>
+                            <th>任务名称</th>
+                            <th>发布时间</th>
+                            <th>截止时间</th>
+                            <th>评价等级</th>
+                            <th>发布人</th>
+                            <th>是否完成</th>
+                        </tr>
+                        @for (int j = 0; j < 4; j++)
+                        {
+                            if (myTaskListNotCompleteCount <= j)
+                            {
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td><a title="查看任务详情" class="task_detail_link" href="/Task/Task/TaskDetail?taskId=@myTaskListNotComplete[j].TaskId">@myTaskListNotComplete[j].TaskName</a></td>
+                                    <td>@myTaskListNotComplete[j].TaskBegTime.ToString("yyyy年MM月dd日")</td>
+                                    <td>@myTaskListNotComplete[j].TaskEndTime.ToString("yyyy年MM月dd日")</td>
+                                    @if (myTaskListNotComplete[j].TaskGrade != 0)
+                                    {
+                                        <td>@myTaskListNotComplete[j].TaskGrade</td>
+                                    }
+                                    else
+                                    {
+                                        <td>未评价</td>
+                                    }
+                                    <td>@myTaskListNotComplete[j].TaskSenderName</td>
+                                    <td id="task-is-complete-@myTaskListNotComplete[j].TaskId">
+                                        @if (myTaskListNotComplete[j].IsComplete == true)
+                                        {
+                                            <span>已完成</span>
+                                        }
+                                        else
+                                        {
+                                            if (@myTaskListNotComplete[j].TaskEndTime.CompareTo(DateTime.Now)<0)
+                                            {
+                                                <span>未完成</span>
+                                            }
+                                            else
+                                            {
+                                                <a class="task_complete_link" title="点击完成" href="/Task/Task/Tasksubmit?taskId=@myTaskListNotComplete[j].TaskId">未完成</a>
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                            }
+
+                        }
+                    </table>
+                </div>
+
+                <div id="page-bar-1" class="page_bar">
+                    共<span class="page_bar_task_count">@myTaskListNotCompleteCount</span>条记录&nbsp&nbsp
+                    【<a onclick="ReloadTable(1,false)" href="JavaScript:void(0)">首页</a>】
+                    【<a onclick="ReloadTable(@((myTaskListNotCompleteCount+3)/4),false)" href="JavaScript:void(0)">尾页</a>】跳转到第
+                    <select onchange="ReloadTable(this.options[this.selectedIndex].value,false)" class="page_bar_slt">
+                        <option selected="selected">1</option>
+                        @for (int k = 2; k <= (myTaskListNotCompleteCount + 3) / 4; k++)
+                        {
+                            <option>@k</option>
+                        }
+                    </select>页
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

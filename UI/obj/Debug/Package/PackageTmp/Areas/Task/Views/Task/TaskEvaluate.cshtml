@@ -1,0 +1,105 @@
+﻿@{
+    Layout = null;
+}
+@{
+    List<MODEL.ViewModel.Task.TaskEvaluateModel> listTaskEvaluate = ViewData["listTaskEvaluate"] as List<MODEL.ViewModel.Task.TaskEvaluateModel>;
+    int taskEvaluateCount = int.Parse(ViewData["taskEvaluateCount"].ToString());
+    }
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="~/Areas/Task/CSS/TaskEvaluate.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Areas/Task/JS/TaskEvaluate.js"></script>
+    <title>任务评价</title>
+</head>
+<body>
+    <div class="main_panel">
+        <div class="btn" onclick="history.go(-1);">返&nbsp;回</div>
+        <div class="title_panel">
+            <div class="title_image"></div>
+            <div class="title_text">评价列表</div>
+        </div>
+        <div id="content-panel" class="content_panel">
+            <ul class="content_panel_ul title_ul">
+            	<li>任务名称</li>
+                <li>任务类型</li>
+                <li>发布人</li>                
+                <li>完成时间</li>
+                <li>接收人</li>
+                <li>任务评分</li>
+                <li>任务评阅</li>
+            </ul>
+            @for (int i = 0;i < 10;i++ )
+                    {
+                        if (listTaskEvaluate.Count <= i)
+                        {
+                            <ul class="content_panel_ul coutent_ul">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        }else
+                        { 
+                <ul class="content_panel_ul coutent_ul">
+                    <li>
+                        <a title="查看任务详情" href="/Task/Task/MyTaskDetail?taskId=@listTaskEvaluate[i].TaskId&taskReciver=@listTaskEvaluate[i].TaskReceiver">
+                            @listTaskEvaluate[i].TaskName
+                        </a></li>
+                    <li>@listTaskEvaluate[i].TaskTypeName</li>                
+                    <li>@listTaskEvaluate[i].TaskSenderName</li>
+                    <li>
+                        @if (listTaskEvaluate[i].TaskFinishTime == null)
+                        {
+                            <text>未完成</text>
+                        }
+                        else { 
+                            <text>@Convert.ToDateTime(listTaskEvaluate[i].TaskFinishTime).ToString("yyyy年MM月dd日")</text>
+                        }
+                    </li>
+                    <li>@listTaskEvaluate[i].TaskReceiverName</li>
+                    <li>
+                        @if (listTaskEvaluate[i].TaskGrade == 0 && listTaskEvaluate[i].TaskResponse == "")
+                        {
+                            <text>待评价</text>
+                        }
+                        else
+                        {
+                            <text>@listTaskEvaluate[i].TaskGrade</text>
+                        }
+                    </li>
+                    <li >
+                    @if (listTaskEvaluate[i].TaskGrade == 0 && listTaskEvaluate[i].TaskResponse == "")
+                    {
+                        <a href="TaskCorrect?taskId=@(listTaskEvaluate[i].TaskId)&taskReciver=@(listTaskEvaluate[i].TaskReceiver)" title="评阅任务">评阅</a>
+                    }
+                    else
+                    {
+                        <a href="MyTaskDetail?taskId=@(listTaskEvaluate[i].TaskId)&taskReciver=@(listTaskEvaluate[i].TaskReceiver)" title="查看任务">查看</a>
+                    }
+                                                                                                                                                      
+                    </li>
+                </ul>
+            }            
+            }
+        </div>
+        <div class="page_bar_panel">
+            &nbsp&nbsp&nbsp&nbsp
+            共<span class="page_bar_task_count">@taskEvaluateCount</span>条记录&nbsp&nbsp【<a onclick="GetPagedTaskEvaluateList(1,@listTaskEvaluate[0].TaskId)" href="javascript:void(0)">首页</a>】
+            【<a onclick="GetPagedTaskEvaluateList(parseInt((@taskEvaluateCount+9)/10),@listTaskEvaluate[0].TaskId)" href="javascript:void(0)">尾页</a>】跳转到第
+                <select onchange="GetPagedTaskEvaluateList(this.options[this.selectedIndex].value,@listTaskEvaluate[0].TaskId)" class="page_bar_slt">
+                    @for(int j=1;j<=(taskEvaluateCount+9)/10;j++)
+                    {
+                        <option value="@j">@j</option>
+                    }
+                </select>页
+        </div>
+    </div>
+</body>
+</html>
+

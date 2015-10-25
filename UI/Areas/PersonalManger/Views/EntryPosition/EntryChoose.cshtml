@@ -1,0 +1,73 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<!--1.3录入职位页面-->
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>职位选择</title>
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/bootstrap/jquery/jquery-1.11.3.min.js"></script>
+    <script src="~/bootstrap/jquery/jquery-1.11.3.js"></script>
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        td { text-align: center; }
+        th { text-align: center; }
+    </style>
+    <script>
+        function entry(obj) {
+            var per = obj.parentNode.parentNode.cells[0];
+            var perId=per.innerText;
+            window.location= "/PersonalManger/EntryPosition/EntryIndex?perId=" + perId;
+        }
+        function del(obj) {
+            var per = obj.parentNode.parentNode.cells[0];
+            var perId = per.innerText;
+            window.location = "/PersonalManger/EntryPosition/DelIndex?perId=" + perId;
+        }
+        //去成员信息页面
+        function ToMemberPage() {
+            window.location = "/PersonalManger/CheckMember/Index";
+        }
+    </script>
+</head>
+<body style="font-family: 'Microsoft YaHei'; background-color: rgb(237,241,249)">
+    <div style="margin: 20px auto;width:800px;">
+        @* -------------------表格----------------------------------------------------------*@
+        <div class="table-responsive">
+            <table class="table table-bordered" id="table">
+                <thead>
+                    <tr style="font-size:16px;color:rgb(255, 106, 0)">
+                        <th >编号</th>
+                        <th >角色</th>
+                        <th colspan="2">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="body">
+                    @foreach (MODEL.T_Permission per in ViewBag.role as List<MODEL.T_Permission>)
+                    {
+                        <tr onclick="clickrow(this);">
+                            <td >@per.PerId</td>
+                            <td style="vertical-align: middle; ">@per.PerName</td>
+                            <td ><button class="btn btn-info btn-sm" onclick="entry(this);" id="entry" style="width:80px;">录入</button></td>
+                            @if (per.PerId == 14 || per.PerId == 46)
+                            {
+                                <td><button class="btn btn-info btn-sm" onclick="ToMemberPage();" id="del" style="width: 80px;">查看</button></td>
+                            }
+                            else
+                            {
+                                <td><button class="btn btn-info btn-sm" onclick="del(this)" id="del" style="width: 80px;">查看</button></td>
+                            }
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+</body>
+</html>

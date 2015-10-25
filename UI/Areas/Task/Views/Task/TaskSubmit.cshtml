@@ -1,0 +1,117 @@
+﻿@{
+    Layout = null;
+}
+@{
+    MODEL.ViewModel.Task.TaskDetail taskDetail = ViewData["taskDetail"] as MODEL.ViewModel.Task.TaskDetail;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Areas/Task/CSS/TaskSubmit.css"/>
+    <link href="~/Areas/Task/CSS/uploadify.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="~/Areas/Task/JS/ckeditor/ckeditor.js"></script>
+    <script src="~/Areas/Task/JS/TaskSubmit.js"></script>
+    <script src="~/Areas/Task/JS/uploadfiy/jquery.uploadify.min.js"></script>
+    <script src="~/Areas/Task/JS/uploadfiy/swfobject.js"></script>
+    <script src="~/Areas/Task/JS/uploadfiy/uploadfiyHelper.js"></script>
+    <title>TaskSubmit</title>
+<script type="text/javascript">
+    var editor = null;
+    var submitContent = null;
+    window.onload = function () {
+        var editor = CKEDITOR.replace('editor01',{
+            width: 948,                                        //宽度
+            height: 200,
+            }); //参数‘content’是textarea元素的name属性值，而非id属性值
+        var submit = document.getElementById("submitcontent"); //提交按钮 
+        submit.onclick = function () {
+            submitContent = editor.document.getBody().getHtml();
+            SubmitContent(submitContent);
+        }
+    }
+</script>
+</head>
+<body style="background-color:#EDF1F9;">
+    <div class="main_panel">
+        <div class="title_panel">
+            <div class="title_image"></div>
+            <div class="title_text">任务提交</div>
+        </div>
+        <input type="hidden" name="taskFinishTime" value="@DateTime.Now" id="txt-finish-time"/>
+        <input type="hidden" name="taskId" value="@taskDetail.TaskId" id="txt-task-id"/>
+        <input type="hidden" name="taskContent" value="" id="txt-task-submit"/>
+        <input type="hidden" name="TaskFile" value=" " id="txt-task-file"/>
+        <ul class="task_ul">
+            <li class="task_ul_li_long">
+                <div class="circle_red"></div>
+                <div class="column_title">任务标题：</div>
+                <div class="column_content">
+                    <div class="task_content_text">@taskDetail.TaskName</div>
+                </div>
+            </li>
+            <li class="task_ul_li_long">
+                <div class="circle_red"></div>
+                <div class="column_title">截至时间：</div>
+                <div class="column_content">
+                    <div class="task_content_text">@taskDetail.TaskEndTime</div> 
+                </div>
+            </li>
+            <li class="task_ul_li_long">
+                <div class="circle_red"></div>
+                <div class="column_title">发布人&nbsp;：</div>
+                <div class="column_content">
+                    <div class="column_content link_pink"><a href="#">@taskDetail.TaskSenderName</a></div>
+                </div>
+            </li>
+            <li class="task_ul_li_large">
+                <div class="circle_red"></div>
+                <div class="column_title">任务内容：</div>
+                <div class="column_content">
+                    <div class="task_content_text">@Html.Raw( taskDetail.TaskContent)
+                        <div>
+                            @{
+                                var str = taskDetail.TaskAttachmentPath;
+                                string[] fileName = str.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                            }
+                            @foreach (var name in fileName)
+                            {
+                                @Html.Raw("<a href='javascript:downloadFile(\"" + name + "\")');' id='attachmentFile'>" + name + "</br> </a>");
+                            }
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="circle_red"></div>
+                <div class="column_title">提交内容：</div>
+                <div style="float:right">
+                    <textarea rows="30" cols="50" name="editor01" id="txt-task-content" class="submit_content"></textarea>
+                </div>
+            </li>
+        </ul>
+        <table>
+            <tr>
+                <td>
+                    <div class="circle_red"></div>
+                    <div class="column_title">上传附件：</div>
+                    <div id="uploadfileQueue" style="padding: 3px;">
+                    </div>
+                    <div style="margin-left:120px;">
+                        <div id="file_upload">
+                        </div>
+                        <img alt="" src="~/Areas/Task/Images/BeginUpload.gif" width="77" height="23" onclick="doUplaod()" style="cursor: hand" />
+                        <img alt="" src="~/Areas/Task/Images/CancelUpload.gif" width="77" height="23" onclick="closeLoad()" style="cursor: hand" />
+                    </div>
+               </td>  
+           </tr>
+        </table>
+        
+        <div class="btn" onclick="history.go(-1);">取&nbsp;消</div>
+        <div class="btn"  id="submitcontent">提&nbsp;交</div>
+    </div>
+</body>
+</html>

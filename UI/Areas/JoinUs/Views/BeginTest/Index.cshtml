@@ -1,0 +1,56 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>测评系统首页</title>
+    <!-- css -->
+    <link href="~/Amaze%20UI/amazeui.min.css" rel="stylesheet" />
+    <link href="~/Areas/JoinUs/CSS/init.css" rel="stylesheet" />
+    <link href="~/Areas/JoinUs/CSS/myui.css" rel="stylesheet" />
+    <link href="~/Areas/JoinUs/CSS/begin-test-index.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="viwepager" class="am-slider am-slider-default">
+        <ul class="am-slides">
+            <li>
+                <img src="~/Areas/JoinUs/img/bg_code.jpg" /></li>
+            <li>
+                <img src="~/Areas/JoinUs/img/bg_if.jpg" /></li>
+            <li>
+                <img src="~/Areas/JoinUs/img/bg_nan.jpg" /></li>
+        </ul>
+    </div>
+    <div id="to_resume">
+        <input id="btn_next" type="button" class="my_btn" value="去投简历" />
+    </div>
+    <div id="footer">
+        <div>
+            <span>© 2015 Finalab </span>
+            <span>长沙理工大学 未来网络与应用实验室</span>
+        </div>
+    </div>
+    <!-- 模态窗体-confirm -->
+    <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">FINALAB</div>
+            <div class="am-modal-bd">
+                本测评分为技术方向和非技术方向，非技术方向只需填写简历即可，技术方向则需额外进行在线测评的答卷；答卷内容限制在30分钟之内，且中途不许中断，建议在Chrome浏览器下进行；你，准备好了了么？
+                </ul>
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" data-am-modal-cancel>我再想一想</span>
+                <span class="am-modal-btn" data-am-modal-confirm>我准备好了</span>
+            </div>
+        </div>
+    </div>
+    <!-- js -->
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Amaze%20UI/amazeui.min.js"></script>
+    <script src="~/Areas/JoinUs/JS/begin-test-index.js"></script>
+</body>
+</html>

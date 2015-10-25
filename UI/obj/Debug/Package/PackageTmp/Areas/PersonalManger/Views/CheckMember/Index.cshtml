@@ -1,0 +1,212 @@
+﻿@{
+    Layout = null;
+}
+
+<!--1.2成员信息-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/PersonalManger/CSS/CheckMember.css" rel="stylesheet" />
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/bootstrap/jquery/jquery-1.11.3.min.js"></script>
+    <script src="~/bootstrap/jquery/jquery-1.11.3.js"></script>
+    <script src="~/Areas/PersonalManger/JS/CheckMember.js"></script>
+    <title>Index</title>
+    <style>
+        #myModal {
+            margin:60px auto;
+        }
+    </style>
+    <script type="text/javascript">
+        function OutData() {
+            $("#top").slideUp(800);
+            var my = document.getElementById("myModal");
+            $("#myModal").slideDown(900);
+        }
+        function btnClose() {
+            $("#top").slideDown(800);
+            document.getElementById("myModal").style.display ="none";
+        }
+    </script>
+</head>
+<body style="font-family: 'Microsoft YaHei'; background-color: rgb(237,241,249)">
+    <div style="margin: 20px auto;width:80.5%;background-color:white;" id="top">
+        @*        判断有没有修改的权限*@
+        <input type="hidden" value="@ViewBag.IsEdit" id="IsEdit">
+        <div class="head">
+            <div class="head-nav">
+                <div class="head-nav-img"></div>
+                <div class="head-nav-text">成员信息</div>
+            </div>
+            @if (ViewBag.IsEdit == "True")
+            {
+                <button type="button" class="btn btn-danger small" onclick="OutData()" style="float:right;margin-top:2px;">批量导出</button>
+            }   
+        </div>
+        @*------------------------------------中间搜索框-----------------------------------*@
+        <input type="hidden" value="@ViewBag.backurl" id="backurl" />
+        <div class="search">
+            <label>&nbsp;&nbsp;部门：&nbsp;</label>
+            <select id="department">
+                <option value="1">全体成员</option>
+                @foreach (MODEL.T_Department depa in ViewBag.depa as List<MODEL.T_Department>)
+                {
+                    <option value="@depa.DepartmentId">@depa.DepartmentName</option>
+                }
+            </select>&nbsp;&nbsp;
+            <label style="margin-left:30px;">年级：</label>
+            <select id="grade">
+                <option value="6">不限</option>
+                <option value="1">一年级</option>
+                <option value="2">二年级</option>
+                <option value="3">三年级</option>
+                <option value="4">四年级</option>
+                <option value="5">毕业生</option>
+            </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" placeholder="学号或姓名" id="txt" class="form-control"style="height:31px;"/>
+            <button class="btn btn-info" style="margin-left:0px;width:100px;margin-bottom:2px;height:32px;" onclick="btnSearch()">搜索</button>
+            
+        </div>
+
+
+        @* -------------------表格----------------------------------------------------------*@
+        <div class="table-self">
+            <table class="table-hover" id="table" style="font-family: 'Microsoft YaHei'">
+                <thead>
+                    <tr class="thead-tr">
+                        <th id="head-th-first"></th>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>联系方式</th>
+                        <th>专业</th>
+                        <th>所属部门</th>
+                        <th>职务</th>
+                        <th id="head-th-last">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="body" style="border-right:0;"></tbody>
+            </table>
+        </div>
+        @*----------------------------------分页条--------------------------------------------------------------------*@
+        <div style="width: 100%; height: 35px; border: 1px RGB(166,199,203) solid; background-color: rgb(215,232,234)">
+            <a class="a-first" href="###"></a>
+            <a class="a-pre" href="###"></a>
+            <label  id="lable-page" style="float: left; color: rgb(39,184,165); margin-top: 7px; font-size: 14px; "></label>
+            <label class="lable-text" id="lable-page-sum" style="margin-left: 5px; font-size: 14px; color: rgb(39,184,165); "></label>
+            <a class="a-next" href="###"></a>
+            <a class="a-last" href="###"></a>
+            <div class="div-line"></div>
+            <a class="a-refresh" href="###"></a>
+            <label class="lable-text-right">显示1到10，总计15条记录</label>
+        </div>
+    </div>
+    @*选择性的部分导出*@
+    <div id="myModal" style="display:none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal" aria-hidden="true" onclick="btnClose();">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">请选择需要导出的选项</h4>
+                </div>
+
+                <div class="modal-body">
+                    <form role="form" action="/PersonalManger/CheckMember/ExportMsg" method="post">
+                        <div class="row">
+                            <label for="department" class="col-md-3 control-label" style="text-align:center;margin-top:7px;">选择部门：</label>
+                            <div class="col-md-5">
+                                <select class="form-control" style="font-family:'Microsoft YaHei';height:33px;margin-right:10px;"name="depart">
+                                    <option value="0">全体成员</option>
+                                    <option value="10001">.NET应用开发部</option>
+                                    <option value="10004">系统编程技术部</option>
+                                    <option value="10002">安卓应用开发部</option>
+                                    <option value="10003">硬件编程技术部</option>
+                                    <option value="10007">暂未加入部门</option>
+                                </select>
+                            </div>
+                        <label class="col-md-4"></label>
+                        </div><br />
+
+                        <div class="form-group">
+                            <label class="control-label">基本信息</label><br />
+                            <label>
+                                <input type="checkbox" id="inlineCheckbox1" name="StuNum"> 学号
+                            </label>
+                            <label>
+                                <input type="checkbox" id="inlineCheckbox2" name="StuName"> 姓名
+                            </label>
+                            <label>
+                                <input type="checkbox" id="inlineCheckbox3" name="Gender"> 性别
+                            </label>
+                            <label>
+                                <input type="checkbox" id="inlineCheckbox3" name="QQNum"> QQ号
+                            </label>
+                            <label>
+                                <input type="checkbox" id="inlineCheckbox3" name="Email"> 邮箱
+                            </label>
+                            <label>
+                                <input type="checkbox" id="inlineCheckbox3" name="Birthday"> 生日
+                            </label>
+                            <label>
+                                <input type="checkbox" id="inlineCheckbox3" name="Class"> 班级
+                            </label>
+                            <label>
+                                <input type="checkbox" id="inlineCheckbox3" name="TelephoneNumber"> 电话
+                            </label>
+                            <label>
+                                <input type="checkbox" id="inlineCheckbox3" name="Department"> 部门
+                            </label>
+                            <label>
+                                <input type="checkbox" id="inlineCheckbox3" name="StudyGuideNumber"> 指导学长学姐
+                            </label><br />
+
+
+
+                            <label class="control-label">其他信息</label><br />
+                            <label>
+                                <input type="checkbox" id="inlineCheckbox3" name="JoinTime"> 加入时间
+                            </label>
+                            <label>
+                                <input type="checkbox" id="inlineCheckbox3" name="Major"> 主修
+                            </label>
+                            <label>
+                                <input type="checkbox" id="inlineCheckbox3" name="Counseloer"> 辅导员
+                            </label>
+                            <label>
+                                <input type="checkbox" id="inlineCheckbox3" name="HeadTeacher"> 班主任
+                            </label>
+                            <label>
+                                <input type="checkbox" id="inlineCheckbox3" name="UndergraduateTutor"> 指导老师
+                            </label>
+                            <label>
+                                <input type="checkbox" id="inlineCheckbox3" name="HomPhoneNumber"> 家庭电话
+                            </label>
+                            <label>
+                                <input type="checkbox" id="inlineCheckbox3" name="FamilyAddress"> 家庭地址
+                            </label>
+                            <label>
+                                <input type="checkbox" id="inlineCheckbox3" name="Sign"> 个性签名
+                            </label>
+
+                        </div>
+                        <button class="btn btn-info" type="submit" style="width:70px;height:32px;">导出</button>
+                        <button type="button" class="btn btn-info" style="width:70px;height:32px;"
+                                data-dismiss="modal" onclick="btnClose()">
+                            关闭
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+    </html>

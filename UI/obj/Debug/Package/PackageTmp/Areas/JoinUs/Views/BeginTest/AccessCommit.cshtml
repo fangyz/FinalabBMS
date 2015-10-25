@@ -1,0 +1,58 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>提交成功</title>
+    <!-- css -->
+    <link href="~/Amaze%20UI/amazeui.min.css" rel="stylesheet" />
+    <link href="~/Areas/JoinUs/CSS/init.css" rel="stylesheet" />
+    <link href="~/Areas/JoinUs/CSS/myui.css" rel="stylesheet" />
+    <link href="~/Areas/JoinUs/CSS/begin-test-success-commit.css" rel="stylesheet" />
+    <script type="text/javascript">
+        function countDown(secs, surl) {
+            //alert(surl);     
+            var jumpTo = document.getElementById('jumpTo');
+            jumpTo.innerHTML = secs;
+            if (--secs > 0) {
+                setTimeout("countDown(" + secs + ",'" + surl + "')", 1000);
+            }
+            else {
+                location.href = surl;
+            }
+        }
+        //url=logout
+</script> 
+</head>
+<body>
+   
+    <!-- hidden -->
+    <input type="hidden" id="question_index" value="@ViewData["questionIndex"]" />
+    <div id="header">
+        <div id="logo">
+            <div></div>
+        </div>
+        <div id="brand">
+            <div></div>
+        </div>
+        <div id="hello">
+            <span>您好，欢迎来到FINAL测评</span>
+        </div>
+    </div>
+    <div id="tip">
+        <span>恭喜您，已经完成简历提交（和在线测评），请耐心等待通知，我们会在测评结束的3-5个工作日内给您回复。</span>
+        <span id="jumpTo">5</span>秒后自动跳转到主界面
+        <script type="text/javascript">countDown(5, 'http://localhost:36079/');</script> 
+    </div>
+    <div id="footer">
+        <div>
+            <span>© 2015 Finalab </span>
+            <span>长沙理工大学 未来网络与应用实验室</span>
+        </div>
+    </div>
+</body>
+</html>

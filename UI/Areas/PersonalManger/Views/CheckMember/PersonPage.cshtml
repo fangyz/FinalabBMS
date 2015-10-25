@@ -1,0 +1,263 @@
+﻿@{
+    Layout = null;
+}
+
+<!--1.1个人信息首页-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index</title>
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/PersonalManger/CSS/left-top.css" rel="stylesheet" />
+    <link href="~/Areas/PersonalManger/CSS/left.css" rel="stylesheet" />
+    <script>
+        function jump(StuNum) {
+            var url=document.getElementById("backurl").value;
+            //点击编辑后跳转
+            window.location = "/PersonalManger/CheckMember/PageEdit?StuNum=" + StuNum + "&backurl=" + url;
+        }
+        function back() {
+            //点击返回后跳转
+            window.location = "/PersonalManger/CheckMember/Index";
+        }
+    </script>
+</head>
+<body style="background-color: rgb(237,241,249); font-family: 'Microsoft YaHei'; font-size: 12px">
+    <div style="margin:0 auto;width:1200px">
+        <div style="border: none; margin: 0 auto; width: 1200px; height: 35px; border-bottom: 1px solid rgb(39,184,165); margin-top: 0px">
+            <div class="title-png"></div>
+            <span class="title-info">个人资料</span>
+            <div style="float: right; border: none; margin-top: 0px; margin-right: 73px">
+                @if (ViewBag.IsEdit=="True")
+                {
+                <button class="btn btn-danger" onclick="jump(@ViewBag.member.StuNum)" style="width:70px;height:30px;margin-top:1px;">
+                    编辑
+                </button>
+                }else
+                {
+                    <button class="btn btn-danger" onclick="back()">返回</button>
+                }
+            </div>
+        </div>
+
+
+        <input type="hidden" value="@ViewBag.backurl" id="backurl"/>
+        <div style="margin: 25px auto; border: none; width: 1150px; margin-top: 15px;">
+            <div style="float: left">
+                @*---------------左上角方框-------------------------------------------*@
+                <div style="border: none; width: 480px; height: 170px; position: relative">
+                    <div class="div-top-img">
+                        <div class="div-top-circle">
+                            <div></div>
+                            <div style="margin-left: 390px"></div>
+                        </div>
+                        <div class="div-top-head">
+                            <div class="head-circle-my" style="overflow:hidden">
+                                <img src="@ViewBag.member.PhotoPath" alt="头像" class="head-img" style="border-radius: 50%">
+                            </div>
+                            <div class="div-top-info">
+                                <div class="top-info-text">
+                                    <div style="font-size: 16px; font-family: 'Microsoft YaHei'; color: rgb(39,184,165); float: left">@ViewBag.member.StuName</div>
+                                    <div class="gender-img"></div>
+                                </div>
+                                <div class="top-intro">
+                                    <div class="intro-text">@ViewBag.member.Sign</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div-top-shadow"></div>
+                </div>
+
+                @*---------------左下角方框-------------------------------------------*@
+                <div style="border: none; width: 475px; position: relative; margin-top: 10px">
+                    <div class="left-content">
+                        <div class="left-title">
+                            <div class="left-div-img" style="background-position: -67px -376px"></div>
+                            <span class="left-span-img">实验室信息</span>
+                        </div>
+                        <table class="left-table">
+                            <tr>
+                                <td class="left-td-one">
+                                    <div style="background-position: -25px -245px;"></div>
+                                </td>
+                                <td class="left-td-two">
+                                    <span>所属部门:</span>
+                                    <span style="margin-left: 130px">
+                                        @if (ViewBag.member.T_Department != null)
+                                        {
+                                            @ViewBag.member.T_Department.DepartmentName
+                                        }
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="left-td-one">
+                                    <div style="background-position: -25px -287px;"></div>
+                                </td>
+                                <td class="left-td-two">
+                                    <span>技术层面:</span>
+                                    <span style="margin-left: 130px">@ViewBag.member.T_TechnicaLevel.TechLevelName</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="left-td-one">
+                                    <div style="background-position: -25px -331px;"></div>
+                                </td>
+                                <td class="left-td-two">
+                                    <span>加入时间:</span>
+                                    <span style="margin-left: 130px">
+                                        @ViewBag.member.JoinTime.GetDateTimeFormats('D')[0].ToString()
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="left-td-one">
+                                    <div style="background-position: -25px -373px;"></div>
+                                </td>
+                                <td class="left-td-two">
+                                    <span>退出时间:</span>
+                                    <span style="margin-left: 130px">
+                                        @if (ViewBag.member.EndTime != null)
+                                        {
+                                            @ViewBag.member.EndTime.GetDateTimeFormats('D')[0].ToString()
+                                        }
+
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="left-td-one" style="border-bottom: none">
+                                    <div style="background-position: -25px -331px;"></div>
+                                </td>
+                                <td class="left-td-two" style="border-bottom: none">
+                                    <span>担任职务:</span>
+                                    <span style="margin-left: 130px;overflow:hidden" class="cuttitle" title="@ViewBag.RoleString">@ViewBag.RoleString</span>
+                                </td>
+                            </tr>
+                        </table>
+                        <div style="width: 99.5%; border: 1px solid rgb(202,224,227); height: 55px">
+                            <div class="left-bottom-back" style="background-position: -66px -332px"></div>
+                        </div>
+                    </div>
+                    <div style="border: none; height: 283px; position: absolute; top: 10px; left: 15px; z-index: 1; background-color: rgb(220,234,236); width: 468px"></div>
+                </div>
+            </div>
+            @*---------------右边方框---------------------------------------------*@
+            <div style="float: left; margin-left: 20px">
+                <div style="border: none; width: 604px; position: relative">
+                    <div class="right-content-my">
+                        <div class="left-title">
+                            <div class="left-div-img" style="background-position: -25px -156px"></div>
+                            <span class="left-span-img">基本信息</span>
+                        </div>
+                        <table class="right-table">
+                            <tr>
+                                <td>
+                                    <div class="right-td-div right-td-div-position1"></div>
+                                    <span class="right-table-span1">姓名:</span>
+                                    <span class="right-table-span2">@ViewBag.member.StuName</span>
+                                </td>
+                                <td>
+                                    <div class="right-td-div right-td-div-position1"></div>
+                                    <span class="right-table-span1">性别:</span>
+                                    <span class="right-table-span2">@ViewBag.member.Gender</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="right-td-div right-td-div-position1"></div>
+                                    <span class="right-table-span1">Email:</span>
+                                    <span class="right-table-span2">@ViewBag.member.Email</span>
+                                </td>
+                                <td>
+                                    <div class="right-td-div right-td-div-position1"></div>
+                                    <span class="right-table-span1">QQ:</span>
+                                    <span class="right-table-span2">@ViewBag.member.QQNum</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="right-td-div right-td-div-position"></div>
+                                    <span class="right-table-span1">专业:</span>
+                                    <span class="right-table-span2">@ViewBag.member.Major</span>
+                                </td>
+                                <td>
+                                    <div class="right-td-div right-td-div-position"></div>
+                                    <span class="right-table-span1">导师:</span>
+                                    <span class="right-table-span2">@ViewBag.member.UndergraduateTutor</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="right-td-div right-td-div-position"></div>
+                                    <span class="right-table-span1">住址:</span>
+                                    @if (ViewBag.address == 1 || ViewBag.IsEdit == "True")
+                                    {
+                                        <span class="right-table-span2">@ViewBag.member.FamilyAddress</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="right-table-span2">未公开</span>
+                                    } 
+                                </td>
+                                <td>
+                                    <div class="right-td-div right-td-div-position1"></div>
+                                    <span class="right-table-span1">班级:</span>
+                                    <span class="right-table-span2">@ViewBag.member.Class</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="right-td-div right-td-div-position1"></div>
+                                    <span class="right-table-span1">班主任:</span>
+                                    <span class="right-table-span2">@ViewBag.member.HeadTeacher</span>
+                                </td>
+                                <td>
+                                    <div class="right-td-div right-td-div-position1"></div>
+                                    <span class="right-table-span1">辅导员:</span>
+                                    <span class="right-table-span2">@ViewBag.member.Counselor</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="right-td-div right-td-div-position"></div>
+                                    <span class="right-table-span1">手机号码:</span>
+                                    @if (ViewBag.phone == 1 || ViewBag.IsEdit == "True")
+                                    {
+                                        <span class="right-table-span2">@ViewBag.member.TelephoneNumber</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="right-table-span2">未公开</span>
+                                    } 
+                                </td>
+                                <td>
+                                    <div class="right-td-div right-td-div-position"></div>
+                                    <span class="right-table-span1">家庭号码:</span>
+                                    @if (ViewBag.familyTel == 1 || ViewBag.IsEdit == "True")
+                                    {
+                                        <span class="right-table-span2">@ViewBag.member.HomPhoneNumber</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="right-table-span2">未公开</span>
+                                    } 
+                                </td>
+                            </tr>
+                        </table>
+                        <div style="border: 1px solid rgb(220,234,236); width: 100%; height: 180px;">
+                            <div style="border: 1px solid rgb(202,224,227); width: 542px; height: 120px; margin: 20px auto; border-radius: 5px">
+                                <p style="margin: 10px 10px; line-height: 1.428; font-size: 14px; font-family: 'Microsoft YaHei'">@ViewBag.member.OtheInfor</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="border: none; height: 455px; width: 635px; position: absolute; top: 15px; left: 10px; z-index: 0; background-color: rgb(220,234,236)"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

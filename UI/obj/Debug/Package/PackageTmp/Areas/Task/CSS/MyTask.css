@@ -1,0 +1,187 @@
+﻿body {
+    border: 0px;
+    margin: 0px auto;
+    padding: 0px;
+    font-family: 'Microsoft YaHei','宋体';
+    font-size: 13px;
+    background-color: #EDF1F9;
+}
+
+#task-list {
+    width: 1085px;
+    height: auto;
+    border: 1px solid #A6C7CB;
+    border-top:0px;
+    margin: auto;
+    margin-top: 22px;
+    padding: 0px;
+}
+
+.task {
+    width: 1085px;
+    height: auto;
+    overflow: hidden;
+}
+/********************任务类型标题********************/
+.task_type {
+    width: 1085px;
+    height: 35px;
+    background-color: aliceblue;
+    border-top:1px solid #A6C7CB;
+    border-bottom:0px;
+    cursor:pointer;
+}
+
+.task_type_title {
+    float: left;
+    margin-left: 26px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 15px;
+    font-weight: 600;
+    color: burlywood;
+}
+
+.task_type_img {
+    float: right;
+    margin-top: 10px;
+    margin-right: 16px;
+    height: 15px;
+    width: 15px;
+    background-image: url(../Images/mytask.png);
+    background-position-x: 0px;
+    background-position-y: -15px;
+}
+
+/********************任务表********************/
+/**************************查看任务详情和任务信息按钮****************************/
+/* 未被访问的链接*/
+    .task_detail_link:link {
+        color: #FF748D;
+        text-decoration:none;
+    }
+    /* 已被访问过的链接    */    
+    .task_detail_link:visited {
+        color: #FF748D;
+        text-decoration:none;
+    }
+    /* 鼠标悬浮在上的链接  */
+    .task_detail_link:hover {
+        color: #27B8A5;
+        text-decoration:underline;
+    }
+    /* 鼠标点中激活链接    */    
+    .task_detail_link:active {
+        color: #27B8A5;
+        text-decoration:none;
+    }
+/**************************未完成按钮****************************/
+/* 未被访问的链接  */
+.task_complete_link:link {
+    text-decoration: none;
+    color: #FF748D;
+}
+/* 已被访问过的链接  */
+.task_complete_link:visited {
+    text-decoration: none;
+    color: #FF748D;
+}
+/* 鼠标悬浮在上的链接  */
+.task_complete_link:hover {
+    text-decoration: underline;
+    color: #27B8A5;
+}
+/* 鼠标点中激活链接  */
+.task_complete_link:active {
+    text-decoration: none;
+    color: #27B8A5;
+}
+
+
+.task_content {
+    width: 1085px;
+    height: 225px;
+    overflow: hidden;
+}
+
+.task_table {
+    width: 1085px;
+    border: 0px;
+    border-collapse: collapse;
+    border-top:0px;
+}
+
+.task tr {
+}
+
+.task_table tr th {
+    color: #FF748B;
+    font-size: 15px;
+    border-top:0px;
+}
+.task_table tr:first-child {
+    border-top:0px;
+}
+.task_table tr td {
+    color: #0F0F0F;
+    font-size: 14px;
+}
+
+.task_table tr th, .task_table tr td {
+    border: 1px solid #A6C7CB;
+    height: 35px;
+    width: 180px;
+    background-color: #fff;
+    line-height: 35px;
+    text-align: center;
+}
+
+    .task_table tr th:first-child, .task_table tr td:first-child {
+        border-left: 0px;
+    }
+
+    .task_table tr th:last-child, .task_table tr td:last-child {
+        border-right: 0px;
+    }
+
+/********************页码条********************/
+.page_bar {
+    width: 1085px;
+    height: 35px;
+    background-color: #fff;
+    font-size: 14px;
+    color: #27B8A5;
+    line-height: 35px;
+    padding-left: 28px;
+}
+
+.page_bar_task_count {
+    color: #FF748B;
+}
+
+/* 未被访问的链接*/
+.page_bar a:link {
+    color: #FF748D;
+    text-decoration: none;
+}
+/* 已被访问过的链接    */
+.page_bar a:visited {
+    color: #FF748D;
+    text-decoration: none;
+}
+/* 鼠标悬浮在上的链接  */
+.page_bar a:hover {
+    color: #27B8A5;
+    text-decoration: underline;
+}
+/* 鼠标点中激活链接    */
+.page_bar a:active {
+    color: #27B8A5;
+    text-decoration: none;
+}
+
+
+.page_bar_slt {
+    border: 1px solid #27B8A5;
+    height: 21px;
+}

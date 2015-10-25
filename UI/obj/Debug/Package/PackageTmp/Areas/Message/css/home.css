@@ -1,0 +1,236 @@
+﻿body {
+     font-family: '微软雅黑', sans-serif;
+     font-size:16px;
+}
+a{
+    color:#4DADE0;
+    text-decoration:none;
+} 
+a:hover{
+    color:#1279AF;
+    text-decoration:none;
+} 
+label{
+    font-family: '微软雅黑';
+}
+button{
+     font-family: '微软雅黑';
+}
+a:hover {
+    color:#4DADE0;
+    text-decoration:underline;
+}
+.main{
+    /*height:500px;*/
+    /*border:1px solid #ff0000;*/
+}
+.menu{
+    float:left;
+    /*background:#4cff00;*/
+    /*height:490px;*/
+    width:10%;
+    border:1px solid #eee;
+    margin:5px 0px 0px 18px;
+    padding-left:initial;
+}
+.menu ul{
+    margin:50px auto;
+}
+.menu ul li{
+    padding-left:0px;
+    /*height:30px;*/
+    margin:0px auto;
+    /*border:1px solid red;*/
+}
+.menu ul li hr{
+    padding-left:0px;
+    /*height:30px;*/
+    /*margin:10% auto;*/
+}
+.menu ul li a{
+    margin:1% 0 0 10%;
+    display:block;
+    text-decoration:none;
+    text-align:center;
+    font-family: '微软雅黑';
+    font-size:large;
+    font-weight:600;
+    overflow:hidden;
+    /*border:1px solid red;*/
+}
+
+ .menu ul li a:hover{
+        background:#eee;
+    }
+.content{
+    /*background:#00ff90;*/
+    float:right;
+    height:550px;
+    width:85%;
+    border:1px solid #eee;
+    margin:5px 5px auto;
+}
+/*===============<< 写信  >>===============*/
+.send{
+    /*background:#000;*/
+    margin:5px 5px auto;
+    display:block;
+}
+.sendButton{
+    background:#9BDBF0;
+    /*margin:10px;*/
+    height:50px;
+}
+.sendButton button{
+    margin:1.5% 0px 0px 1%;
+    /*border:1px solid red;*/
+    float:left;
+}
+
+ .page {
+            float: right;
+            /*border:1px solid red;*/
+            width: 230px;
+        }
+ .page label, a {
+        float: left;
+        text-decoration: none;
+  }
+
+
+.sendButton span{
+    float:left;
+    margin:20px 30px auto;
+}
+.sendTime{
+    margin:1% 0 0 1%;
+    /*border:1px solid red;*/
+    padding:0;
+    float:left;
+}
+
+.sendForm{   
+    height:470px;
+    width:74%;
+    float:left;
+    border:1px solid #eee;
+}
+.sendForm form{
+    margin:10px 0px 0px 10px;
+    /*border:1px solid red;*/
+}
+.sendForm form div{
+    /*margin:10px 0px 0px 10px;*/
+    /*border:1px solid red;*/
+    width:100%;
+
+    }
+.sendForm input{
+    width:96%;
+    margin-left:1%;
+    }
+.sendForm textarea{
+    width:96%;
+    height:150px;
+    margin-left:1%;
+    }
+.address{
+    border:1px solid #eee;
+    width:24%;
+    float:right;
+     height:470px;
+}
+
+.arsHead{
+    /*border:1px solid red;*/
+    background:#9BDBF0;
+    height:50px;
+}
+.addressContent{
+    height:400px;
+    overflow:scroll;
+}
+.addressHeader label{
+     font-family: '微软雅黑';
+    font-size:large;
+}
+.addreesClick{
+    display:block;
+    text-decoration:none;
+    text-align:center;
+    font-family: '微软雅黑';
+    overflow:hidden;
+    cursor:pointer; 
+}
+
+/*================<< 收件箱  >>=============================*/
+
+.receiveBox{
+    margin:5px 5px auto;
+    display:block;
+    /*border:1px solid red;*/
+}
+/*======================<< 消息详细  >>=========================*/
+
+.MessageInfo{
+    display:block;
+}
+.MessagaContent{
+    /*border:1px solid red;*/
+}
+
+.infoHeader{
+    margin:1% 0% 0% 1%;
+    /*border:1px solid red;*/
+    background:#eee;
+}
+.infoContent{
+    margin:1% 0 0 3%;
+    /*border:1px solid red;*/
+}
+
+/*=============================<< 通讯录  >>=================================================*/
+
+.messagaAddress{
+    display:block;
+}
+.searchAddress{
+    float:right;
+    margin:1% 3% auto;
+    /*border:1px solid red;*/
+}
+/*===========================<< 发件箱  >>=================================================*/
+
+.sendBox{
+    display:block;
+}
+/*============================<< 草稿箱  >>=================================================*/
+
+.draftBox{
+    display:block;
+}
+/*==============================<< 垃圾箱  >>=================================================*/
+
+.recycle{
+    display:block;
+}
+
+
+.footerContent{
+    width:70%;
+    margin:10px auto;
+    /*border:1px solid red;*/
+}
+
+/*=======================================================================*/
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { float: left; clear:left; padding: 0 0 0 5px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 45%; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.ui-timepicker-rtl{ direction: rtl; }
+.ui-timepicker-rtl dl { text-align: right; padding: 0 5px 0 0; }
+.ui-timepicker-rtl dl dt{ float: right; clear: right; }
+.ui-timepicker-rtl dl dd { margin: 0 45% 10px 10px; }

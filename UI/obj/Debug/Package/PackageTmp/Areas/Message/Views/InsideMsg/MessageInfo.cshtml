@@ -1,0 +1,90 @@
+﻿@{
+    Layout = null;
+}
+@{
+    MODEL.T_MemberInformation user = Session["ainfo"] as MODEL.T_MemberInformation;
+    MODEL.ViewModel.MessagaContentModel info = ViewData["info"] as MODEL.ViewModel.MessagaContentModel;
+    string pageId = ViewData["pageId"] as string;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MessageHome</title>
+    <link href="~/Areas/Message/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Message/css/home.css" rel="stylesheet" />
+    <script src="~/Areas/Message/js/bootstrap.min.js"></script>
+    <script src="~/Areas/Message/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#return").click(function () {
+                if ($("#hidenPageId").val() == "sendBoxMenu") {
+                    location.href = "/Message/InsideMsg/SendBoxMenu";
+                } else if ($("#hidenPageId").val() == "RecycleBoxMenu") {
+                    location.href = "/Message/InsideMsg/RecycleBoxMenu";
+                }
+                return false;
+            });
+        });
+    </script>
+    <style>
+        body {
+            background: #EDF1F9;
+            font-family: "微软雅黑"；;
+        }
+
+        .msgInfo {
+            margin: 2% auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid ">
+        <div class="msgInfo">
+            @*/*============<< 消息内容  >>========================*/*@
+
+            <div class="sendButton">
+                <input type="hidden" name="hidenPageId" id="hidenPageId" value="@pageId" />
+                <span>@Html.ActionLink("返回", "", "", new { id = "return" })</span>
+            </div>
+            <div class="MessagaContent">
+                <div class="infoHeader">
+                    <label style="float:left;">
+                        发件人：
+                    </label>
+                    <label id="sendName">@user.StuName</label>
+                    <label style="float:left;">
+                        发送时间：
+                    </label>
+                    <label id="sendTime">@info.SendTime</label>
+                    <label style="float:left;">
+                        收件人：
+                    </label>
+                    <label id="receiveName">@info.ReceiveName</label>
+                    <label style="float:left;">
+                        主题：
+                    </label>
+                    <label id="title">@info.Title</label>
+                    <label style="float:left;">
+                        附件：
+                    </label>
+                    <label id="atachment">
+                        @{ string[] arr = @info.Atachment.Split(';');}
+                        @{ for (int i = 0; i < arr.Length - 1; i++)
+                         {
+                             string[] arr2 = arr[i].Split('|');
+                             string fileName = arr2[0];
+                             string saveName = arr2[1];
+                            <a href="/Message/InsideMsg/DownLoad?fileName=@fileName&saveName=@saveName ">@fileName</a><br>}
+                        }
+                    </label>
+                    <label style="float:left;">
+                        正文：
+                    </label>
+                    <textarea name="content" id="content" placeholder="回复内容" style="width:98%;" rows="15" readonly>@info.Content</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

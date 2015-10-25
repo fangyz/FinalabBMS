@@ -1,0 +1,177 @@
+﻿body {
+    border: 0px;
+    margin: 0px auto;
+    padding: 0px;
+    font-family: 'Microsoft YaHei','宋体';
+    font-size: 13px;
+    background-color:#EDF1F9;
+}
+
+/**********************主面板*******/
+.main_panel {
+    width:1085px;
+    height:auto;
+    border:1px solid #A6C7CB;
+    margin:auto;
+    margin-top:22px;
+    padding:0px;
+}
+
+/**********************标题栏************/
+.title_panel {
+    margin:0px auto;
+    padding:0px;
+    width:1085px;
+    height:35px;
+    background-color:#D7E8EA;
+    border:0px;
+}
+
+.title_image {
+    float:left;
+    margin-top:6px;
+    margin-left:13px;
+    width:30px;
+    height:22px;
+    background-image:url('../Images/releasehistory.png');
+    background-position:0px 0px;
+}
+.title_text {
+    float:left;
+    height:35px;
+    margin-left:5px;
+    line-height:35px;
+    font-size:16px;
+    font-weight:700;
+}
+
+/***********************表格*************/
+.table_panel {
+    width:1085px;
+    height:441px;
+    margin:0px auto;
+    padding:0px;
+    background-color:#fff;
+}
+
+.task_table {
+    margin:0px auto;
+    padding:0px;
+    width:1085px;
+    height:441px;
+    border-collapse:collapse;
+}
+    .task_table tr {
+        height:34px;
+    }
+        .task_table tr th {
+            height:34px;
+            width:154px;
+            font-size:15px;
+            font-weight:700;
+            color:#27B8A5;
+            border:1px solid #A6C7CB;
+            text-align:center;
+            line-height:34px;
+        }
+        .task_table tr td {
+            height:34px;
+            width:154px;
+            font-size:14px;
+            color:#111;
+            border:1px solid #A6C7CB;           
+            text-align:center;
+            line-height:34px; 
+        }
+    .task_table tr th:first-child, .task_table tr td:first-child {
+        border-left: 0px;
+    }
+
+    .task_table tr th:last-child, .task_table tr td:last-child {
+        border-right: 0px;
+    }
+
+     /* 未被访问的链接*/
+    .task_table tr td a:link {
+        color: #FF738B;
+        text-decoration:none;
+    }
+    /* 已被访问过的链接    */    
+    .task_table tr td a:visited {
+        color: #FF738B;
+        text-decoration:none;
+    }
+    /* 鼠标悬浮在上的链接  */
+    .task_table tr td a:hover {
+        color: #FF738B;
+        text-decoration:underline;
+    }
+    /* 鼠标点中激活链接    */    
+    .task_table tr td a:active {
+        color: #FF738B;
+        text-decoration:none;
+    }
+/***********************页码条***********/
+.page_bar_panel {
+    margin:0px auto;
+    padding:0px;
+    width:1085px;
+    height:38px;
+    margin:0px auto;
+    background-color:#D7E8EA;
+    font-size: 14px;
+    color: #27B8A5;
+    line-height: 38px;    
+}
+.page_bar_task_count {
+    color:#FF748B;
+}
+
+    /* 未被访问的链接*/
+    .page_bar_panel a:link {
+        color: #FF748D;
+        text-decoration:none;
+    }
+    /* 已被访问过的链接    */    
+    .page_bar_panel a:visited {
+        color: #FF748D;
+        text-decoration:none;
+    }
+    /* 鼠标悬浮在上的链接  */
+    .page_bar_panel a:hover {
+        color: #27B8A5;
+        text-decoration:underline;
+    }
+    /* 鼠标点中激活链接    */    
+    .page_bar_panel a:active {
+        color: #27B8A5;
+        text-decoration:none;
+    }
+
+
+.page_bar_slt {
+    border: 1px solid #27B8A5;
+    height: 21px;
+}
+.btn {
+    float:right;
+    margin-right:33px;
+    margin-top:4px;
+    width:78px;
+    height:26px;
+    border:1px solid #DB5F6D;
+    border-radius:5px;
+    background-color:#FF748B;
+    color:#fff;
+    line-height:26px;
+    text-align:center;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+}
+    .btn:hover {
+        background-color:#C84E5C;
+    }
+    .btn:active {
+        background-color:#FF748B;
+    }

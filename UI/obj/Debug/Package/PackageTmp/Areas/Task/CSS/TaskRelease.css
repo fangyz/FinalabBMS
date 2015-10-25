@@ -1,0 +1,323 @@
+﻿html,body {
+    border: 0px;
+    margin: 0px auto;
+    padding: 0px;
+    font-family: 'Microsoft YaHei','宋体';
+    font-size: 13px;
+    background-color:#EDF1F9;
+    color:#1C1C1C;
+}
+
+/******************主面板**********/
+.main_panel {
+    width:1085px;
+    height:auto;
+    border:1px solid #A6C7CB;
+    margin:auto;
+    margin-top:22px;
+    padding:0px;
+}
+/******************标题**********/
+.title_panel {
+    margin:0px auto;
+    padding:0px;
+    width:1085px;
+    height:35px;
+    background-color:#27B8A5;
+    border:0px;
+}
+
+.title_image {
+    float:left;
+    margin-top:2px;
+    margin-left:13px;
+    width:30px;
+    height:30px;    
+    background-image:url('../Images/taskrelease.png');
+    background-position:0px 0px;
+}
+.title_text {
+    float:left;
+    height:35px;
+    margin-left:5px;
+    line-height:35px;
+    font-size:16px;
+    font-weight:700;
+    color:#fff;
+}
+/******************表单**********/
+.content_panel {
+    width:1083px;
+    min-height:780px;
+    height:780px;
+    border:1px solid #C4DADD;
+    border-top:0px;
+    margin:0px;
+    padding:0px;
+    background-color:#DEEBED;
+    overflow:scroll;
+}
+
+.task_form {
+    float:left;
+    border:0px;
+    padding:0px;
+    margin-left:5px;
+    margin-top:8px;
+    width:760px;
+}
+
+.group {
+    clear:both;
+    width:760px;
+    height:auto;
+    min-height:42px;
+    max-height:280px;
+    border:0px;
+    padding:0px;
+    margin:0px;
+    margin-top:2px;
+    line-height:42px;
+    /*background-color:#ff6a00;*/
+}
+
+.text_title {
+    float:left;
+    width:80px;
+    padding:0px;
+    margin:0px;
+    margin-left:11px;
+    color:#27B8A5;
+    font-size:15px;
+    font-weight:700;
+}
+.text_border {
+    float:left;
+    min-height:29px;
+    height:auto;
+    line-height:29px;
+    max-height:274px;
+    padding:0px;
+    margin:0px;
+    margin-top:5px;
+    border:1px solid #AAAAAA;
+    border-radius:5px;
+}
+.long_text {
+    padding:0px;
+    margin:0px;
+    width:623px;
+    line-height:28px;
+    font-size:14px;
+    border:0px;
+    border-top:1px solid #C5C5C5;
+    border-right:1px solid #C5C5C5;
+    border-radius:5px;
+    height:29px;
+}
+
+.short_text{
+    padding:0px;
+    margin:0px;
+    width:270px;
+    line-height:28px;
+    font-size:14px;
+    border:0px;
+    border-top:1px solid #C5C5C5;
+    border-right:1px solid #C5C5C5;
+    border-radius:5px;
+    padding-left:0px;
+    height:29px;
+}
+.large_text {
+    padding:0px;
+    margin:0px;
+    width:633px;
+    min-width:623px;
+    height:272px;
+    min-height:272px;
+    line-height:28px;
+    font-size:14px;
+    border:0px;
+    border-top:1px solid #C5C5C5;
+    border-right:1px solid #C5C5C5;
+    border-radius:5px;
+    resize:none;
+    word-break:break-all;
+}
+.txt-area {
+    width:650px;
+    height:400px;
+}
+.input_file {
+    opacity:0;
+}
+.file {
+    position: relative;
+    display: inline-block;
+    background: #1E88C7;
+    border: 1px solid #99D3F5;
+    border-radius: 5px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color:#e8e8e8;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+    margin-left:10px;
+    margin-top:0px;
+    float:left;
+}
+.file input {
+    position: absolute;
+    font-size: 15px;
+    font-weight:700;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.file:hover {
+    background: #AADFFD;
+    border-color: #78C3F3;
+    color: #004974;
+    text-decoration: none;
+}
+.btn {
+    float:right;
+    margin-right:33px;
+    margin-top:10px;
+    width:58px;
+    height:26px;
+    border:1px solid #DB5F6D;
+    border-radius:5px;
+    background-color:#FF748B;
+    color:#fff;
+    line-height:26px;
+    text-align:center;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+}
+    .btn:hover {
+        background-color:#C84E5C;
+    }
+    .btn:active {
+        background-color:#FF748B;
+    }
+.btn-file {
+    float:left;
+    margin-left:10px;
+    margin-top:10px;
+    width:70px;
+    height:26px;
+    border:1px solid #DB5F6D;
+    border-radius:5px;
+    background-color:#1E88C7;
+    color:#fff;
+    line-height:26px;
+    text-align:center;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+}
+/******************成员选择框********/
+.members_panel {    
+    float:left;
+    padding:0px;
+    margin-left:10px;
+    margin-top:12px;
+    width:287px;
+    border:0px;
+    border-radius:5px;
+    height:653px;
+    background-color:#27B8A5;
+}
+
+.member_title {
+    float:left;
+    width:auto;
+    margin:0px;
+    height:39px;
+    margin-left:5px;
+    padding:0px;
+    border:0px;
+}
+.table_panel {
+    float:left;
+    margin:0px;
+    margin-top:4px;
+    padding:0px;
+    border:0px;
+    width:auto;
+    min-width:287px;
+    height:555px;
+    overflow:auto;
+    background-color:#fff;
+}
+.make_scrollbar {
+    float:left;
+    width:2px;
+    height:584px;
+    background-color:#27B8A5;
+}
+
+.members_table {
+    float:left;
+    width:266px;
+    height:auto;
+    color:#1C1C1C;
+    background-color:#fff;
+    border-collapse:collapse;
+}
+    .members_table tr {
+        height:27px;
+        cursor:pointer;
+    }
+        .members_table tr:hover {
+            background-color:#e8e8e8;
+        }
+        .members_table tr:active {
+            background-color:#fff;
+        }
+        .members_table tr:first-child {
+            background-color:#fff;
+        }
+    .members_table tr th{
+        height:27px;
+        font-size:14px;
+        font-weight:700;
+        color:#27B8A5;
+        text-align:center;
+        line-height:27px;
+        border:1px solid #A6C7CB;
+    }
+    .members_table tr td{
+        height:27px;
+        font-size:14px;
+        color:#000;
+        text-align:center;
+        line-height:27px;
+        border:1px solid #A6C7CB;
+    }
+        .members_table tr td:first-child,.members_table tr th:first-child {
+            border-left:0px;
+        }
+        .members_table tr td:last-child,.members_table tr th:last-child {
+            border-right:0px;
+        }
+
+.check_td {
+    width:32px;
+}
+.name_td {
+    width:95px;
+}
+.num_td {
+    width:140px;
+}
+
+.check_box {
+    padding:0px;
+    margin:0px;    
+    border:0px;
+}

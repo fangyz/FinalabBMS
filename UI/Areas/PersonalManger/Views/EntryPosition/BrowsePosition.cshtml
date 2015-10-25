@@ -1,0 +1,216 @@
+﻿@{
+    Layout = null;
+}
+@using MODEL.DTO
+
+<!--1.3浏览各个职位的担任的人-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+
+    <title></title>
+</head>
+<body style="font-family: 'Microsoft YaHei'; background-color: rgb(237,241,249);font-size:12px">
+    <div style="margin: 0 auto; width: 1050px; margin-top: 20px">
+        <div class="panel panel-default panel-success">
+            <!-- Default panel contents -->
+            <div class="panel-heading">总裁</div>
+
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>年级</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (MemberInformationDTO member in ViewBag.listPresident)
+                    { 
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>@member.StuNum</td>
+                            <td>@member.StuName</td>
+                            <td>@member.Year</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel panel-default panel-szuccess">
+            <!-- Default panel contents -->
+            <div class="panel-heading">部长</div>
+
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>姓名</th>
+                        <th>学号</th>
+                        <th>年级</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (MemberInformationDTO member in ViewBag.Minister )
+                    { 
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>@member.StuNum</td>
+                            <td>@member.StuName</td>
+                            <td>@member.Year</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel panel-default panel-success">
+            <!-- Default panel contents -->
+            <div class="panel-heading">顾问团团长</div>
+
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>年级</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (MemberInformationDTO member in ViewBag.StudyLeader )
+                    { 
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>@member.StuNum</td>
+                            <td>@member.StuName</td>
+                            <td>@member.Year</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel panel-default panel-success">
+            <!-- Default panel contents -->
+            <div class="panel-heading">顾问团团员</div>
+
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>年级</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (MemberInformationDTO member in ViewBag.StudyMember )
+                    { 
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>@member.StuNum</td>
+                            <td>@member.StuName</td>
+                            <td>@member.Year</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel panel-default panel-success">
+            <!-- Default panel contents -->
+            <div class="panel-heading">活动策划组组长</div>
+
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>年级</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (MemberInformationDTO member in ViewBag.PlanLeader )
+                    { 
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>@member.StuNum</td>
+                            <td>@member.StuName</td>
+                            <td>@member.Year</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel panel-default panel-success">
+            <!-- Default panel contents -->
+            <div class="panel-heading">活动策划组组员</div>
+
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>年级</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (MemberInformationDTO member in ViewBag.PlanMmember )
+                    { 
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>@member.StuNum</td>
+                            <td>@member.StuName</td>
+                            <td>@member.Year</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel panel-default panel-success">
+            <!-- Default panel contents -->
+            <div class="panel-heading">财务主管</div>
+
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>年级</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (MemberInformationDTO member in ViewBag.Financial )
+                    { 
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>@member.StuNum</td>
+                            <td>@member.StuName</td>
+                            <td>@member.Year</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

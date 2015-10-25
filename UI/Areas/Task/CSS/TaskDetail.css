@@ -1,0 +1,180 @@
+﻿html,body {
+    border: 0px;
+    margin: 0px auto;
+    padding: 0px;
+    font-family: 'Microsoft YaHei','微软雅黑';
+    font-size: 13px;
+    background-color: #EDF1F9;
+}
+/**********************主面板*******/
+.main_panel {
+    width:957px;
+    height:auto;
+    margin:auto;
+    margin-top:22px;
+    padding:0px;
+}
+
+/**********************标题栏************/
+.title_panel {
+    margin:0px auto;
+    padding:0px;
+    width:955px;
+    height:35px;
+    background-color:#D7E8EA;
+    border:1px solid #A6C7CB;
+}
+
+.title_image {
+    float:left;
+    margin-top:6px;
+    margin-left:13px;
+    width:30px;
+    height:22px;
+    background-image:url('../Images/releasehistory.png');
+    background-position:0px 0px;
+}
+.title_text {
+    float:left;
+    height:35px;
+    margin-left:5px;
+    line-height:35px;
+    font-size:16px;
+    font-weight:700;
+}
+
+/*****************content_panel********/
+
+.task_ul {
+    width:955px;
+    margin:0px auto;
+    padding:0px;
+    float:left;
+    list-style:none;
+    border-collapse:collapse;
+    border:1px solid #A6C7CB;
+    border-top:0px;
+    border-bottom:0px;
+}
+    .task_ul li {
+        margin:0px auto;
+        padding:0px;
+        list-style:none;
+        float:left;
+        border-bottom:1px solid #A6C7CB;
+        min-height:35px;
+        text-align:left;
+        line-height:35px;
+        background-color:#fff;
+    }
+.task_ul_li_long {
+    width:955px;
+}
+.task_ul_li_short{
+    width:476px;
+}
+.task_ul_li_short_border_left {
+    border-left:1px solid #A6C7CB;
+}
+.task_ul_li_large{
+    width:955px;
+    height:185px;
+}
+
+
+.circle_red {
+    float:left;
+    margin-top:7px;
+    margin-left:8px;
+    width:20px;
+    height:20px;
+    background-image:url("../Images/taskdetail.png");
+    background-position:-20px 0px;
+}
+
+.circle_blue {
+    float:left;
+    margin-top:7px;
+    margin-left:8px;
+    width:20px;
+    height:20px;
+    background-image:url("../Images/taskdetail.png");
+    background-position:0px 0px;
+}
+
+.column_title {
+    float:left;
+    height:35px;
+    width:100px;
+    margin-left:10px;
+    line-height:35px;
+    font-size:16px;
+}
+
+.column_content {
+    float:left;
+    width:auto;
+    line-height:35px;
+    font-size:15px;
+}
+.task_content {
+    float:left;
+    width:817px;
+    height:185px;    
+    line-height:35px;
+    font-size:15px;
+    overflow:auto;
+}
+.task_content_text {
+    float:left;
+    width:600px;
+    height:auto;    
+    line-height:35px;
+    font-size:15px;
+}
+
+.link_pink {
+}
+    /* 未被访问的链接*/
+    .link_pink a:link {
+        color: #FF748D;
+        text-decoration:none;
+    }
+    /* 已被访问过的链接    */    
+    .link_pink a:visited {
+        color: #FF748D;
+        text-decoration:none;
+    }
+    /* 鼠标悬浮在上的链接  */
+    .link_pink a:hover {
+        color: #27B8A5;
+        text-decoration:underline;
+    }
+    /* 鼠标点中激活链接    */    
+    .link_pink a:active {
+        color: #27B8A5;
+        text-decoration:none;
+    }
+
+.btn {
+    float:right;
+    margin-right:33px;
+    margin-top:10px;
+    width:58px;
+    height:26px;
+    border:1px solid #DB5F6D;
+    border-radius:5px;
+    background-color:#FF748B;
+    color:#fff;
+    line-height:26px;
+    text-align:center;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+}
+    .btn:hover {
+        background-color:#C84E5C;
+    }
+    .btn:active {
+        background-color:#FF748B;
+    }

@@ -1,0 +1,118 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>注册个人信息</title>
+    <!-- css -->
+    <link href="~/Amaze%20UI/amazeui.min.css" rel="stylesheet" />
+    <link href="~/Areas/JoinUs/CSS/init.css" rel="stylesheet" />
+    <link href="~/Areas/JoinUs/CSS/begin-test-index-reginfo.css" rel="stylesheet" />
+    <link href="~/Areas/JoinUs/CSS/myui.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="header">
+        <div id="logo">
+            <div></div>
+        </div>
+        <div id="brand">
+            <div></div>
+        </div>
+        <div id="hello">
+            <span>您好，欢迎来到FINAL测评。</span>
+        </div>
+    </div>
+    <div id="form_div">
+        <form id="form_reginfo" action="/JoinUs/BeginTest/ConfirmReg" method="post">
+            <div class="form_control_group">
+                <span class="my_label"><span>*</span>应聘方向</span>
+                <select required="required" name="isRequestTech" class="my_input_control">
+                    <option value="1">技术方向</option>
+                    <option value="2">市场部</option>
+                     <option value="3">设计部</option>
+                </select>
+            </div>
+            <div class="form_control_group">
+                <span class="my_label"><span>*</span>学号</span>
+                <input type="text" id="num" name="num" required="required" placeholder="例如，201250080316" class="my_input_control" value="201250080316" />
+            </div>
+            <div class="form_control_group">
+                <span class="my_label"><span>*</span>姓名</span>
+                <input type="text" id="name" name="name" required="required" placeholder
+                    ="例如，霍腾" class="my_input_control" value="霍腾" />
+            </div>
+            <div class="form_control_group">
+                <span class="my_label"><span>*</span>性别</span>
+                <select required="required" name="gender" class="my_input_control">
+                    <option value="1">男</option>
+                    <option value="2">女</option>
+                </select>
+            </div>
+            <div class="form_control_group">
+                <span class="my_label"><span>*</span>学院</span>
+                <input type="text" name="academy" id="academy" value="计算机与通信工程学院" placeholder="例如，计算机与通信工程学院" required="required" class="my_input_control" />
+            </div>
+            <div class="form_control_group">
+                <span class="my_label"><span>*</span>专业</span>
+                <input type="text" name="major" id="major" placeholder="例如，计算机科学与技术专业" value="计算机科学与技术专业" required="required" class="my_input_control" />
+            </div>
+            <div class="form_control_group">
+                <span class="my_label"><span>*</span>班级</span>
+                <input type="text" name="class" id="class" required="required" placeholder="例如，1203班" value="1203班" class="my_input_control" />
+            </div>
+            <div class="form_control_group">
+                <span class="my_label"><span>*</span>QQ</span>
+                <input type="text" name="qq" id="qq" required="required" placeholder="例如，215166735" value="215166735" class="my_input_control" />
+            </div>
+            <div class="form_control_group">
+                <span class="my_label"><span>*</span>E-mail</span>
+                <input type="text" name="email" id="email" required="required" placeholder="例如，123456789@qq.com" value="123456789@qq.com" class="my_input_control" />
+            </div>
+            <div class="form_control_group">
+                <span class="my_label"><span>*</span>联系方式</span>
+                <input type="text" name="telNum" id="tel_num" required="required" placeholder="例如，15263589542" value="15263589542" class="my_input_control" />
+            </div>
+            <div class="form_control_group">
+                <span class="my_label"><span>*</span>学习经历</span>
+                <textarea required="required" name="learningExperience" id="learning_experience" class="my_textarea">学习经历</textarea>
+            </div>
+            <div class="form_control_group">
+                <span class="my_label"><span>*</span>自我评价</span>
+                <textarea required="required" name="selfEvaluation" id="self_evaluation" class="my_textarea">自我评价</textarea>
+            </div>
+            <div>
+                <div id="next_step_div">
+                    <input id="btn_next" type="button" class="my_btn" value="下一步" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="footer">
+        <div>
+            <span>© 2015 Finalab </span>
+            <span>长沙理工大学 未来网络与应用实验室</span>
+        </div>
+    </div>
+    <!-- 模态窗体-confirm -->
+    <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">FINALAB</div>
+            <div class="am-modal-bd">
+                你，确定要提交注册信息吗？
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+            </div>
+        </div>
+    </div>
+    <!-- js -->
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Amaze%20UI/amazeui.min.js"></script>
+    <script src="~/Areas/JoinUs/JS/begin-test-reginfo.js"></script>
+</body>
+</html>

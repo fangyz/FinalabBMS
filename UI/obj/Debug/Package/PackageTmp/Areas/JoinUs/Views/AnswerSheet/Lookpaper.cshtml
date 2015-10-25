@@ -1,0 +1,38 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>预览试卷</title>
+    <!-- css -->
+    <link href="~/Amaze%20UI/amazeui.min.css" rel="stylesheet" />
+    <link href="~/Areas/JoinUs/CSS/paper-manage-previewpaper.css" rel="stylesheet" />
+    
+</head>
+<body>
+    <!-- 导航 -->
+   @* <ul id="nav_temp" class="am-nav am-nav-pills">
+        <li><a href="/">首页</a></li>
+        <li><a href="/JoinUs/QuestionManage/Index/1">题库管理</a></li>
+        <li><a href="/JoinUs/PaperManage/Index/1">试卷管理</a></li>
+        <li><a href="/JoinUs/AnswerSheet/Index/1">答卷管理</a></li>
+    </ul>*@
+    <hr id="hr_temp" />
+    <!-- hidden -->
+    <input type="hidden" id="paper_id" value="@ViewData["paperId"]" />
+    <!-- 题目列表 -->
+    <table id="tb_list" class="am-table am-table-bordered am-table-radius am-table-striped" >
+        <tbody>
+           
+             
+        </tbody>
+    </table>
+    <!-- js -->
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Areas/JoinUs/JS/answer-sheet-lookpaper.js"></script>
+</body>
+</html>

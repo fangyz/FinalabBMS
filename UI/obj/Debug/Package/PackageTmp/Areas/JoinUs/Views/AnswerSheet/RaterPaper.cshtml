@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>评卷</title>
+    <!-- 评卷 -->
+    <link href="~/Amaze%20UI/amazeui.min.css" rel="stylesheet" />
+    <link href="~/Areas/JoinUs/CSS/answer-sheet-raterpaper.css" rel="stylesheet" />
+</head>
+<body>
+    <form action="/JoinUs/AnswerSheet/CommitRater" method="post">
+        <input id="answer_sheet_id" name="answerSheetId" type="hidden" value="@ViewData["answerSheetId"]" />
+        <div id="choose_rater">
+            评卷人：<input style="width:100px;" name="pname" value="@ViewData["name"]" readonly="readonly"/><br /><br />
+            已评阅：<input style="width:100px;" value="@ViewData["count"]" readonly="readonly"/>张
+        </div>
+        <table class="am-table am-table-bordered am-table-radius am-table-striped" id="tb_paper">
+            <tbody>
+             
+            </tbody>
+        </table>
+  
+        <button class="am-btn am-btn-primary" type="button" style="margin-left:450px;width:98px;margin-top:20px;
+margin-bottom:20px;" onclick="window.location.href='/JoinUs/AnswerSheet/Index'">取消</button>  
+        <button class="am-btn am-btn-primary" type="submit" style="margin-left:175px;width:98px;margin-top:20px;
+margin-bottom:20px;">确定</button>
+       
+    </form>
+
+    <!-- js -->
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Amaze%20UI/amazeui.min.js"></script>
+    <script src="~/Areas/JoinUs/JS/answer-sheet-raterpaper.js"></script>
+</body>
+</html>

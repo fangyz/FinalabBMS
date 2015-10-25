@@ -1,0 +1,212 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <title>EntryDuty</title>
+    <style>
+        /*有问题*/
+        a { color: #d9534f; text-decoration: none; }
+            a:link { text-decoration: none; color: #d9534f; }
+            a:visited { color: green; }
+            a:hover { color: green; }
+    </style>
+    <script type="text/javascript">
+        //添加新的表格行
+        function add(flag) {
+            var oprate = $(flag).text();
+            if (oprate == "增加") {
+                //如果两个学生是一样的要有提示
+                var stu1 = $(flag).parent().prev().prev().children("select").children("option:selected").text();
+                var stu2 = $(flag).parent().prev().children("select").children("option:selected").text();
+                if (stu1 == stu2) {
+                    alert("本周此成员已选择，请您重新选择");
+                    return;
+                }
+                $(flag).text("删除");
+                //获取当前是第几周，生成的时候使用这一周
+                week = $(flag).parent().prev().prev().prev().children("select").children("option:selected").text();
+                $tr = $("<tr></tr>");
+                $th = $("<th style='width: 350px'></th>");
+                $select = $("<select class='form-control input-sm' style='width: 100px' onchange='JudgeWeek(this)'></select>");
+                /*保持上次的周数，增强用户体验,*/
+                for (var i = 1; i <= 16; i++) {
+                    if ((i-1).toString() == week.substring(1, week.length - 1)) {
+                        $option = $("<option selected value='" + i+ "'>第" +i+ "周</option>")
+                    } else {
+                        $option = $("<option value='" + i + "'>第" + i + "周</option>")
+                    }
+                    $select.append($option);
+                }
+                $th.append($select);
+                $td1 = $("<td style='width:150px;'></td>");
+                /*复制一份SelectStu*/
+                $td1.append($("#SelectStu").clone(true));
+                $td2 = $("<td style='width:150px;'></td>");
+                $td2.append($("#SelectStu2").clone(true));
+                $td3 = $("<td style='text-align:center;'><a class='a-oprate' href='##' onclick='add(this)'>增加</a></td>");
+                $tr.append($th);
+                $tr.append($td1);
+                $tr.append($td2);
+                $tr.append($td3);
+                $("#tbody").append($tr);
+            } else {
+                $(flag).parent().parent().remove();
+            }
+        }
+
+        //判断这周是否已经录入了数据
+        function JudgeWeek(week) {
+            var thisweek=week.value;
+            var trs = $("#tbody").children("tr");
+            trs.each(function (index, element) {
+                var obj = $(element).children("th").children("select");
+                var select = obj[0];
+                if (select!= week) {
+                    var str = obj.children("option:selected").val();
+                    if (thisweek == str) {
+                        var weekstr = "您已选过第" + str + "周，请您重新选择";
+                        alert(weekstr);
+                    }
+                }
+            });
+        }
+        ////判断这一行是否有相同的成员录入
+        //function JudgeOneRow(stu) {
+        //    var front = $(stu).parent().prev().children("select").children("option:selected").val();
+        //    if (stu.value == front) {
+        //        alert("本周这个成员已选择，请您重新选择！");
+        //    }
+        //}
+        //判断这个成员是否已经输入
+        function JudgeOneRow(stu) {
+            var thisStu = stu.value;
+            var stuobj = stu.selectedOptions[0];
+            var trs = $("#tbody").children("tr");
+            trs.each(function (index, element) {
+                var obj = $(element).children("td").children("select").children("option:selected");
+                var select1 = obj[0];
+                var select2 = obj[1];
+                if (stuobj != select1) {
+                    if (thisStu == select1.value) {
+                        alert("这个成员已经选过了，请您重新选择");
+                        return;
+                    }
+                }
+                if (stuobj != select2) {
+                    if (thisStu == select2.value) {
+                        alert("这个成员已经选过了，请您重新选择");
+                        return;
+                    }
+                }
+            });
+        }
+
+
+        //保存数据到数据库里
+        function test() {
+            /*准备好数据格式*/
+            var str = "";
+            var trs = $("#tbody").children("tr");
+            trs.each(function (index, element) {
+                str += $(element).children("th").children("select").children("option:selected").val();
+                str += ",";
+                var tds = $(element).children("td");
+                tds.each(function (oindex, oelement) {
+                    if (oindex == 0 || oindex == 1) {
+                        str += $(oelement).children("select").children("option:selected").val();
+                        if (oindex == 0)
+                            str += ","
+                    } 
+                })
+                str += ";";
+            });
+            $.ajax({
+                url: '/Duty/Duty/EntryDuty',
+                type: 'post',
+                data: { "Str": str },
+                success: function (jsonObj) {
+                    if (jsonObj.Statu == "ok") {
+                        alert(jsonObj.Msg);
+                    } else {
+                        alert(jsonObj.Msg);
+                    }
+                }
+            })
+            window.location = "/Duty/Duty/EntryDutyView";
+        }
+
+    </script>
+</head>
+<body style="font-family: 'Microsoft YaHei'; font-size: 14px">
+    <div style="margin: 0 auto; width: 75%; margin-top: 20px">
+        <div class="panel panel-success">
+            <!-- Default panel contents -->
+            <div class="panel-heading">值日生录入</div>
+
+            <!-- Table -->
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>周数</th>
+                        <th colspan="2">值日生</th>
+                        <th style="text-align:inherit;">操作</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tbody">
+                    <tr>
+                        <th scope="row" style="width:350px;">
+                            <select class="form-control input-sm" style="width: 100px" onchange="JudgeWeek(this)">
+                                <option value="1">第1周</option>
+                                <option value="2">第2周</option>
+                                <option value="3">第3周</option>
+                                <option value="4">第4周</option>
+                                <option value="5">第5周</option>
+                                <option value="6">第6周</option>
+                                <option value="7">第7周</option>
+                                <option value="8">第8周</option>
+                                <option value="9">第9周</option>
+                                <option value="10">第10周</option>
+                                <option value="11">第11周</option>
+                                <option value="12">第12周</option>
+                                <option value="13">第13周</option>
+                                <option value="14">第14周</option>
+                                <option value="15">第15周</option>
+                                <option value="15">第16周</option>
+                                <option value="17">第17周</option>
+                                <option value="18">第18周</option>
+                            </select>
+                        </th>
+                        <td style="width:150px;">
+                            <select class="form-control input-sm" id="SelectStu" style="width:100px;" onchange="JudgeOneRow(this)">
+                                @foreach (MODEL.DTO.MemberInformationDTO dto in ViewBag.Stu)
+                                {
+                                    <option value="@dto.StuNum">@dto.StuName</option>
+                                }
+                            </select>
+                            </td>
+                        <td style="width: 150px;">
+                            <select class="form-control input-sm" id="SelectStu2" onchange="JudgeOneRow(this)" style="width:100px;">
+                                @foreach (MODEL.DTO.MemberInformationDTO dto in ViewBag.Stu)
+                                {
+                                    <option value="@dto.StuNum">@dto.StuName</option>
+                                }
+                            </select>
+                        </td>
+                        <td style="width: auto;text-align:center;">
+                            <a class="a-oprate" href="#" onclick="add(this)">增加</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button type="button" onclick="test()" class="btn btn-success" style="float: right; width: 100px">保存</button>
+    </div>
+</body></html>

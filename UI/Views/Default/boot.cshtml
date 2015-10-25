@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Boot</title>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/jquery.form.js"></script>
+    <script>
+        function hide() {
+            alert("kkk");
+            //$("#labinfor").css("display", "none");
+            console.info($("#UpLoadImg"));
+            $("#UpLoadImg").AjaxSubmit()
+            alert("sss");
+        }
+        $("#submit").submit(function () {
+            $("#UpLoadImg").ajaxSubmit();
+            return false;
+        })
+    </script>
+</head>
+<body style="font-family:'Microsoft YaHei'">
+    <form id="UpLoadImg" action="/PersonalManger/CheckMember/AdminEdit" method="post" enctype="multipart/form-data">
+        <input type="file" name="head"/>
+        <input type="submit" id="submit" value="提交">
+    </form>
+    <button onclick="hide()">提交</button>
+</body>
+</html>

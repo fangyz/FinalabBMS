@@ -1,0 +1,63 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <title>EditPwd</title>
+    <script type="text/javascript">
+        function btnClick() {
+            var formpwd = document.getElementById("formpwd");
+            var oldp = document.getElementById("oldPwd");
+            var newp = document.getElementById("newPwd");
+            var newpo = document.getElementById("newPwdO");
+            var hidpwd = document.getElementById("hidpwd");
+            if (oldp.value!= hidpwd.value) {
+                alert("您输入的原密码有误！");
+                oldp.value = "";
+                oldp.focus();
+                return;
+            }
+            if (newp.value!= newpo.value) {
+                alert("您两次输入的新密码不一样！");
+                newp.value = "";
+                newp.focus();
+                return;
+            }
+            formpwd.submit();
+        }
+    </script>
+</head>
+<body style="background-color: #EDF1F9;font-family:'Microsoft YaHei'">
+    <input type="hidden" value="@ViewBag.pwd" id="hidpwd"/>
+    <form class="panel panel-primary" style="width:600px;margin:40px auto;height:350px;" id="formpwd" method="post" action="/PersonalManger/CheckMember/SavePwd">
+        <div class="panel-heading">
+            <h3 class="panel-title">修改密码</h3>
+        </div>
+        <div class="panel-body">
+            <br />
+            <div style="width:320px;margin:0 auto;">
+                <label style="margin-top:5px;">请输入原密码:</label>
+                <input type="password" class="form-control" style="width: 200px; float: right;margin-right: 10px;" maxlength="20" id="oldPwd" />
+            </div>
+            <br />
+            <div style="width:320px;margin:0 auto;">
+                <label style="margin-top:5px;">请输入新密码:</label>
+                <input type="password" class="form-control" style="width: 200px; float: right;margin-right: 10px;" maxlength="20" id="newPwd" name="pwd"/>
+            </div>
+            <br />
+            <div style="width:320px;margin:0 auto;">
+                <label style="margin-top:5px;">请您再次输入:</label>
+                <input type="password" class="form-control" style="width: 200px; float: right;margin-right: 10px;" maxlength="20" id="newPwdO" />
+            </div>
+            <div style="width:203px;margin:50px auto;">
+                <button type="button" onclick="btnClick();" class="btn btn-info" style="width:200px;height:34px;">确认修改</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

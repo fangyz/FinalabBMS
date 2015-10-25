@@ -1,0 +1,78 @@
+﻿#div_list
+{
+    width: 1000px;
+    margin: auto auto;
+    margin-top: 46px;
+    font-size: 14px;
+    text-align: center;
+}
+
+    #div_list ul
+    {
+        margin: auto auto;
+        float: left;
+        font-size: 14px;
+        width: 420px;
+    }
+
+    /*#div_list button
+    {
+        font-size: 14px;
+        margin: auto auto;
+        float: right;
+    }*/
+
+.am-pagination-select select
+{
+    height: 32px;
+    width: 70px;
+    border: 1px solid #ddd;
+    color: #0e90d2;
+    margin-bottom: 2px;
+}
+
+#paper_id
+{
+    width:70px;
+}
+
+#paper_name
+{
+    width:auto;
+}
+#paper_type
+{
+    width:auto;
+}
+#paper_producer
+{
+    width:100px;
+}
+
+#paper_pubdate
+{
+    width:200px;
+}
+
+#paper_option
+{
+    width:170px;
+}
+#add_paper
+{
+    float:right;
+    font-size:14px;
+}
+#paper_publishing
+{
+    float:left;
+    font-size:14px;
+    width:490px;
+}
+#nav_temp {
+    width:370px;
+    margin:5px auto;
+}
+#hr_temp {
+    margin-top:0px;
+}

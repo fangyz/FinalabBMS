@@ -1,0 +1,67 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <title>DelIndex</title>
+    <script>
+        function index() {
+            document.getElementById("form").onsubmit = false;
+            window.location = "/PersonalManger/EntryPosition/EntryChoose";
+        }
+        function del() {
+            var allcheck = document.getElementsByTagName("input");
+            var count = 0;
+            for (var i = 0; i < allcheck.length; i++) {
+                if (allcheck[i].checked == true) {
+                    count++;
+                }
+            }
+            if (count == 0) {
+                alert("请您选中要删除的成员！");
+                return;
+            }
+            document.getElementById("form").submit();
+        }
+    </script>
+</head>
+<body style="font-family: 'Microsoft YaHei'; background-color: rgb(237,241,249)">
+    <div style="margin: 20px auto;width:800px;">
+        @* -------------------表格----------------------------------------------------------*@
+        <form class="table-responsive" method="post" action="/PersonalManger/EntryPosition/GetDelChecked" id="form">
+            <input type="hidden" value="@ViewBag.perid" name="delWhat" />
+            <table class="table table-bordered" id="table" style="font-family: 'Microsoft YaHei'">
+                <tr>
+                        <td colspan="2" style="text-align:left;">
+                            <button class="btn btn-success" onclick="index()" type="button" style="width:80px;height:35px;">返回</button>
+                        </td>
+                    <td style="text-align:right;"><button class="btn btn-success" type="button" onclick="del()">提交删除</button></td>
+                </tr>
+                <tr class="">
+                    <td>选择</td>
+                    <td>学号</td>
+                    <td>姓名</td>
+                </tr>
+                <tbody id="body">
+                    @foreach (MODEL.T_MemberInformation mem in ViewBag.mem as List<MODEL.T_MemberInformation>)
+                    {
+                        <tr>
+                            <td><input type="checkbox" value="@mem.StuNum" name="@mem.StuNum" /></td>
+                            <td>@mem.StuNum</td>
+                            <td>@mem.StuName</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </form>
+
+    </div>
+
+
+</body>
+</html>

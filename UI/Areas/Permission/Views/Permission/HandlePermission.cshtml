@@ -1,0 +1,259 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>HandlePermission</title>
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+    <script src="~/My97DatePicker/WdatePicker.js"></script>
+    <style type="text/css">
+        html, body {
+            border: 0px;
+            margin: 0px auto;
+            padding: 0px;
+            font-family: 'Microsoft YaHei','宋体';
+            font-size: 13px;
+            background-color: #EDF1F9;
+            color: #1C1C1C;
+        }
+        
+    </style>
+
+    <script type="text/javascript">
+    </script>
+</head>
+<body>
+    <div class="panel panel-info" style="width:900px;margin:30px auto;">
+        <div class="panel-heading">
+            <h3 class="panel-title">@ViewBag.opeName</h3>
+        </div>
+        <div class="panel-body">
+                <form class="task_form" method="post" action="/Permission/Permission/OperatePer" style="width:750px;margin:0 auto;">
+                    <div class="row">
+                        <label class="col-md-2">权限ID：</label>
+                        <div class="col-md-10">
+                            @if (ViewBag.operate == 1)
+                            {
+                                <input type="text" name="PerId" class="form-control" readonly placeholder="ID由系统生，不可改动" />
+                            }
+                            else
+                            {
+                                <input type="text" name="PerId" class="form-control" value="@ViewBag.perModel.PerId" readonly placeholder="ID由系统生，不可改动" />
+                            }
+                        </div>
+                    </div><br />
+
+                    <div class="row">
+                        <label class="col-md-2">添加时间：</label>
+                        <div class="col-md-4">
+                            @if (ViewBag.operate == 1)
+                            {
+                                <input type="text" onclick="WdatePicker({ dateFmt: 'yyyy年M月d日' })" name="PerAddTime" id="Text2" class="form-control" required />
+                            }
+                            else
+                            {
+                                <input type="text" onclick="WdatePicker({ dateFmt: 'yyyy年M月d日' })" value="@ViewBag.perModel.PerAddTime" name="PerAddTime" id="Text2" class="form-control" required />
+                            }
+                        </div>
+                        <label class="col-md-2">权限名：</label>
+                        <div class="col-md-4">
+                            @if (ViewBag.operate == 1)
+                            {
+                                <input type="text" name="PerName" id="Text3" class="form-control" required/>
+                            }
+                            else
+                            {
+                                <input type="text" name="PerName" id="Text3" class="form-control" value="@ViewBag.perModel.PerName" required />
+                            }
+                        </div>
+                    </div><br />
+
+                    <div class="row">
+                        <label class="col-md-2">父权限ID：</label>
+                        <div class="col-md-4">
+                            @if (ViewBag.operate == 1)
+                            {
+                                <input type="text" name="PerParent" id="Text2" class="form-control" required />
+                            }
+                            else
+                            {
+                                <input type="text" name="PerParent" id="Text2" class="form-control" value="@ViewBag.perModel.PerParent" required />
+                            }
+                        </div>
+                        <label class="col-md-2">区域名：</label>
+                        <div class="col-md-4">
+                            @if (ViewBag.operate == 1)
+                            {
+                                <input type="text" name="PerAreaName" id="Text3" class="form-control" required />
+                            }
+                            else
+                            {
+                                <input type="text" name="PerAreaName" id="Text3" class="form-control" value="@ViewBag.perModel.PerAreaName" required />
+                            }
+                        </div>
+                    </div><br />
+
+                    <div class="row">
+                        <label class="col-md-2">控制器：</label>
+                        <div class="col-md-4">
+                            @if (ViewBag.operate == 1)
+                            {
+                                <input type="text" name="PerController" id="Text2" class="form-control" required/>
+                            }
+                            else
+                            {
+                                <input type="text" name="PerController" id="Text2" class="form-control" value="@ViewBag.perModel.PerController" required />
+                            }
+
+                        </div>
+                        <label class="col-md-2">方法名：</label>
+                        <div class="col-md-4">
+                            @if (ViewBag.operate == 1)
+                            {
+                                <input type="text" name="PerActionName" id="Text3" class="form-control" required/>
+                            }
+                            else
+                            {
+                                <input type="text" name="PerActionName" id="Text3" class="form-control" value="@ViewBag.perModel.PerActionName" required/>
+                            }
+                        </div>
+                    </div><br />
+
+                    <div class="row">
+                        <label class="col-md-2">请求方式：</label>
+                        <div class="col-md-4">
+                            <select name="PerFormMethod" id="Text5" class="form-control">
+                                @if (ViewBag.operate == 1)
+                                {
+                                    <option value="3" selected>不限</option>
+                                    <option value="1">post请求</option>
+                                    <option value="2">get请求</option>
+                                }
+                                else
+                                {
+                                    if (ViewBag.perModel.PerFormMethod == 3)
+                                    {
+                                        <option value="3" selected>不限</option>
+                                        <option value="1">post请求</option>
+                                        <option value="2">get请求</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="3">不限</option>
+                                        if (ViewBag.perModel.PerFormMethod == 1)
+                                        {
+                                            <option value="1" selected>post请求</option>
+                                            <option value="2">get请求</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="1">post请求</option>
+                                            <option value="2" selected>get请求</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <label class="col-md-2">是否显示：</label>
+                        <div class="col-md-4">
+                            <select class="form-control" name="PerIsShow">
+                                @if (ViewBag.operate == 1)
+                                {
+                                    <option value="1">显示</option>
+                                    <option value="0">不显示</option>
+                                }
+                                else
+                                {
+                                    if (ViewBag.perModel.PerIsShow == true)
+                                    {
+                                        <option selected value="1">显示</option>
+                                        <option value="0">不显示</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="1">显示</option>
+                                        <option selected value="0">不显示</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div><br />
+
+                    <div class="row">
+                        <label class="col-md-2">是否公有：</label>
+                        <div class="col-md-4">
+                            <select class="form-control" name="IsCommon">
+                                @if (ViewBag.operate == 1)
+                                {
+                                    <option selected value="true">基本权限</option>
+                                    <option value="false">非基本权限</option>
+                                }
+                                else
+                                {
+                                    if (ViewBag.perModel.IsCommon == true)
+                                    {
+                                        <option selected value="true">基本权限</option>
+                                        <option value="false">非基本权限</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="true">基本权限</option>
+                                        <option selected value="false">非基本权限</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <label class="col-md-2">图标路径：</label>
+                        <div class="col-md-4">
+                            @if (ViewBag.operate == 1)
+                            {
+                                <input type="text" name="PerIco" id="Text3" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="text" name="PerIco" id="Text3" class="form-control" value="@ViewBag.perModel.PerIco" />
+                            }
+
+                        </div>
+                    </div><br />
+
+                    <div class="row">
+                        <label class="col-md-2">权限说明：</label>
+                        <div class="col-md-10">
+                            @if (ViewBag.operate == 1)
+                            {
+                                <input type="text" name="PerExplain" id="Text2" class="form-control" />
+                            }
+                            else
+                            {
+                                <input type="text" name="PerExplain" id="Text2" class="form-control" value="@ViewBag.perModel.perExplain" />
+                            }
+                        </div>
+                    </div>
+
+                    <div style="width:220px;margin:10px auto;">
+                        @if (ViewBag.operate == 3)
+                        {
+                            <a href="/Permission/Permission/PerIndex" class="btn btn-info">返&nbsp回</a>
+                        }
+                        else
+                        {
+                            <button class="btn btn-info" type="submit" style="width:100px;height:32px;">确&nbsp定</button>
+                            <a href="/Permission/Permission/PerIndex" class="btn btn-info" style="width: 100px; height: 32px;">取&nbsp消</a>
+                        }
+                    </div>
+                </form>
+
+
+        </div>
+    </div>
+
+
+
+</body>
+</html>

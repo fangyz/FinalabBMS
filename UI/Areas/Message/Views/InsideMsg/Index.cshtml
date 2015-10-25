@@ -1,0 +1,156 @@
+﻿@{
+    Layout = null;
+}
+@{
+    List<MODEL.ViewModel.SendBox> sendList = ViewData["sendBoxList"] as List<MODEL.ViewModel.SendBox>;
+    MODEL.ViewModel.PageModelInMsg pageModel = ViewData["pageModel"] as MODEL.ViewModel.PageModelInMsg;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MessageHome</title>
+    <link href="~/Areas/Message/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Message/css/home.css" rel="stylesheet" />
+    <script src="~/Areas/Message/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Areas/Message/js/SendBoxMenu.js"></script>
+    <link href="~/Areas/Message/pathMenu/css/wheelmenu.css" rel="stylesheet" />
+    <script src="~/Areas/Message/pathMenu/js/jquery.wheelmenu.js"></script>
+    <link href="~/Areas/Message/pathMenu/css/pageMenu.css" rel="stylesheet" />
+    <script src="~/Areas/Message/js/Index.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".wheel-button").wheelmenu({
+                trigger: "hover",
+                animation: "fly",
+                animationSpeed: "fast"
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container-fluid ">
+        <div class=" main">
+            @*/*==================<< 收件箱  >>==========================*/*@
+            <div class="receiveBox" id="receiveBox">
+                <div>
+                    <label style="color: #0546F0;">当前位置：我的消息 ->  收件箱共 @pageModel.MessageCount 封</label>
+                </div>
+                <div class="page">
+                    @Html.ActionLink("上一页", "Index", "InsideMsg", new { pageIndex = @pageModel.PageIndex, flage = "front", PageSize = 5 }, new { id = "frontPage" })
+                    &nbsp;&nbsp;<label id="pageIndex">@pageModel.PageIndex</label>
+                    <label>&nbsp;\&nbsp;</label>
+                    <label id="pageCount">@pageModel.PageCount</label>&nbsp;&nbsp;
+                    <label>页</label>&nbsp;
+                    @Html.ActionLink("下一页", "Index", "InsideMsg", new { pageIndex = @pageModel.PageIndex, flage = "next", PageSize = 5 }, new { id = "nextPage" })
+                </div>
+                <div>
+                    <table class="table table-striped table-hover " id="messagaTable">
+                        <thead>
+                            <tr style="background: #9BDBF0;">
+                                <th style="width:10%;">
+                                    状态
+                                </th>
+                                <th style="width:15%;">
+                                    发件人
+                                </th>
+                                <th style="width:25%;">
+                                    主题
+                                </th>
+                                <th style="width:20%;">
+                                    时间
+                                </th>
+                                <th>
+                                    详情
+                                </th>
+                                <th>
+                                    删除
+                                </th>
+                                <th>
+                                    转发
+                                </th>
+                                <th>
+                                    标记未读
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (MODEL.ViewModel.SendBox sendViewModel in sendList)
+                            {
+                                <tr>
+                                    <td>
+                                        @{string str = sendViewModel.IsRead == false ? "未读" : "已读";}
+                                        @if (str == "未读")
+                                        {
+                                            <label style="color: #F77117; ">
+                                                @str
+                                            </label>
+                                        }
+                                        else
+                                        {
+                                            <label style="color: #4DADE0;">
+                                                @str
+                                            </label>
+                                        }
+                                    </td>
+                                    <td>
+                                        @sendViewModel.SendName
+                                    </td>
+                                    <td>
+                                        @sendViewModel.MessageTitle
+                                    </td>
+                                    <td>
+                                        @sendViewModel.SendTime
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("详情", "MessageContent", "InsideMsg", new { userMessgeId = @sendViewModel.UserMessageId, sendId = @sendViewModel.SendId, receiveIsDelete = @sendViewModel.ReceiveIsDelete, isDraft = @sendViewModel.IsDraft, sendIsDelete = @sendViewModel.SendIsDelete, messageId = @sendViewModel.MessageId }, new { target = "_self" })
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="Delete(@sendViewModel.UserMessageId)">删除</a>
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("转发", "SendMessage", "InsideMsg", new { messageId = @sendViewModel.MessageId }, new { target = "_self" })
+                                    </td>
+                                    <td>
+                                        @{
+                                if (str != "未读")
+                                {
+                                    @*@Ajax.ActionLink("标记未读", "SetStatus", "InsideMsg", new { userMessgeId = @sendViewModel.UserMessageId, sendId = @sendViewModel.SendId, receiveIsDelete = @sendViewModel.ReceiveIsDelete, isDraft = @sendViewModel.IsDraft, sendIsDelete = @sendViewModel.SendIsDelete, messageId = @sendViewModel.MessageId }, new AjaxOptions { UpdateTargetId = "messagaTable", HttpMethod = "Post" })*@
+
+                                            <a href="#" onclick="SetStatus(@sendViewModel.UserMessageId)">标记未读</a>
+                                }
+                                else
+                                {
+
+                                }
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="wrapper">
+                        <a href="#wheel2" class="wheel-button ne">
+                            <span>+</span>
+                        </a>
+                        <ul id="wheel2" data-angle="NE" class="wheel">
+                            <li class="item"><a href="/Message/InsideMsg/SendMessage" id="writeMenu" data-toggle="tooltip" data-placement="top" title="写信"><i class="  icon-edit"></i></a></li>
+                            <li class="item"><a href="/Message/InsideMsg/SendBoxMenu" id="sendBoxMenu" data-toggle="tooltip" data-placement="top" title="发件箱"><i class=" icon-share"></i></a></li>
+                            <li class="item"><a href="/Message/InsideMsg/Index" id="receiveBoxMenu" data-toggle="tooltip" data-placement="top" title="收件箱"><i class=" icon-envelope"></i></a></li>
+                        </ul>
+                        <a href="#wheel3" class="wheel-button nw">
+                            <span>+</span>
+                        </a>
+                        <ul id="wheel3" data-angle="NW" class="wheel">
+                            <li class="item"><a href="/Message/InsideMsg/MessageAddressMenu" id="messageAddressMenu" data-toggle="tooltip" data-placement="top" title="通讯录"><i class="  icon-list"></i></a></li>
+                            <li class="item"><a href="/Message/InsideMsg/DraftBoxMenu" id="draftBoxMenu" data-toggle="tooltip" data-placement="top" title="草稿箱"><i class=" icon-briefcase"></i></a></li>
+                            <li class="item"><a href="/Message/InsideMsg/RecycleBoxMenu" id="recycleBoxMenu" data-toggle="tooltip" data-placement="top" title="垃圾箱"><i class=" icon-trash"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

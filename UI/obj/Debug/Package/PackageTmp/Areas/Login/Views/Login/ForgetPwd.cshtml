@@ -1,0 +1,65 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Login/CSS/HeadAndFoot.css" rel="stylesheet" />
+    <title>EditPwd</title>
+    <script type="text/javascript">
+        function btnClick() {
+            var num = document.getElementById("stuNum").value;
+            if (num == "") {
+                alert("请您输入学号！");
+                document.getElementById("stuNum").focus();
+                return;
+            }
+            window.location = "/Login/Login/GetPwd?stunum="+num;
+        }
+    </script>
+</head>
+<body style="background-color: #EDF1F9;font-family:'Microsoft YaHei'" >
+    <div id="header">
+        <div title="FINAL实验室" id="header-left">
+            <div id="header-left-logo"></div>
+            <div id="header-left-name">FINAL实验室</div>
+        </div>
+        <div id="header-right">
+        </div>
+    </div>
+
+    <form class="panel panel-primary" style="width:600px;margin:100px auto;height:350px;" id="formpwd" method="post" action="/PersonalManger/CheckMember/SavePwd">
+        <div class="panel-heading">
+            <h3 class="panel-title">修改密码</h3>
+        </div>
+        <div class="panel-body">
+            <br />
+            <div style="width:320px;margin:0 auto;">
+                <label style="margin-top:5px;">请输入学号:</label>
+                <input type="password" class="form-control" style="width: 200px; float: right;margin-right: 10px;" maxlength="13" id="stuNum" />
+            </div>
+            <br />
+            <div style="width:203px;margin:50px auto;">
+                <button type="button" onclick="btnClick();" class="btn btn-info" style="width:200px;height:34px;">确定</button>
+            </div>
+        </div>
+    </form>
+    <div id="footer">
+        <div id="content">
+            再长的路，一步步也能走完；再短的路，不迈开双脚也无法到达!<br />
+            &nbsp;&nbsp;Copyright ©2014-2015 FINAL LAB. All Rights Reserved
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+

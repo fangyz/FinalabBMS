@@ -1,0 +1,139 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MessageHome</title>
+    <link href="~/Areas/Message/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Areas/Message/js/bootstrap.min.js"></script>
+    <script src="~/Areas/Message/js/jquery-1.11.3.min.js"></script>
+    <link href="~/Areas/Message/uploadify3.2/uploadify.css" rel="stylesheet" />
+    <script src="~/Areas/Message/uploadify3.2/jquery.uploadify.min.js"></script>
+    <script src="~/Areas/Message/js/SendMail.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#file_upload').uploadify({
+                'swf': '@Url.Content("~/Areas/Message/uploadify3.2/uploadify.swf")',
+                'uploader': '/Message/Mail/Upload',
+                'fileSizeLimit': '10MB',//单个文件大小，0为无限制，可接受KB,MB,GB等单位的字符串值
+                width: 150,                          // 按钮的宽度
+                height: 23,                         // 按钮的高度
+                buttonText: "附件上传",                 // 按钮上的文字
+                buttonCursor: 'hand',                // 按钮的鼠标图标
+                //removeCompleted: false,
+                auto: true,                // 选择之后，自动开始上传
+                multi: true,               // 是否支持同时上传多个文件
+                queueSizeLimit: 5,          // 允许多文件上传的时候，同时上传文件的个数
+                onUploadSuccess: function (file, data, response) {
+                    eval("data=" + data);
+                    var val = $("#hiddenFileAddress").val();
+
+                    if (val == "") {
+                        $("#hiddenFileAddress").val(data.SaveName);
+                    } else {
+                        $("#hiddenFileAddress").val(val + ";" + data.SaveName);
+                    }
+                    alert('成功上传文件： ' + file.name );
+                    var str = $("#sucFile").text();
+                    $("#sucFile").text(str + file.name + ";");
+
+                    //alert($("#hiddenFileAddress").val());
+                }
+            });
+        });
+
+    </script>
+    <style>
+        body {
+            background: #EDF1F9;
+            font-family: "微软雅黑"；;
+        }
+
+        form {
+            width: 100%;
+            /*border:1px solid red;*/
+        }
+
+        .main {
+            /*border:1px solid red;*/
+            margin: 3% auto;
+            width: 100%;
+            height: 440px;
+        }
+
+        .gru {
+            /*border:1px solid red;*/
+        }
+
+            .gru label {
+                float: left;
+                margin: 0.5% 0.5% auto;
+            }
+
+            .gru input, textarea {
+                width: 90%;
+            }
+
+        #sendNow {
+            float: right;
+            margin: 5px 5% auto;
+            display: block;
+        }
+
+        .sendbtn {
+            background: #9BDBF0;
+            margin: 0 0 10px 0;
+            width: 100%;
+            height: 40px;
+        }
+
+        #statusSend {
+            color: red;
+            float: right;
+            margin: 7px auto;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid ">
+        <div class=" main">
+            <div class="sendbtn">
+                <button class="btn" type="submit" id="sendNow">发送</button>
+                <label id="statusSend">邮件发送中。。。</label>
+            </div>
+            <div class="gru">
+                <label>发送邮箱</label>
+                <input type="text" name="sendEmail" id="sendEmail" placeholder="请输入发送邮箱" />
+            </div>
+            <div class="gru">
+                <label>邮箱密码</label>
+                <input type="password" name="pwd" id="pwd" placeholder="请输入邮箱密码" />
+            </div>
+            <div class="gru">
+                <label>接收邮箱</label>
+                <input type="text" name="receiveEmail" id="receiveEmail" placeholder="请输入接收邮箱" />
+            </div>
+            <div class="gru">
+                <label>&nbsp;主&nbsp;&nbsp;&nbsp;&nbsp;题&nbsp;&nbsp;</label>
+                <input type="text" name="title" id="title" placeholder="请输入主题" />
+            </div>
+            <div class="gru">
+                <label>&nbsp;正&nbsp;&nbsp;&nbsp;&nbsp;文&nbsp;&nbsp;</label>
+                <textarea name="content" id="content" placeholder="邮件正文" rows="12"></textarea>
+            </div>
+        </div>
+        <div>
+            <div class="hidden">
+                <input type="hidden" name="hiddenFileAddress" id="hiddenFileAddress" />
+            </div>
+            <input type="hidden" name="hiddenFileAddress" id="hiddenFileAddress" />
+            <label id="sucFile">您已经上传文件：</label>
+
+            <input type="file" id="file_upload" name="file_upload" /><label style="color:#ff0000">文件不能超过10MB哦~~如有需要请转邮箱发送哦 <a href="https://mail.qq.com/cgi-bin/loginpage">QQ邮箱</a></label>
+        </div>
+    </div>
+</body>
+</html>

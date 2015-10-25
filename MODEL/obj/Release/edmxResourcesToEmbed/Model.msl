@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FinalModelStoreContainer" CdmEntityContainer="FinalEntities1">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="FinalModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemMessages">
+      <EntityTypeMapping TypeName="FinalModel.SystemMessage">
+        <MappingFragment StoreEntitySet="SystemMessage">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SendId" ColumnName="SendId" />
+          <ScalarProperty Name="ReceiveId" ColumnName="ReceiveId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Atachment" ColumnName="Atachment" />
+          <ScalarProperty Name="SendTime" ColumnName="SendTime" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Abnormal">
+      <EntityTypeMapping TypeName="FinalModel.T_Abnormal">
+        <MappingFragment StoreEntitySet="T_Abnormal">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="ACtion" ColumnName="ACtion" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_AnswerSheet">
+      <EntityTypeMapping TypeName="FinalModel.T_AnswerSheet">
+        <MappingFragment StoreEntitySet="T_AnswerSheet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="InterviewerID" ColumnName="InterviewerID" />
+          <ScalarProperty Name="PaperID" ColumnName="PaperID" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_AnswerSheetComment">
+      <EntityTypeMapping TypeName="FinalModel.T_AnswerSheetComment">
+        <MappingFragment StoreEntitySet="T_AnswerSheetComment">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AnswerSheetID" ColumnName="AnswerSheetID" />
+          <ScalarProperty Name="RaterID" ColumnName="RaterID" />
+          <ScalarProperty Name="CommentContent" ColumnName="CommentContent" />
+          <ScalarProperty Name="UserCom" ColumnName="UserCom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_BriefAnswerSheet">
+      <EntityTypeMapping TypeName="FinalModel.T_BriefAnswerSheet">
+        <MappingFragment StoreEntitySet="T_BriefAnswerSheet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AnswerSheetID" ColumnName="AnswerSheetID" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_BriefScore">
+      <EntityTypeMapping TypeName="FinalModel.T_BriefScore">
+        <MappingFragment StoreEntitySet="T_BriefScore">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BriefAnswerSheetID" ColumnName="BriefAnswerSheetID" />
+          <ScalarProperty Name="PaperRaterID" ColumnName="PaperRaterID" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="UserB" ColumnName="UserB" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_ChoiceAnswerSheet">
+      <EntityTypeMapping TypeName="FinalModel.T_ChoiceAnswerSheet">
+        <MappingFragment StoreEntitySet="T_ChoiceAnswerSheet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AnswerSheetID" ColumnName="AnswerSheetID" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Department">
+      <EntityTypeMapping TypeName="FinalModel.T_Department">
+        <MappingFragment StoreEntitySet="T_Department">
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_InterviewerInfo">
+      <EntityTypeMapping TypeName="FinalModel.T_InterviewerInfo">
+        <MappingFragment StoreEntitySet="T_InterviewerInfo">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Academy" ColumnName="Academy" />
+          <ScalarProperty Name="Major" ColumnName="Major" />
+          <ScalarProperty Name="Class" ColumnName="Class" />
+          <ScalarProperty Name="QQ" ColumnName="QQ" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="TelNum" ColumnName="TelNum" />
+          <ScalarProperty Name="LearningExperience" ColumnName="LearningExperience" />
+          <ScalarProperty Name="SelfEvaluation" ColumnName="SelfEvaluation" />
+          <ScalarProperty Name="IsRequestTech" ColumnName="IsRequestTech" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_MemberInformation">
+      <EntityTypeMapping TypeName="FinalModel.T_MemberInformation">
+        <MappingFragment StoreEntitySet="T_MemberInformation">
+          <ScalarProperty Name="StuNum" ColumnName="StuNum" />
+          <ScalarProperty Name="StuName" ColumnName="StuName" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="QQNum" ColumnName="QQNum" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LoginPwd" ColumnName="LoginPwd" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+          <ScalarProperty Name="Class" ColumnName="Class" />
+          <ScalarProperty Name="JoinTime" ColumnName="JoinTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="Major" ColumnName="Major" />
+          <ScalarProperty Name="Counselor" ColumnName="Counselor" />
+          <ScalarProperty Name="HeadTeacher" ColumnName="HeadTeacher" />
+          <ScalarProperty Name="UndergraduateTutor" ColumnName="UndergraduateTutor" />
+          <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
+          <ScalarProperty Name="HomPhoneNumber" ColumnName="HomPhoneNumber" />
+          <ScalarProperty Name="FamilyAddress" ColumnName="FamilyAddress" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="TechnicalLevel" ColumnName="TechnicalLevel" />
+          <ScalarProperty Name="StudyGuideNumber" ColumnName="StudyGuideNumber" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="Sign" ColumnName="Sign" />
+          <ScalarProperty Name="OtheInfor" ColumnName="OtheInfor" />
+          <ScalarProperty Name="SecretShow" ColumnName="SecretShow" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_OgnizationAct">
+      <EntityTypeMapping TypeName="FinalModel.T_OgnizationAct">
+        <MappingFragment StoreEntitySet="T_OgnizationAct">
+          <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+          <ScalarProperty Name="RoleActor" ColumnName="RoleActor" />
+          <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_OnDuty">
+      <EntityTypeMapping TypeName="FinalModel.T_OnDuty">
+        <MappingFragment StoreEntitySet="T_OnDuty">
+          <ScalarProperty Name="StuNum" ColumnName="StuNum" />
+          <ScalarProperty Name="Week" ColumnName="Week" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Organization">
+      <EntityTypeMapping TypeName="FinalModel.T_Organization">
+        <MappingFragment StoreEntitySet="T_Organization">
+          <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+          <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Paper">
+      <EntityTypeMapping TypeName="FinalModel.T_Paper">
+        <MappingFragment StoreEntitySet="T_Paper">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PaperName" ColumnName="PaperName" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+          <ScalarProperty Name="IsPublished" ColumnName="IsPublished" />
+          <ScalarProperty Name="typeId" ColumnName="typeId" />
+          <ScalarProperty Name="PaperProducerID" ColumnName="PaperProducerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_PaperQuestion">
+      <EntityTypeMapping TypeName="FinalModel.T_PaperQuestion">
+        <MappingFragment StoreEntitySet="T_PaperQuestion">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PaperID" ColumnName="PaperID" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Permission">
+      <EntityTypeMapping TypeName="FinalModel.T_Permission">
+        <MappingFragment StoreEntitySet="T_Permission">
+          <ScalarProperty Name="PerId" ColumnName="PerId" />
+          <ScalarProperty Name="PerName" ColumnName="PerName" />
+          <ScalarProperty Name="PerParent" ColumnName="PerParent" />
+          <ScalarProperty Name="PerAreaName" ColumnName="PerAreaName" />
+          <ScalarProperty Name="PerController" ColumnName="PerController" />
+          <ScalarProperty Name="PerActionName" ColumnName="PerActionName" />
+          <ScalarProperty Name="PerFormMethod" ColumnName="PerFormMethod" />
+          <ScalarProperty Name="PerIsShow" ColumnName="PerIsShow" />
+          <ScalarProperty Name="PerAddTime" ColumnName="PerAddTime" />
+          <ScalarProperty Name="PerIco" ColumnName="PerIco" />
+          <ScalarProperty Name="IsCommon" ColumnName="IsCommon" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="bpx" ColumnName="bpx" />
+          <ScalarProperty Name="bpy" ColumnName="bpy" />
+          <ScalarProperty Name="perExplain" ColumnName="perExplain" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_ProjectInformation">
+      <EntityTypeMapping TypeName="FinalModel.T_ProjectInformation">
+        <MappingFragment StoreEntitySet="T_ProjectInformation">
+          <ScalarProperty Name="ProjId" ColumnName="ProjId" />
+          <ScalarProperty Name="ProjTypeId" ColumnName="ProjTypeId" />
+          <ScalarProperty Name="ProjName" ColumnName="ProjName" />
+          <ScalarProperty Name="ProjLeader" ColumnName="ProjLeader" />
+          <ScalarProperty Name="ProjPublisher" ColumnName="ProjPublisher" />
+          <ScalarProperty Name="ProjStartTime" ColumnName="ProjStartTime" />
+          <ScalarProperty Name="ExFinishiTime" ColumnName="ExFinishiTime" />
+          <ScalarProperty Name="AcFinishiTime" ColumnName="AcFinishiTime" />
+          <ScalarProperty Name="ProjProfile" ColumnName="ProjProfile" />
+          <ScalarProperty Name="ProjPay" ColumnName="ProjPay" />
+          <ScalarProperty Name="ProjIncome" ColumnName="ProjIncome" />
+          <ScalarProperty Name="ProjMark" ColumnName="ProjMark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_ProjectParticipation">
+      <EntityTypeMapping TypeName="FinalModel.T_ProjectParticipation">
+        <MappingFragment StoreEntitySet="T_ProjectParticipation">
+          <ScalarProperty Name="ProjId" ColumnName="ProjId" />
+          <ScalarProperty Name="ProjReceiver" ColumnName="ProjReceiver" />
+          <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_ProjectType">
+      <EntityTypeMapping TypeName="FinalModel.T_ProjectType">
+        <MappingFragment StoreEntitySet="T_ProjectType">
+          <ScalarProperty Name="ProjTypeId" ColumnName="ProjTypeId" />
+          <ScalarProperty Name="ProjTypeName" ColumnName="ProjTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_ProjPhase">
+      <EntityTypeMapping TypeName="FinalModel.T_ProjPhase">
+        <MappingFragment StoreEntitySet="T_ProjPhase">
+          <ScalarProperty Name="ProjPhaseId" ColumnName="ProjPhaseId" />
+          <ScalarProperty Name="ProjPhaseName" ColumnName="ProjPhaseName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Question">
+      <EntityTypeMapping TypeName="FinalModel.T_Question">
+        <MappingFragment StoreEntitySet="T_Question">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="QuestionContent" ColumnName="QuestionContent" />
+          <ScalarProperty Name="QuestionTypeID" ColumnName="QuestionTypeID" />
+          <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+          <ScalarProperty Name="QuestionGrade" ColumnName="QuestionGrade" />
+          <ScalarProperty Name="QuestionTag" ColumnName="QuestionTag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_QuestionOption">
+      <EntityTypeMapping TypeName="FinalModel.T_QuestionOption">
+        <MappingFragment StoreEntitySet="T_QuestionOption">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="OptionID" ColumnName="OptionID" />
+          <ScalarProperty Name="OptionContent" ColumnName="OptionContent" />
+          <ScalarProperty Name="OptionWeight" ColumnName="OptionWeight" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_QuestionType">
+      <EntityTypeMapping TypeName="FinalModel.T_QuestionType">
+        <MappingFragment StoreEntitySet="T_QuestionType">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="QuestionTypeName" ColumnName="QuestionTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_Role">
+      <EntityTypeMapping TypeName="FinalModel.T_Role">
+        <MappingFragment StoreEntitySet="T_Role">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_RoleAct">
+      <EntityTypeMapping TypeName="FinalModel.T_RoleAct">
+        <MappingFragment StoreEntitySet="T_RoleAct">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleActor" ColumnName="RoleActor" />
+          <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_RolePermission">
+      <EntityTypeMapping TypeName="FinalModel.T_RolePermission">
+        <MappingFragment StoreEntitySet="T_RolePermission">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="PerId" ColumnName="PerId" />
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+          <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_TaskInformation">
+      <EntityTypeMapping TypeName="FinalModel.T_TaskInformation">
+        <MappingFragment StoreEntitySet="T_TaskInformation">
+          <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+          <ScalarProperty Name="TaskSender" ColumnName="TaskSender" />
+          <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+          <ScalarProperty Name="TaskTypeId" ColumnName="TaskTypeId" />
+          <ScalarProperty Name="TaskContent" ColumnName="TaskContent" />
+          <ScalarProperty Name="TaskBegTime" ColumnName="TaskBegTime" />
+          <ScalarProperty Name="TaskEndTime" ColumnName="TaskEndTime" />
+          <ScalarProperty Name="TaskFinishTime" ColumnName="TaskFinishTime" />
+          <ScalarProperty Name="ProjId" ColumnName="ProjId" />
+          <ScalarProperty Name="ProjPhaseId" ColumnName="ProjPhaseId" />
+          <ScalarProperty Name="TaskAttachmentPath" ColumnName="TaskAttachmentPath" />
+          <ScalarProperty Name="StandbyB" ColumnName="StandbyB" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_TaskParticipation">
+      <EntityTypeMapping TypeName="FinalModel.T_TaskParticipation">
+        <MappingFragment StoreEntitySet="T_TaskParticipation">
+          <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+          <ScalarProperty Name="TaskReceiver" ColumnName="TaskReceiver" />
+          <ScalarProperty Name="TaskGrade" ColumnName="TaskGrade" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+          <ScalarProperty Name="IsComplete" ColumnName="IsComplete" />
+          <ScalarProperty Name="TaskResponse" ColumnName="TaskResponse" />
+          <ScalarProperty Name="TaskSubmition" ColumnName="TaskSubmition" />
+          <ScalarProperty Name="TaskFinishTime" ColumnName="TaskFinishTime" />
+          <ScalarProperty Name="TaskAttachmentPath" ColumnName="TaskAttachmentPath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_TaskType">
+      <EntityTypeMapping TypeName="FinalModel.T_TaskType">
+        <MappingFragment StoreEntitySet="T_TaskType">
+          <ScalarProperty Name="TaskTypeId" ColumnName="TaskTypeId" />
+          <ScalarProperty Name="TaskTypeName" ColumnName="TaskTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_TeacherInfo">
+      <EntityTypeMapping TypeName="FinalModel.T_TeacherInfo">
+        <MappingFragment StoreEntitySet="T_TeacherInfo">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_TechnicaLevel">
+      <EntityTypeMapping TypeName="FinalModel.T_TechnicaLevel">
+        <MappingFragment StoreEntitySet="T_TechnicaLevel">
+          <ScalarProperty Name="TechLevelId" ColumnName="TechLevelId" />
+          <ScalarProperty Name="TechLevelName" ColumnName="TechLevelName" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Message">
+      <EntityTypeMapping TypeName="FinalModel.Tbl_Message">
+        <MappingFragment StoreEntitySet="Tbl_Message">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="SendTime" ColumnName="SendTime" />
+          <ScalarProperty Name="Atachment" ColumnName="Atachment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_User_Message">
+      <EntityTypeMapping TypeName="FinalModel.Tbl_User_Message">
+        <MappingFragment StoreEntitySet="Tbl_User_Message">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ReceiveId" ColumnName="ReceiveId" />
+          <ScalarProperty Name="SendId" ColumnName="SendId" />
+          <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+          <ScalarProperty Name="ReceiveIsDelete" ColumnName="ReceiveIsDelete" />
+          <ScalarProperty Name="IsDraft" ColumnName="IsDraft" />
+          <ScalarProperty Name="SendIsDelete" ColumnName="SendIsDelete" />
+          <ScalarProperty Name="SendTrueDel" ColumnName="SendTrueDel" />
+          <ScalarProperty Name="RecTrueDel" ColumnName="RecTrueDel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_IsShow">
+      <EntityTypeMapping TypeName="FinalModel.T_IsShow">
+        <MappingFragment StoreEntitySet="T_IsShow">
+          <ScalarProperty Name="ShowId" ColumnName="ShowId" />
+          <ScalarProperty Name="familyTel" ColumnName="familyTel" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="FinalModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="FinalModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="FinalModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="FinalModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinalModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="FinalModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FinalModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="FinalModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="FinalModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

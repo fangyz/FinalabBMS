@@ -1,0 +1,90 @@
+﻿@{
+    Layout = null;
+}
+
+<!--这个页面是成员信息-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/PersonalManger/CSS/DepartmentInfo.css" rel="stylesheet" />
+    <script src="~/bootstrap/jquery/jquery-1.11.3.js"></script>
+    <script src="~/Areas/PersonalManger/JS/DepartmentInfo.js"></script>
+    <title>部门成员</title>
+    <script>
+        //select改变事件函数
+        function check() {
+            $.Init();
+        }
+    </script>
+</head>
+<body style="font-family: 'Microsoft YaHei'; background-color: rgb(237,241,249)">
+    <div style="margin: 20px auto;width:1056px;background-color:white">
+    <input type="hidden" value="IsPostBack" id="IsPostBack" />
+    <div class="head">
+        <div class="head-nav">
+            <div class="head-nav-img"></div>
+            <div class="head-nav-text">成员信息</div>
+        </div>
+    </div>
+    @*------------------------------------中间搜索框-----------------------------------*@
+    <div class="toolbar">
+        <div class="search">
+            <button class="ser-btn">职位</button>
+            <div id="div-input">
+                <select id="input-text" style="border: 1px solid none; width: 152px" onchange="check()">
+                    @foreach (MODEL.T_Department dep in ViewBag.department as List<MODEL.T_Department>)
+                    {
+                        <option value="@dep.DepartmentId">@dep.DepartmentName</option>
+                    }
+                    @if (ViewBag.department.Count > 1)
+                    {
+                        <option value="10000">实习生</option>/*特定数值代表实习生*/
+                        <option value="10010">技术指导</option>/*特定数值代表技术指导*/
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+    @* -------------------表格----------------------------------------------------------*@
+    <div class="table-self">
+        <table class="table-hover" id="table" style="font-family: 'Microsoft YaHei'">
+            <thead>
+                <tr class="thead-tr">
+                    <th id="head-th-first"></th>
+                    <th>学号</th>
+                    <th>姓名</th>
+                    <th>联系方式</th>
+                    <th>专业</th>
+                    <th>所属部门</th>
+                    <th>年级 </th>
+                </tr>
+            </thead>
+            <tbody id="body">
+            </tbody>
+        </table>
+    </div>
+    @*----------------------------------分页条--------------------------------------------------------------------*@
+    <div style="width: 1056px; height: 35px; border: 1px RGB(166,199,203) solid; background-color: rgb(215,232,234)">
+        <select class="select-pagesize ">
+            <option>10</option>
+        </select>
+        <div class="div-line"></div>
+        <a class="a-first" href="###"></a>
+        <a class="a-pre" href="###"></a>
+        <label class="lable-text">第</label>
+        <span class="lable-page"></span>
+        <label class="lable-text" style="margin-left: 5px">页</label>
+        <label class="lable-text" id="lable-page-sum" style="margin-left: 5px"></label>
+        <a class="a-next" href="###"></a>
+        <a class="a-last" href="###"></a>
+        <div class="div-line"></div>
+        <a class="a-refresh" href="###"></a>
+        <label class="lable-text-right">显示1到10，总计15条记录</label>
+    </div>
+        </div>
+</body>
+</html>

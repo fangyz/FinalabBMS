@@ -1,0 +1,131 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddStu</title>
+    <!-- bootstrap的CSS文件-->
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <style>
+        .file {
+            position: relative;
+            display: inline-block;
+            background: #337AB7;
+            border: 1px solid #99D3F5;
+            border-radius: 4px;
+            padding: 4px 12px;
+            overflow: hidden;
+            color: #fff;
+            text-decoration: none;
+            text-indent: 0;
+            line-height: 26px;
+            width:200px;
+            text-align:center;
+        }
+
+            .file input {
+                position: absolute;
+                font-size: 100px;
+                right: 0;
+                top: 0;
+                opacity: 0;
+            }
+
+            .file:hover {
+                background: #1568AF;
+                border-color: #78C3F3;
+                color: #fff;
+                text-decoration: none;
+            }
+    </style>
+    <script type="text/javascript">
+        function change() {
+            var ef = document.getElementById("FileUpload");
+            var en = document.getElementById("showtext");
+        en.innerText = ef.value.substring(ef.value.lastIndexOf("\\") + 1);
+    };
+    </script>
+</head>
+<body style="font-family: 'Microsoft YaHei'; background-color: #EDF1F9;">
+
+    <div class="panel panel-primary" style="width:800px;height:400px;margin:30px auto;">
+        <div class="panel-heading">
+            <h3 class="panel-title">新增成员</h3>
+        </div>
+        <div class="panel-body">
+            <form id="InformationForm" class="form-horizontal" method="post" action="/PersonalManger/CheckMember/AddStuData">
+                <div class="form-group" style="width:720px;margin-top:0 auto;">
+                        <label  class="col-sm-2 control-label">姓名:</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="StuName" placeholder="姓名" required="required" maxlength="6">
+                        </div>
+                        <label  class="col-sm-2 control-label">学号:</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="num" placeholder="学号" required="required">
+                        </div>
+                    </div>
+                <div class="form-group" style="width:720px;margin-top:0 auto;">
+                    <label  class="col-sm-2 control-label">登陆密码:</label>
+                    <div class="col-sm-4">
+                        <input type="password" class="form-control" name="pwd" placeholder="登陆密码" required="required">
+                    </div>
+                    <label for="Gender" class="col-sm-2 control-label">性别:</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" name="gender">
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </div>
+                </div><br />
+                <input type="submit" id="save" class="btn btn-info" style="width: 185px;height:38px;margin-left:300px;" value="保存" />
+            </form>
+            <div>
+                <div class="row">
+                    <h3 style="text-align:center;color:#ff6a00">批量信息导入</h3>
+                    <label class="col-md-1"></label>
+                    <h4 class="col-md-5">请先下载批量新增的Excel模板：</h4>
+                    <label class="col-md-2"></label>
+                    @using (Html.BeginForm("GetExcel", "CheckMember", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <input type="submit" value="下载excel" class="btn btn-primary col-md-3" />
+                    }
+                    <label class="col-md-1"></label>
+                </div>
+                <div>
+                    <!--只有设置了enctype="multipart/form-data"才能上传文件-->
+                    @using (Html.BeginForm("BatchAdd", "CheckMember", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="row">
+                            <label class="col-md-1"></label>
+                            <h4 class="col-md-5">请您选择批量导入的Excel表：</h4>
+                            <label class="col-md-2" id="showtext" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"></label>
+                            <a href="javascript:;" class="file">
+                                选择文件
+                                <input id="FileUpload" type="file" name="files" style="height: 26px;width: 200px; opacity: 0;" onchange="change();"/>
+                            </a>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-1"></label>
+                            <h4 class="col-md-5">请您开始导入Excel表：</h4>
+                            <label class="col-md-2"></label>
+                            <input id="btnImport" type="submit" value="批量导入" class="btn btn-primary col-md-3" />
+                            <label class="col-md-1"></label>
+                        </div>
+                    }
+                </div>
+            </div>
+            <iframe name="submitIform" style="display:none;"></iframe>
+        </div>
+    </div>
+
+
+
+
+    
+</body>
+</html>

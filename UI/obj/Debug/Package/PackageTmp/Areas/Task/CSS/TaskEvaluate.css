@@ -1,0 +1,227 @@
+﻿html, body {
+    border: 0px;
+    margin: 0px auto;
+    padding: 0px;
+    font-family: 'Microsoft YaHei','宋体';
+    font-size: 13px;
+    background-color: #EDF1F9;
+}
+
+/**********************主面板*******/
+.main_panel {
+    width: 1085px;
+    margin: auto;
+    margin-top: 22px;
+    padding: 0px;
+}
+
+/**********************标题栏************/
+.title_panel {
+    float: none;
+    margin: 0px auto;
+    padding: 0px;
+    width: 1083px;
+    height: 34px;
+    background-color: #D7E8EA;
+    border: 1px solid #A6C7CB;
+    border-bottom: 0px;
+}
+
+.title_image {
+    float: left;
+    margin-top: 6px;
+    margin-left: 13px;
+    width: 30px;
+    height: 22px;
+    background-image: url('../Images/releasehistory.png');
+    background-position: 0px 0px;
+}
+
+.title_text {
+    float: left;
+    height: 35px;
+    margin-left: 5px;
+    line-height: 35px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/***********************内容*************/
+.content_panel {
+    float: left;
+    width: 1085px;
+    margin: 0px auto;
+    padding: 0px;
+    background-color: #fff;
+}
+
+    .content_panel_ul {
+        float: left;
+        margin: 0px;
+        padding: 0px;
+        width: 1084px;
+        border: 1px solid #A6C7CB;
+        border-bottom: 0px;
+        border-left: 0px;
+        list-style: none;
+    }
+
+        .content_panel_ul li {
+            float: left;
+            margin: 0px;
+            padding: 0px;
+            min-height: 34px;
+            width: 152px;
+            line-height: 34px;
+            border: 0px;
+            border-left: 1px solid #A6C7CB;
+            list-style: none;
+            text-align: center;
+            font-size: 14px;
+            max-height:34px;
+            overflow:hidden;
+        }
+
+.title_ul {
+    font-size: 16px;
+    color: #27B8B8;
+    font-weight: 700;
+}
+
+.coutent_ul {
+}
+    /* 未被访问的链接*/
+    .coutent_ul a:link {
+        color: #FF748D;
+        text-decoration: none;
+    }
+    /* 已被访问过的链接    */
+    .coutent_ul a:visited {
+        color: #FF748D;
+        text-decoration: none;
+    }
+    /* 鼠标悬浮在上的链接  */
+    .coutent_ul a:hover {
+        color: #27B8A5;
+        text-decoration: underline;
+    }
+    /* 鼠标点中激活链接    */
+    .coutent_ul a:active {
+        color: #27B8A5;
+        text-decoration: none;
+    }
+/******************按钮********/
+.li_btn {
+    width: 74px;
+    height: 26px;
+    margin: 0px auto;
+    margin-top: 4px;
+    padding: 0px;
+    border-radius: 5px;
+    background-color: #FF748B;
+    color: #fff;
+    line-height: 26px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+    .li_btn:hover {
+        background-color: #C84E5C;
+    }
+    .li_btn:active {
+        background-color: #FF748B;
+    }
+/***********评语li**********/
+.response_ul {
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    width: 1083px;
+    height:0px;
+    border: 1px solid #A6C7CB;
+    border-bottom: 0px;
+    border-top:0px;
+    overflow: hidden;
+    list-style: none;
+}
+.response_ul li{
+    width: 100%;
+    overflow: hidden;
+    text-align:center;
+    height:34px;
+    line-height:34px;
+}
+.txt_response {
+    width: 99%;
+    font-size: 15px;
+    line-height: 21px;
+}
+
+/***********************页码条***********/
+.page_bar_panel {
+    float: left;
+    margin: 0px auto;
+    padding: 0px;
+    width: 1083px;
+    height: 36px;
+    margin: 0px auto;
+    background-color: #D7E8EA;
+    font-size: 14px;
+    color: #27B8A5;
+    line-height: 38px;
+    border: 1px solid #A6C7CB;
+}
+
+.page_bar_task_count {
+    color: #FF748B;
+}
+
+/* 未被访问的链接*/
+.page_bar_panel a:link {
+    color: #FF748D;
+    text-decoration: none;
+}
+/* 已被访问过的链接    */
+.page_bar_panel a:visited {
+    color: #FF748D;
+    text-decoration: none;
+}
+/* 鼠标悬浮在上的链接  */
+.page_bar_panel a:hover {
+    color: #27B8A5;
+    text-decoration: underline;
+}
+/* 鼠标点中激活链接    */
+.page_bar_panel a:active {
+    color: #27B8A5;
+    text-decoration: none;
+}
+
+
+.page_bar_slt {
+    border: 1px solid #27B8A5;
+    height: 21px;
+}
+.btn {
+    float:right;
+    margin-right:33px;
+    margin-top:4px;
+    width:78px;
+    height:26px;
+    border:1px solid #DB5F6D;
+    border-radius:5px;
+    background-color:#FF748B;
+    color:#fff;
+    line-height:26px;
+    text-align:center;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+}
+    .btn:hover {
+        background-color:#C84E5C;
+    }
+    .btn:active {
+        background-color:#FF748B;
+    }
