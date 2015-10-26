@@ -5,3 +5,10 @@ F:\实验室网站\FinalabBMS\IDAL\bin\Debug\MODEL.pdb
 F:\实验室网站\FinalabBMS\IDAL\obj\Debug\IDAL.csprojResolveAssemblyReference.cache
 F:\实验室网站\FinalabBMS\IDAL\obj\Debug\IDAL.dll
 F:\实验室网站\FinalabBMS\IDAL\obj\Debug\IDAL.pdb
+F:\FINAL\final\FinalabBMS-1\IDAL\bin\Debug\IDAL.dll
+F:\FINAL\final\FinalabBMS-1\IDAL\bin\Debug\IDAL.pdb
+F:\FINAL\final\FinalabBMS-1\IDAL\bin\Debug\MODEL.dll
+F:\FINAL\final\FinalabBMS-1\IDAL\bin\Debug\MODEL.pdb
+F:\FINAL\final\FinalabBMS-1\IDAL\obj\Debug\IDAL.csprojResolveAssemblyReference.cache
+F:\FINAL\final\FinalabBMS-1\IDAL\obj\Debug\IDAL.dll
+F:\FINAL\final\FinalabBMS-1\IDAL\obj\Debug\IDAL.pdb

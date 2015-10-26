@@ -12,3 +12,7 @@ F:\实验室网站\FinalabBMS\Common\bin\Debug\Common.pdb
 F:\实验室网站\FinalabBMS\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
 F:\实验室网站\FinalabBMS\Common\obj\Debug\Common.dll
 F:\实验室网站\FinalabBMS\Common\obj\Debug\Common.pdb
+F:\FINAL\final\FinalabBMS-1\Common\bin\Debug\Common.dll
+F:\FINAL\final\FinalabBMS-1\Common\bin\Debug\Common.pdb
+F:\FINAL\final\FinalabBMS-1\Common\obj\Debug\Common.dll
+F:\FINAL\final\FinalabBMS-1\Common\obj\Debug\Common.pdb
