@@ -3,3 +3,8 @@ F:\实验室网站\FinalabBMS\UI\bin\Permission.pdb
 F:\实验室网站\FinalabBMS\Permission\obj\Debug\Permission.csprojResolveAssemblyReference.cache
 F:\实验室网站\FinalabBMS\Permission\obj\Debug\Permission.dll
 F:\实验室网站\FinalabBMS\Permission\obj\Debug\Permission.pdb
+F:\FINAL\final\FinalabBMS-1\UI\bin\Permission.dll
+F:\FINAL\final\FinalabBMS-1\UI\bin\Permission.pdb
+F:\FINAL\final\FinalabBMS-1\Permission\obj\Debug\Permission.csprojResolveAssemblyReference.cache
+F:\FINAL\final\FinalabBMS-1\Permission\obj\Debug\Permission.dll
+F:\FINAL\final\FinalabBMS-1\Permission\obj\Debug\Permission.pdb

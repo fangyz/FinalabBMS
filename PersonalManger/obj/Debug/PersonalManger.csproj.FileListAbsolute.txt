@@ -3,3 +3,8 @@ F:\实验室网站\FinalabBMS\UI\bin\PersonalManger.pdb
 F:\实验室网站\FinalabBMS\PersonalManger\obj\Debug\PersonalManger.csprojResolveAssemblyReference.cache
 F:\实验室网站\FinalabBMS\PersonalManger\obj\Debug\PersonalManger.dll
 F:\实验室网站\FinalabBMS\PersonalManger\obj\Debug\PersonalManger.pdb
+F:\FINAL\final\FinalabBMS-1\UI\bin\PersonalManger.dll
+F:\FINAL\final\FinalabBMS-1\UI\bin\PersonalManger.pdb
+F:\FINAL\final\FinalabBMS-1\PersonalManger\obj\Debug\PersonalManger.csprojResolveAssemblyReference.cache
+F:\FINAL\final\FinalabBMS-1\PersonalManger\obj\Debug\PersonalManger.dll
+F:\FINAL\final\FinalabBMS-1\PersonalManger\obj\Debug\PersonalManger.pdb
