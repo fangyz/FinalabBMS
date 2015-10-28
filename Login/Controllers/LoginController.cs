@@ -49,7 +49,7 @@ namespace Login.Controllers
         }
         #endregion
         #region 1.3登陆，表单提交过来的数据+public ActionResult Login(MODEL.ViewModel.LoginUser user)
-         [Common.Attributes.Skip]
+        [Common.Attributes.Skip]
         public ActionResult Login(MODEL.ViewModel.LoginUser user)
         {
             //检查模型绑定器能否成功绑定“Date”属性，如果数据不合法使用ModelState.AddModelError()添加错误消息。如果没有任何错误
@@ -68,27 +68,27 @@ namespace Login.Controllers
                 if (vCode.Equals(vCodeSer))
                 {
                     //登陆成功进入主页
-                    if (OperateContext.Current.UserLogin(user))
+                    if (OperateContext.Current.UserLogin(user, vCode) == "ok")
                     {
                         return OperateContext.Current.RedirectAjax("ok", null, null, "/Login/Login/MainPage");
                     }
-                    else
+
+                    if (OperateContext.Current.UserLogin(user, vCode) == "noAccount")
                     {
-                        return OperateContext.Current.RedirectAjax("err", "登陆失败", null, null);
+                        return OperateContext.Current.RedirectAjax("err", "账号错误！", null, null);
+                    }
+                    if (OperateContext.Current.UserLogin(user, vCode) == "PwdErr")
+                    {
+                        return OperateContext.Current.RedirectAjax("err", "密码错误！", null, null);
                     }
                 }
                 else
                 {
                     return OperateContext.Current.RedirectAjax("err", "验证码错误", null, null);
                 }
-                //如果登入成功，再判断验证码是否正确
-                
             }
-            else
-            {
-                return OperateContext.Current.RedirectAjax("err", "登陆失败", null, null);
-            }
-        } 
+            return OperateContext.Current.RedirectAjax("err", "登陆失败", null, null);
+        }
         #endregion
         #region 1.4登陆成功进入主页+ public ActionResult MainPage()
         public ActionResult MainPage()
@@ -154,7 +154,7 @@ namespace Login.Controllers
                 string mail=mem[0].Email;
                 if(!string.IsNullOrEmpty(mail)){
                     string href = "http://www.finalab.cn/login/login/ModifyPwd";
-                    if (SendEmail(mail, "修改密码", href, "1666196950@qq.com", "lrhLRH072131") == "ok")
+                    if (SendEmail(mail, "修改密码", href, "finalab@qq.com", "@lklb205") == "ok")
                     {
                         return Content("<script>alert('信息已发送到您的邮箱，请注意查看！');window.location='/Login/Login/Index'</script>");
                     }

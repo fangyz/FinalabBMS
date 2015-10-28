@@ -299,7 +299,6 @@
     left: 185px;
     z-index: 9997;
     overflow: hidden;
-    /*13,7,8*/
     /*background-image:url('../final/13.jpg');*/
     margin-bottom:0px;
 }
@@ -352,8 +351,8 @@
     text-align: center;
 }
 .mian_nav_li_close_btn {
-    width:14px;
-    height:14px;
+    width:25px;
+    height:25px;
     position:relative;
     left:76px;
     bottom:36px;

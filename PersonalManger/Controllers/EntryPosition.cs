@@ -123,7 +123,7 @@ namespace PersonalManger
             }
             if (perId == Entry.EntryMember)//录入正式成员
             {
-                filter = u => u.IsDelete == false && (u.StuNum.Contains(dtone)||u.StuNum.Contains(dttwo)) && (u.TechnicalLevel == TechnicalLevel.Student);
+                filter = u => u.IsDelete == false && (u.StuNum.Contains(dtone)||u.StuNum.Contains(dttwo)) && (u.TechnicalLevel == TechnicalLevel.Student)&& (u.T_RoleAct.Select(p => p.RoleId).Contains(Position.FullMember) == false);
             }
             List<MODEL.T_MemberInformation> memlist = new List<MODEL.T_MemberInformation>();
             memlist = OperateContext.Current.BLLSession.IMemberInformationBLL.GetListBy(filter).ToList();
@@ -135,7 +135,6 @@ namespace PersonalManger
 
         //开始录入数据
         #region 2.1得到选中的数据  ActionResult GetCheckedData()
-        [Common.Attributes.Skip]
         public ActionResult GetCheckedData()
         {
             DateTime dt = DateTime.Now;
@@ -276,17 +275,19 @@ namespace PersonalManger
                 }
             }
             if (perId == Entry.EntryMember)//录入正式成员
-            {
-                //还要修改技术水平里的数据
-                foreach (MODEL.T_MemberInformation mem in modifyMem)
-                {
-                    mem.TechnicalLevel = TechnicalLevel.FullMember;
-                    string[] pro =new string[]{"StuNum","TechnicalLevel"};
-                    OperateContext.Current.BLLSession.IMemberInformationBLL.Modify(mem, pro);
-                }
+            {  
                 if (OperatePosition(modifyMem, Position.FullMember))
                 {
-                    return true;
+                    //还要修改技术水平里的数据
+                    foreach (MODEL.T_MemberInformation mem in modifyMem)
+                    {
+                        mem.TechnicalLevel = TechnicalLevel.FullMember;
+                        string[] pro = new string[] { "StuNum", "TechnicalLevel" };
+                        if (OperateContext.Current.BLLSession.IMemberInformationBLL.Modify(mem, pro) > 0)
+                        {
+                            return true;
+                        }
+                    }
                 }
             }
             return false;
@@ -297,31 +298,24 @@ namespace PersonalManger
         public bool OperatePosition(List<MODEL.T_MemberInformation> memList, int roleId)
         {
             MODEL.T_RoleAct roleAct;
-            try
+            int count = 0;
+            foreach (MODEL.T_MemberInformation mem in memList)
             {
-                int count = 0;
-                foreach (MODEL.T_MemberInformation mem in memList)
+                //开始录入
+                roleAct = new MODEL.T_RoleAct();
+                roleAct.RoleId = roleId;
+                roleAct.RoleActor = mem.StuNum;
+                roleAct.IsDel = false;
+                if (OperateContext.Current.BLLSession.IRoleActBLL.Add(roleAct) > 0)
                 {
-                    //开始录入
-                    roleAct = new MODEL.T_RoleAct();
-                    roleAct.RoleId = roleId;
-                    roleAct.RoleActor = mem.StuNum;
-                    roleAct.IsDel = false;
-                    if (OperateContext.Current.BLLSession.IRoleActBLL.Add(roleAct) > 0)
-                    {
-                        count++;
-                    }
+                    count++;
                 }
-                if (count > 0)
-                    return true;
-                else
-                    return false;
             }
-            catch
-            {
+            if (count > 0)
+                return true;
+            else
                 return false;
-            }
-        } 
+        }
         #endregion
 
         #region 2.4为卸任职务的成员指定正式成员角色

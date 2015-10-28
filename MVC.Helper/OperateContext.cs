@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Security.Cryptography;
 
 namespace MVC.Helper
 {
@@ -136,35 +137,56 @@ namespace MVC.Helper
         }
 
 
-        #region 1.1判断用户登入，并获得用户的权限    bool UserLogin(MODEL.ViewModel.LoginUser usrPara)
+        #region 1.1判断用户登入，并获得用户的权限    string UserLogin(MODEL.ViewModel.LoginUser usrPara)
         /// <summary>
         /// 判断用户登录
         /// </summary>
         /// <param name="user"></param>
-        public bool UserLogin(MODEL.ViewModel.LoginUser user)
+        public string UserLogin(MODEL.ViewModel.LoginUser user, string vcode)
         {
             //应该到业务层查询
             MODEL.T_MemberInformation member = BLLSession.IMemberInformationBLL.GetListBy(u => u.StuNum == user.LoginName).FirstOrDefault();
-            //如果登陆成功
-            if (user != null&&user.Pwd==member.LoginPwd)
+            if (member == null)
             {
-                //Usr是当前用户对象
-                Usr = member;
-                //存入学号
-                Session[Admin_Stunum] = member.StuNum;
-                if (user.IsAlways)
-                {
-                    string strCookieValue = Common.SecurityHelper.EncryptUserInfo(user.LoginName);
-                    HttpCookie cookie = new HttpCookie("Admin_InfoKey", strCookieValue);
-                    cookie.Expires = DateTime.Now.AddDays(1);
-                    Response.Cookies.Add(cookie);
-                }
-                //2.2 查询当前用户的 权限，并将权限 存入 Session 中
-                UsrPermission = GetUserPermission(user.LoginName);
-                return true;
+                return "noAccount";
             }
-            return false;
-        } 
+            else
+            {
+                MD5 md = MD5CryptoServiceProvider.Create();
+                //对密码进行解密
+                //得到数据库里的密码与验证码加密后的数据
+                string s = member.LoginPwd + vcode;
+                byte[] btpwd = System.Text.Encoding.ASCII.GetBytes(s);
+                byte[] pwdSql = md.ComputeHash(btpwd);
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < pwdSql.Length; i++)
+                {
+                    sb.Append(pwdSql[i].ToString("x2"));
+                }
+                //再将得到的字符串与密码比较
+                if (sb.ToString() == user.Pwd)
+                {
+                    Usr = member;         //Usr是当前用户对象
+                    //存入学号
+                    Session[Admin_Stunum] = member.StuNum;
+                    if (user.IsAlways)
+                    {
+                        string strCookieValue = Common.SecurityHelper.EncryptUserInfo(user.LoginName);
+                        HttpCookie cookie = new HttpCookie("Admin_InfoKey", strCookieValue);
+                        cookie.Expires = DateTime.Now.AddDays(1);
+                        Response.Cookies.Add(cookie);
+                    }
+                    //2.2 查询当前用户的 权限，并将权限 存入 Session 中
+                    UsrPermission = GetUserPermission(user.LoginName);
+                    return "ok";
+                }
+                else
+                {
+                    return "PwdErr";
+                }
+
+            }
+        }
         #endregion
         #region 1.2 判断当前用户是否登陆 +bool IsLogin()
         /// <summary>

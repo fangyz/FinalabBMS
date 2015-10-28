@@ -1,4 +1,6 @@
-﻿window.onload = function () {
+﻿document.write("<script type='text/javascript' src='../JS/md5.js'></script>");
+
+window.onload = function () {
     //这3个是切换背景图片的
     document.getElementById('bgOne').onmouseover = function () {
         document.getElementById('bgOne').style.backgroundColor = "#D4D4D4";
@@ -39,7 +41,7 @@ function login() {
     } else {
         var remember = "off";
     }
-    
+ 
     var matchResult = true;
     if (LoginName == "" || pwd == "" || vCode == "") {
         alert("请确认是否有空缺项！");
@@ -55,10 +57,12 @@ function login() {
         matchResult = false;
     }
     if (matchResult == true) {
+        var t = vCode.toUpperCase();
+        var newpwd = hex_md5(pwd+ vCode);
         $.ajax({
             url: '/Login/Login/Login',
             type: 'post',
-            data: { "LoginName": userName, "Pwd": pwd, "VCode": vCode, "Remember": remember },
+            data: { "LoginName": userName, "Pwd": newpwd, "VCode": vCode, "Remember": remember },
             success: function (data) {
                 if (data.Statu == "ok") {
                     window.location = data.BackUrl;
@@ -66,7 +70,6 @@ function login() {
                 if (data.Statu == "nologin") {
                     alert("您还没有登陆，请登录！");
                     parent.location = data.BackUrl;
-
                 }
                 if (data.Statu == "nopermission") {
                     alert(jsonObj.Msg);

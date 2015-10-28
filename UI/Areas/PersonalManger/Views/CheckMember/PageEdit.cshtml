@@ -371,7 +371,6 @@
                                 {
                                     if (techLeval.TechLevelId == ViewBag.member.TechnicalLevel)
                                     {
-
                                         <option value="@techLeval.TechLevelId" selected="selected">@techLeval.TechLevelName</option>
                                     }
                                     else
@@ -385,11 +384,11 @@
                     <div class="form-group">
                         <label for="JoinTime" class="col-sm-2 control-label">加入时间:</label>
                         <div class="col-sm-4">
-                            <input type="text" value="@string.Format("{0:d}", ViewBag.member.JoinTime)" class="form-control" name="EndTime" readonly>
+                            <input type="text" value="@string.Format("{0:d}", ViewBag.member.JoinTime)" class="form-control" name="JoinTime" readonly>
                         </div>
                         <label for="EndTime" class="col-sm-2 control-label">退出时间:</label>
                         <div class="col-sm-4">
-                            <input type="text" value="无" class="form_datetime form-control" name="EndTime" readonly>
+                            <input type="text" value="" class="form_datetime form-control" name="EndTime" readonly>
                         </div>
                     </div>
                     <div class="form-group">
@@ -419,7 +418,7 @@
                         </div>
                         <label for="TechnicalGuideNumber" class="col-sm-2 control-label">组织:</label>
                         <div class="col-sm-4">
-                            <select class="form-control" name="">
+                            <select class="form-control" name="TechnicalGuideNumber">
                                 @foreach (MODEL.T_Organization organization in ViewBag.organization as List<MODEL.T_Organization>)
                                 {
                                     if (organization.OrganizationId == ViewBag.orgId)
@@ -440,37 +439,55 @@
                     <div class="form-group">
                         <label for="Department" class="col-sm-2 control-label">部门:</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" value="@ViewBag.depName" readonly>
+                            <select class="form-control" name="Department" disabled="disabled">
+                                @foreach (MODEL.T_Department dep in ViewBag.dep as List<MODEL.T_Department>)
+                                {
+                                    if (dep.DepartmentId == ViewBag.member.Department)
+                                    {
+                                        <option value="@dep.DepartmentId" selected="selected">@dep.DepartmentName</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@dep.DepartmentId">@dep.DepartmentName</option>
+                                    }
+                                }
+                            </select>               
                         </div>
                         <label for="TechnicaLevel" class="col-sm-2 control-label">技术层次:</label>
                         <div class="col-sm-4">
-                            @foreach (MODEL.T_TechnicaLevel techLeval in ViewBag.techLeval as List<MODEL.T_TechnicaLevel>)
-                            {
-                                if (techLeval.TechLevelId == ViewBag.member.TechnicalLevel)
+                            <select class="form-control" name="TechnicalLevel" disabled="disabled">
+                                @foreach (MODEL.T_TechnicaLevel techLeval in ViewBag.techLeval as List<MODEL.T_TechnicaLevel>)
                                 {
-                                    <input type="text" class="form-control" value="@techLeval.TechLevelName" readonly>
+                                    if (techLeval.TechLevelId == ViewBag.member.TechnicalLevel)
+                                    {
+                                        <option value="@techLeval.TechLevelId" selected="selected">@techLeval.TechLevelName</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@techLeval.TechLevelId">@techLeval.TechLevelName</option>
+                                    }
                                 }
-                            }
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="JoinTime" class="col-sm-2 control-label">加入时间:</label>
                         <div class="col-sm-4">
-                            <input type="text" value="@string.Format("{0:d}", ViewBag.member.JoinTime)" class="form-control" readonly>
+                            <input type="text" value="@string.Format("{0:d}", ViewBag.member.JoinTime)" class="form-control" name="JoinTime" readonly>
                         </div>
                         <label for="EndTime" class="col-sm-2 control-label">退出时间:</label>
                         <div class="col-sm-4">
-                            <input type="text" value="无" class="form_datetime form-control" name="EndTime" readonly>
+                            <input type="text" value="" class="form_datetime form-control" name="EndTime" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="StudyGuideNumber" class="col-sm-2 control-label">学习顾问:</label>
                         <div class="col-sm-4">
-                            <input type="text" value="@ViewBag.StuGuide" class=" form-control" readonly />
+                            <input type="text" value="@ViewBag.StuGuide" class=" form-control" readonly name="StudyGuideNumber" />
                         </div>
                         <label for="TechnicalGuideNumber" class="col-sm-2 control-label">组织:</label>
                         <div class="col-sm-4">
-                            <input type="text" value="@ViewBag.org" class=" form-control" readonly />
+                            <input type="text" value="@ViewBag.org" class=" form-control" name="TechnicalGuideNumber" readonly />
                         </div>
                     </div>
                 }

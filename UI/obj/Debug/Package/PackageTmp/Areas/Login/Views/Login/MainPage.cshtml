@@ -30,17 +30,14 @@
         <div id="header-right">
             <div id="header-right-content">
                 <!-- Msg  --> 
-                <div id="header-msg-btn" >
+                <div id="header-msg-btn" onclick="ClickMsg();">
                 </div>
                 <!-- Photo  -->
                 <div id="header-photo" style="border-radius:50% 50%">
                     <img src="/HeadImg/final.png" style="border-radius:50% 50%;height:30px;width:30px"/>
                 </div>
                 <!-- Nickname -->
-                <div id="header-nickname" >
-                    <!--<a href="/PersonalManger/CheckMember/PersonPage"></a>-->
-                    @ViewBag.name
-                </div>
+                <div id="header-nickname" onclick="ClickPerson();">@ViewBag.name</div>
                 <!-- Logout -->
                 <div id="header-logout-btn" title="退出登陆" >
                     <div id="header-logout-img" ></div>
@@ -65,7 +62,7 @@
             <div class="top_nav" id="top-nav">
                 <div id="nav-body">
                     <ul id="nav-body-ul"></ul>
-                    <div style="width: 12px; height: 36px;  float: right; padding-top: 4px;margin-right:1px;" onmouseover="showClose()" onmouseout="oldClose()">
+                    <div style="width: 12px; height: 36px;  float: right;padding-top: 4px;margin-right:1px;" onmouseover="showClose()" onmouseout="oldClose()">
                         <span onclick="CloseLeft();" style="cursor: pointer;color:#67a3a1" id="leftClose" title="关闭左侧所有页面">x</span>
                     </div>
                 </div>

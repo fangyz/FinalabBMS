@@ -181,9 +181,11 @@
     <Content Include="Areas\Login\final\13.jpg" />
     <Content Include="Areas\Login\Images\3.png" />
     <Content Include="Areas\Login\Images\background.png" />
+    <Content Include="Areas\Login\Images\index_icon.png" />
     <Content Include="Areas\Login\Images\page.png" />
     <Content Include="Areas\Login\Images\web_logo.ico" />
     <Content Include="Areas\Login\JS\Index.js" />
+    <Content Include="Areas\Login\JS\md5.js" />
     <Content Include="Areas\Login\JS\sketch.min.js" />
     <Content Include="Areas\Message\css\bootstrap-responsive.min.css" />
     <Content Include="Areas\Message\css\bootstrap.min.css" />
@@ -995,7 +997,6 @@
     <None Include="Properties\PublishProfiles\finlab-0819-1.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Areas\Login\CSS\Login.css" />
-    <Content Include="Areas\Login\Images\index_icon.png" />
     <Content Include="Areas\Login\Images\登陆界面图标.png" />
     <Content Include="Areas\Login\JS\Login.js" />
     <Content Include="Areas\PersonalManger\Images\panel_tools.png" />
@@ -1017,26 +1018,20 @@
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="uploadify.swf" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Default\boot.cshtml" />
     <Content Include="Areas\PersonalManger\Views\CheckMember\PageEdit.cshtml" />
     <Content Include="Views\Default\Index.cshtml" />
-    <Content Include="uploads\积分宝项目相关说明.zip" />
-    <Content Include="uploads\积分宝项目简介.doc" />
-    <Content Include="uploads\积分宝项目计划书.doc" />
-    <Content Include="uploads\计通学院2015互联网创新创业大赛申报项目备案.docx" />
     <Content Include="uploadfiyHelper.ashx" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1051,6 +1046,7 @@
     <Folder Include="My97DatePicker\开发包\lang\" />
     <Folder Include="My97DatePicker\开发包\skin\default\" />
     <Folder Include="My97DatePicker\开发包\skin\whyGreen\" />
+    <Folder Include="uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Login\Views\Login\Index.cshtml" />

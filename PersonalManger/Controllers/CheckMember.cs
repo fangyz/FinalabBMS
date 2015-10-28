@@ -156,6 +156,7 @@ namespace PersonalManger
                 ViewBag.backurl = "/PersonalManger/CheckMember/PersonPage";
             }
             string stunum = Request["StuNum"];//得到要修改学生的学号
+            object c = OperateContext.Current.Usr.StuNum;//拿到登入用户的学号
             string user = OperateContext.Current.Usr.StuNum;//拿到登入用户的学号
             if (user == "FinalAdmin")//注意：这里是直接用登入者账号是否等于数据库的系统维护人员的账号的。注意！！！
             {
@@ -163,7 +164,7 @@ namespace PersonalManger
                 ViewBag.user = "admin";
                 //这里是得到要修改成员的角色
                 UserRoleId = OperateContext.Current.BLLSession.IRoleActBLL.GetListBy(u => u.RoleActor == stunum).First().RoleId;
-                List<MODEL.T_Role> listRole=OperateContext.Current.BLLSession.IRoleBLL.GetListBy(u => u.IsDelete == false).ToList();
+                List<MODEL.T_Role> listRole = OperateContext.Current.BLLSession.IRoleBLL.GetListBy(u => u.IsDelete == false).ToList();
                 ViewBag.listRole = listRole;
                 ViewBag.UserRoleId = UserRoleId;
             }
@@ -178,12 +179,12 @@ namespace PersonalManger
             string dtfour;
             GetYear(out  dtone, out  dttwo, out  dtthree, out  dtfour);
             ViewBag.IsShow = 1;
-            string  datetime = stunum.Substring(0, 4).ToString();
+            string datetime = stunum.Substring(0, 4).ToString();
             //通过年级来设置学习顾问，组织等信息；大二和大三成员只能看到自己的学习顾问,管理员也无法修改
             #region 1初始化下拉框的信息
             List<MODEL.T_Department> dep = OperateContext.Current.BLLSession.IDepartmentBLL.GetListBy(u => u.DepartmentId > 0);
             List<MODEL.T_TechnicaLevel> techLeval = OperateContext.Current.BLLSession.ITechnicaLevelBLL.GetListBy(u => u.TechLevelId > 0);
-            List<MODEL.T_MemberInformation> StudyGuide = OperateContext.Current.BLLSession.IMemberInformationBLL.GetListBy(u =>(u.T_RoleAct.Select(p => p.RoleId).Contains(Position.StudyMember) || u.T_RoleAct.Select(p => p.RoleId).Contains(Position.StudyLeader)));
+            List<MODEL.T_MemberInformation> StudyGuide = OperateContext.Current.BLLSession.IMemberInformationBLL.GetListBy(u => (u.T_RoleAct.Select(p => p.RoleId).Contains(Position.StudyMember) || u.T_RoleAct.Select(p => p.RoleId).Contains(Position.StudyLeader)));
             List<MODEL.T_Organization> organization = OperateContext.Current.BLLSession.IOrganizationBLL.GetListBy(u => u.OrganizationId > 0);
             //选择信息赋值,初始化部门，组织，技术水平下拉框
             ViewBag.dep = dep;
@@ -232,17 +233,20 @@ namespace PersonalManger
             ViewBag.StuGuide = "";
             ViewBag.org = "";
             ViewBag.depName = "";
-            try
+            if (member.StudyGuideNumber != null)
             {
                 ViewBag.StuGuide = OperateContext.Current.BLLSession.IMemberInformationBLL.GetListBy(u => u.StuNum == member.StudyGuideNumber).First().StuName;
-                int orgId = OperateContext.Current.BLLSession.IOgnizationActBLL.GetListBy(o => o.RoleActor == member.StuNum).First().OrganizationId;
-                string orgName = OperateContext.Current.BLLSession.IOrganizationBLL.GetListBy(u => u.OrganizationId == orgId).First().OrganizationName;
-                ViewBag.orgName = orgName;
-                ViewBag.orgId = orgId;
-                ViewBag.depName = OperateContext.Current.BLLSession.IDepartmentBLL.GetListBy(u => u.DepartmentId == member.Department).First().DepartmentName;
             }
-            catch (Exception ex) { }
-            #endregion 
+            else
+            {
+                ViewBag.StuGuide = "";
+            }
+            int orgId = OperateContext.Current.BLLSession.IOgnizationActBLL.GetListBy(o => o.RoleActor == member.StuNum).First().OrganizationId;
+            string orgName = OperateContext.Current.BLLSession.IOrganizationBLL.GetListBy(u => u.OrganizationId == orgId).First().OrganizationName;
+            ViewBag.orgName = orgName;
+            ViewBag.orgId = orgId;
+            ViewBag.depName = OperateContext.Current.BLLSession.IDepartmentBLL.GetListBy(u => u.DepartmentId == member.Department).First().DepartmentName;
+            #endregion
             return View();
         }
         #endregion
@@ -254,9 +258,7 @@ namespace PersonalManger
         /// <returns></returns>
         public ActionResult AdminEdit(MODEL.T_MemberInformation member)
         {
-            int oldRoleId = 0;
-            try
-            {
+                int oldRoleId = 0;
                 oldRoleId=Convert.ToInt32(Request.Form["oldRoleId"]);
                 //查看角色属性
                 int roleId = 0;
@@ -270,11 +272,6 @@ namespace PersonalManger
                     roleAct.RoleActor = member.StuNum;
                     OperateContext.Current.BLLSession.IRoleActBLL.Add(roleAct);
                 }
-            }
-            catch
-            {
-
-            }
             //得到修改SecretShow属性
             int ShowFPhone = 2;
             int ShowAddress = 2;
@@ -323,24 +320,17 @@ namespace PersonalManger
             ShowPhone = Convert.ToInt32(Request.Form["ShowPhone"]);
             IsShow = 4 * ShowFPhone + 2 * ShowAddress + ShowPhone;//得到信息公开数据
             member.SecretShow = IsShow;
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    /*EF修改主键一定要加*/
-                    string[] proNames = new string[] { "StuNum", "StuName", "Gender", "Email", "LoginPwd", "Class", "Major", "Counselor", "HeadTeacher", "UndergraduateTutor", "TelephoneNumber","Birthday",
+                /*EF修改主键一定要加*/
+                string[] proNames = new string[] { "StuNum", "StuName", "Gender", "Email", "LoginPwd", "Class", "Major", "Counselor", "HeadTeacher", "UndergraduateTutor", "TelephoneNumber","Birthday",
                         "HomPhoneNumber","FamilyAddress","Sign","OtheInfor","SecretShow"};
-                    OperateContext.Current.BLLSession.IMemberInformationBLL.Modify(member, proNames);
-                    return Content("<script>alert('修改成功');window.location='/PersonalManger/CheckMember/PersonPage?StuNum=" + member.StuNum + "'</script>");
-                }
-                else
-                {
-                    return Content("<script>alert('修改成功');window.location='/PersonalManger/CheckMember/PageEdit?StuNum=" + member.StuNum + "'</script>");
-                }
+                OperateContext.Current.BLLSession.IMemberInformationBLL.Modify(member, proNames);
+                return Content("<script>alert('修改成功');window.location='/PersonalManger/CheckMember/PersonPage?StuNum=" + member.StuNum + "'</script>");
             }
-            catch (Exception ex)
+            else
             {
-                return Content("<script>alert('修改成功');window.location='/PersonalManger/CheckMember/PageEdit?StuNum=" + member.StuNum + "'</script>");
+                return Content("<script>alert('修改失败!');window.location='/PersonalManger/CheckMember/PageEdit?StuNum=" + member.StuNum + "'</script>");
             }
         }
         #endregion

@@ -59,3 +59,4 @@ F:\实验室网站\FinalabBMS\UI\bin\MVC.Helper.pdb
 F:\实验室网站\FinalabBMS\UI\bin\Permission.pdb
 F:\实验室网站\FinalabBMS\UI\bin\PersonalManger.pdb
 F:\实验室网站\FinalabBMS\UI\bin\Task.pdb
+F:\实验室网站\FinalabBMS\UI\obj\Debug\UI.csprojResolveAssemblyReference.cache

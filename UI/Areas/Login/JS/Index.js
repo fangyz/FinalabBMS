@@ -192,7 +192,7 @@ function AddIframe(id, url, name) {
         strLi += '<span class="mian_nav_li_content_title">' + name + '</span>';
         strLi += '</div>';
         strLi += '</div>'
-        strLi += '<div onclick="SubIframe('+id+')" onmouseover ="NavCloseBtnMouseOver(' + id + ')" onmouseout ="NavCloseBtnMouseOut(' + id + ')" class="mian_nav_li_close_btn" id="nav-li-close-btn-' + id + '"></div>';
+        strLi += '<div onclick="SubIframe('+id+')" onmouseover ="NavCloseBtnMouseOver(' + id + ')" onmouseout ="NavCloseBtnMouseOut(' + id + ')" class="mian_nav_li_close_btn"></div>';
         strLi += '</li>';
 
         $ul.append(strLi);
@@ -284,17 +284,25 @@ function CloseLeft() {
         }
        
     }
-    
-
 }
 
+//得到关闭左侧所有标签移开和鼠标碰到的特效
 function showClose() {
     var close = document.getElementById("leftClose");
     close.style.fontSize = "18px";
-    close.style.color = "#003466";
+    close.style.color = "rgba(237, 18, 11, 0.74)";
 }
 function oldClose() {
     var close = document.getElementById("leftClose");
     close.style.fontSize = "12px";
     close.style.color = "#67a3a1";
+}
+
+//点击右上角信息图标
+function ClickMsg() {
+    AddIframe(128, "/PersonalManger/CheckMember/PersonPage", "我的消息");
+}
+//点击右上角姓名图标
+function ClickPerson() {
+    AddIframe(2, "/PersonalManger/CheckMember/PersonPage", "个人信息");
 }
