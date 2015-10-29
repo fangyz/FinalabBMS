@@ -1,5 +1,0 @@
-F:\实验室网站\FinalabBMS\UI\bin\MVC.Helper.dll
-F:\实验室网站\FinalabBMS\UI\bin\MVC.Helper.pdb
-F:\实验室网站\FinalabBMS\MVC.Helper\obj\Debug\MVC.Helper.csprojResolveAssemblyReference.cache
-F:\实验室网站\FinalabBMS\MVC.Helper\obj\Debug\MVC.Helper.dll
-F:\实验室网站\FinalabBMS\MVC.Helper\obj\Debug\MVC.Helper.pdb

@@ -1,7 +1,0 @@
-F:\实验室网站\FinalabBMS\IDAL\bin\Debug\IDAL.dll
-F:\实验室网站\FinalabBMS\IDAL\bin\Debug\IDAL.pdb
-F:\实验室网站\FinalabBMS\IDAL\bin\Debug\MODEL.dll
-F:\实验室网站\FinalabBMS\IDAL\bin\Debug\MODEL.pdb
-F:\实验室网站\FinalabBMS\IDAL\obj\Debug\IDAL.csprojResolveAssemblyReference.cache
-F:\实验室网站\FinalabBMS\IDAL\obj\Debug\IDAL.dll
-F:\实验室网站\FinalabBMS\IDAL\obj\Debug\IDAL.pdb

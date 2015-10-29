@@ -1,5 +1,0 @@
-F:\实验室网站\FinalabBMS\UI\bin\Task.dll
-F:\实验室网站\FinalabBMS\UI\bin\Task.pdb
-F:\实验室网站\FinalabBMS\Task\obj\Debug\Task.csprojResolveAssemblyReference.cache
-F:\实验室网站\FinalabBMS\Task\obj\Debug\Task.dll
-F:\实验室网站\FinalabBMS\Task\obj\Debug\Task.pdb

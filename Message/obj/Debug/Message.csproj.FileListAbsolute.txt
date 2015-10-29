@@ -1,5 +1,0 @@
-F:\实验室网站\FinalabBMS\UI\bin\Message.dll
-F:\实验室网站\FinalabBMS\UI\bin\Message.pdb
-F:\实验室网站\FinalabBMS\Message\obj\Debug\Message.csprojResolveAssemblyReference.cache
-F:\实验室网站\FinalabBMS\Message\obj\Debug\Message.dll
-F:\实验室网站\FinalabBMS\Message\obj\Debug\Message.pdb

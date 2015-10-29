@@ -1,5 +1,0 @@
-F:\实验室网站\FinalabBMS\UI\bin\FinalWeb.JoinUs.dll
-F:\实验室网站\FinalabBMS\UI\bin\FinalWeb.JoinUs.pdb
-F:\实验室网站\FinalabBMS\FinalWeb.JoinUs\obj\Debug\FinalWeb.JoinUs.csprojResolveAssemblyReference.cache
-F:\实验室网站\FinalabBMS\FinalWeb.JoinUs\obj\Debug\FinalWeb.JoinUs.dll
-F:\实验室网站\FinalabBMS\FinalWeb.JoinUs\obj\Debug\FinalWeb.JoinUs.pdb

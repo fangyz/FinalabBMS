@@ -1,5 +1,0 @@
-F:\实验室网站\FinalabBMS\Common\bin\Release\Common.dll
-F:\实验室网站\FinalabBMS\Common\bin\Release\Common.pdb
-F:\实验室网站\FinalabBMS\Common\obj\Release\Common.csprojResolveAssemblyReference.cache
-F:\实验室网站\FinalabBMS\Common\obj\Release\Common.dll
-F:\实验室网站\FinalabBMS\Common\obj\Release\Common.pdb

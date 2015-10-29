@@ -1,5 +1,0 @@
-F:\实验室网站\FinalabBMS\UI\bin\Permission.dll
-F:\实验室网站\FinalabBMS\UI\bin\Permission.pdb
-F:\实验室网站\FinalabBMS\Permission\obj\Debug\Permission.csprojResolveAssemblyReference.cache
-F:\实验室网站\FinalabBMS\Permission\obj\Debug\Permission.dll
-F:\实验室网站\FinalabBMS\Permission\obj\Debug\Permission.pdb
