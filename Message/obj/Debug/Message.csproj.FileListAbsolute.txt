@@ -1,0 +1,10 @@
+F:\实验室网站\FinalabBMS\UI\bin\Message.dll
+F:\实验室网站\FinalabBMS\UI\bin\Message.pdb
+F:\实验室网站\FinalabBMS\Message\obj\Debug\Message.csprojResolveAssemblyReference.cache
+F:\实验室网站\FinalabBMS\Message\obj\Debug\Message.dll
+F:\实验室网站\FinalabBMS\Message\obj\Debug\Message.pdb
+F:\FINAL\final\FinalabBMS-1\UI\bin\Message.dll
+F:\FINAL\final\FinalabBMS-1\UI\bin\Message.pdb
+F:\FINAL\final\FinalabBMS-1\Message\obj\Debug\Message.csprojResolveAssemblyReference.cache
+F:\FINAL\final\FinalabBMS-1\Message\obj\Debug\Message.dll
+F:\FINAL\final\FinalabBMS-1\Message\obj\Debug\Message.pdb

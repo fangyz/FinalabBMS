@@ -1,0 +1,10 @@
+F:\实验室网站\FinalabBMS\UI\bin\Duty.dll
+F:\实验室网站\FinalabBMS\UI\bin\Duty.pdb
+F:\实验室网站\FinalabBMS\Duty\obj\Debug\Duty.csprojResolveAssemblyReference.cache
+F:\实验室网站\FinalabBMS\Duty\obj\Debug\Duty.dll
+F:\实验室网站\FinalabBMS\Duty\obj\Debug\Duty.pdb
+F:\FINAL\final\FinalabBMS-1\UI\bin\Duty.dll
+F:\FINAL\final\FinalabBMS-1\UI\bin\Duty.pdb
+F:\FINAL\final\FinalabBMS-1\Duty\obj\Debug\Duty.csprojResolveAssemblyReference.cache
+F:\FINAL\final\FinalabBMS-1\Duty\obj\Debug\Duty.dll
+F:\FINAL\final\FinalabBMS-1\Duty\obj\Debug\Duty.pdb
